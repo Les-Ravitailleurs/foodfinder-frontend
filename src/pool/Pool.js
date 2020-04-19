@@ -14,21 +14,26 @@ import fouet from "./fouet1.svg";
 import spatule from "./spatule.svg";
 
 const Pool = () => {
-  const { poolId } = useParams();
+  const { poolId, adminId } = useParams();
   const [pool, setPool] = useState(null);
   const history = useHistory();
 
   useEffect(() => {
     const getPool = async () => {
       try {
-        const { data } = await api.get(`/pool/${poolId}`);
+        const { data } = await api.get(
+          `/pool/${poolId}${adminId ? `?adminId=${adminId}` : ""}`
+        );
+        if (adminId && data.admin === false) {
+          history.push(`/collecte/${poolId}`);
+        }
         setPool(data);
       } catch (e) {
         history.push("/");
       }
     };
     getPool();
-  }, [poolId, history]);
+  }, [poolId, adminId, history]);
 
   return (
     <div className="Pool">

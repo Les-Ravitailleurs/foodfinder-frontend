@@ -12,6 +12,9 @@ export default function App() {
         <Route path="/collecte/:poolId/merci/:donationId">
           <DonationSuccess />
         </Route>
+        <Route path="/collecte/:poolId/admin/:adminId">
+          <Pool />
+        </Route>
         <Route path="/collecte/:poolId">
           <Pool />
         </Route>

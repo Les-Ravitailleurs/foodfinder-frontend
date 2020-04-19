@@ -9,7 +9,7 @@ const Footer = () => {
     <div className="Footer">
       <div className="Footer_filler"></div>
         <div className="Footer__content">
-          <img src={logo} />
+          <img src={logo} alt="logo" />
           <span>Tous droits réservés © 2020</span>
       </div>
     </div>

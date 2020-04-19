@@ -38,7 +38,7 @@ const PoolModal = () => {
         }}
         onSubmit={async (values, { setSubmitting }) => {
           const { data } = await api.post("/pool", values);
-          history.push(`/collecte/${data.id}`);
+          history.push(`/collecte/${data.id}/admin/${data.adminId}`);
         }}
       >
         {({ isSubmitting, values, handleChange, errors }) => (

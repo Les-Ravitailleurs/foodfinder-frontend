@@ -29,7 +29,7 @@ const DonationSuccess = () => {
     getDonation();
   }, [donationId, history]);
 
-  const donationMealCount = donation && donation.amount / 100;
+  const donationMealCount = donation && donation.mealCount;
 
   return (
     <div className="DonationSuccess">
