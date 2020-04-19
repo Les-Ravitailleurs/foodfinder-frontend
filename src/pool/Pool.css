@@ -11,6 +11,8 @@
   z-index: 0;
   position: relative;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .PoolLeft__bgFouet {
@@ -39,10 +41,15 @@
 .PoolRight {
   width: 40%;
   background-color: #faf29a;
+  background-image: url("./carottes.svg");
+  background-size: 100% auto;
+  background-position: bottom left;
+  background-repeat: no-repeat;
 }
 
 .PoolDescription,
-.GiveModule, .PoolSummary {
+.GiveModule,
+.PoolSummary {
   padding: 60px;
 }
 
@@ -51,10 +58,46 @@
 }
 
 .PoolSummary {
-    padding-top: 0px;
+  width: calc(100% - 250px);
+  max-width: 500px;
+  background: #ffffff;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 14px;
+  margin: auto;
+  position: relative;
+  padding: 30px;
+  padding-top: 45px;
 }
 
-h1 {
+.PoolSummary__MealCount {
+  background: #fff7ad;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: -45px;
+  font-family: 'Open Sans';
+  font-weight: 600;
+
+  font-size: 11px;
+}
+
+.Pool .PoolSummary__MealCount h1 {
+  margin: 0;
+  font-size: 50px;
+  line-height: 55px;;
+}
+
+.Pool h1 {
   font-family: "DM Serif Text";
   margin-bottom: 30px;
 }
@@ -84,6 +127,6 @@ h1 {
 }
 
 .GiveModule__button .Button {
-    padding-left: 70px;
-    padding-right: 70px;
+  padding-left: 70px;
+  padding-right: 70px;
 }

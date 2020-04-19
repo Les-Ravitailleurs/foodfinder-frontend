@@ -7,6 +7,7 @@ import PoolDescription from "./PoolDescription";
 import PoolSummary from "./PoolSummary";
 import GiveModule from "./GiveModule";
 import api from "../api";
+import Footer from "../footer/Footer";
 
 import couteau from "./couteau.svg";
 import fouet from "./fouet1.svg";
@@ -41,6 +42,7 @@ const Pool = () => {
             <PoolSummary pool={pool} />
           </>
         )}
+        <Footer />
       </div>
       <div className="PoolRight">
         {pool && (
