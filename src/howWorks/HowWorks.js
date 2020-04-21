@@ -18,17 +18,17 @@ const HowWorks = () => {
         <div className="HowWorks__step">
           <div className="HowWorks__step__number">2.</div>
           <div className="HowWorks__step__description">
-            Vous financez les
+            Nos chefs partenaires
             <br />
-            matières premières
+            cuisinent les repas
           </div>
         </div>
         <div className="HowWorks__step">
           <div className="HowWorks__step__number">3.</div>
           <div className="HowWorks__step__description">
-            Vous financez les
+            Nous les livrons
             <br />
-            matières premières
+           aux associations partenaires
           </div>
         </div>
       </div>

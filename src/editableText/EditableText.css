@@ -1,0 +1,14 @@
+.EditableText {
+  color: #46894d;
+  font-family: DM Serif Text;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.EditableText span {
+    border-bottom: 2px dashed #46894d;
+}
+
+.EditableText img {
+    margin-left: 10px;
+}

@@ -1,7 +1,9 @@
 .HowWorks {
   display: flex;
   justify-content: space-between;
+  margin: auto;
   margin-bottom: 20px;
+  max-width: calc(100% - 120px);
 }
 
 .HowWorks__title {
@@ -9,6 +11,8 @@
   font-size: 17px;
   color: #181818;
   margin: 20px 0px;
+  margin: auto;
+  max-width: calc(100% - 120px);
 }
 
 .HowWorks__step {
@@ -30,4 +34,22 @@
   color: #141414;
   font-size: 12px;
   font-weight: 600;
+  text-align: left;
+}
+
+
+@media screen and (max-width: 767px) {
+
+  .HowWorks, .HowWorks__title {
+    display: block;
+    max-width: calc(100% - 40px);
+    text-align: center;
+  }
+  .HowWorks__title {
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+  .HowWorks__step {
+    margin-bottom: 25px;
+  }
 }

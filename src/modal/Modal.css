@@ -9,6 +9,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  z-index: 100;
 }
 
 .Modal {
@@ -61,4 +62,29 @@
 .Modal__content .Button {
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.Modal__closeButton {
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 25px;
+  font-weight: 100;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+  .Modal {
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    border-radius: 0;
+  }
+  .Modal__rightHand, .Modal__leftHand {
+    display:none;
+  }
 }

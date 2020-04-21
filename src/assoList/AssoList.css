@@ -1,0 +1,39 @@
+.AssoList h1 {
+    font-family: 'DM Serif Text';
+    font-size: 17px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.AssoList__images {
+    overflow-x:auto;
+    display: flex;
+    max-width: 500px;
+    margin: auto;
+    justify-content: space-between;
+}
+
+.AssoList__images img {
+    margin-right: 10px;
+    width: 90px;
+}
+
+
+.AssoList__images img:last-child {
+    margin-right: 0;
+}
+.AssoList {
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 767px) {
+    .AssoList__images {
+        display: block;
+        margin: auto;
+        width: 240px;
+    }
+
+    .AssoList__images img {
+        width: 110px;
+    }
+}

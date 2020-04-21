@@ -3,20 +3,41 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Mailchimp from "react-mailchimp-form";
+import { useHistory } from "react-router-dom";
+import queryString from 'query-string'
+
 
 import "./Landing.css";
+import Button from "../button/Button";
+import HowWorks from "../howWorks/HowWorks";
 import PoolModal from "../poolModal/PoolModal";
+import reviewer from "./reviewer.png";
+import tomate from "./tomate.svg";
+import tomateCarotte from "./tomateCarotte.png";
+import Footer from "../footer/Footer";
+import AssoList from "../assoList/AssoList";
+
 
 const Landing = () => {
-  const [mealCount, setMealCount] = useState("0");
+  const history = useHistory();
+  const query = queryString.parse(history.location.search)
+  const [showModal, setShowModal] = useState(query.collecte === 'creer');
+  const [mealCount, setMealCount] = useState("5000");
+  const [donatorCount, setDonatorCount] = useState("645");
+  const [benevoleCount, setBenevoleCount] = useState("16");
+  const [chefCount, setChefCount] = useState("32");
+  const [partenaires, setPartenaires] = useState([
+    { name: "Frichti", url: "https://frichti.co" },
+    { name: "Big Mamma" },
+  ]);
   useEffect(() => {
-    const setMealNumber = async () => {
+    const setNumbers = async () => {
       const { data } = await axios.get(
         "https://sheets.googleapis.com/v4/spreadsheets/19aDWWKXLwUBrWyMeXYHaB7sQAxUdYueAaUaAtqo1ut4/values/A2?key=AIzaSyBroGL6GU8PGrCVFCJJjmCCHq1VAu_aJck"
       );
       setMealCount(data.values[0]);
     };
-    setMealNumber();
+    setNumbers();
   }, [setMealCount]);
 
   return (
@@ -49,9 +70,10 @@ const Landing = () => {
               </p>
             </div>
             <div className="main-cta">
-              <a className="button w-button createPool">
-                Je deviens Ravitailleur
-              </a>
+              <br />
+              <Button onClick={() => setShowModal(true)}>
+                Je crée ma collecte
+              </Button>
             </div>
           </div>
         </div>
@@ -82,7 +104,8 @@ const Landing = () => {
       </div>
       <div className="section-7">
         <div className="div-block-20">
-          <div>
+          <HowWorks />
+          {/* <div>
             <div className="text-block-10">Les Ravitailleurs partenaires :</div>
           </div>
           <div className="div-block-21">
@@ -104,75 +127,156 @@ const Landing = () => {
               id="w-node-8d7ba9c207d7-427335c4"
               alt=""
             />
-          </div>
+          </div> */}
         </div>
         <div className="container-3 w-container">
-          <h2 className="heading-3">
+          <h2 className="heading-3" style={{ marginTop: "-40px" }}>
             <strong>
-              Parce que chaque repas compte,
+              Ravitaillez depuis chez vous,
               <br />
-              on compte les repas
+              créez votre <span className="emphasis">collecte</span>
             </strong>
             <br />
           </h2>
-          <div className="div-block-14">
-            <img
-              src="/landing/images/Frame-4.svg"
-              width={73}
-              alt=""
-              className="image-5"
-            />
-            <div className="div-block-13">
-              <div id="plat-number" className="text-block-6 plat-number">
-                {mealCount}
-              </div>
-              <div className="text-block-5">
-                repas donnés par les Ravitailleurs
+          <p
+            style={{
+              textAlign: "center",
+              margin: "50px",
+              fontSize: "12px",
+              fontFamily: "Open Sans, sans-serif",
+            }}
+          >
+            Créez et partagez en quelques clics une collecte afin de récolter
+            des repas
+            <br />
+            au sein de votre entreprise, communauté, famille, groupe d'amis...
+          </p>
+          <div className="reviews">
+            <div className="reviewContainer">
+              <img
+                className="reviewBackground"
+                id="reviewBackground1"
+                src={tomate}
+                title="tomate"
+              />
+              <div className="review">
+                <img className="reviewImage" src={reviewer} alt="reviewer" />
+                <br />
+                Clémence a créé une collecte pour que ses collègues offrent des
+                repas et a collecté <span className="green">568 repas</span>
               </div>
             </div>
-            <img
-              src="/landing/images/Frame-3.svg"
-              width={72}
-              alt=""
-              className="image-6"
-            />
+            <div className="reviewContainer">
+              <img
+                className="reviewBackground"
+                id="reviewBackground2"
+                src={tomateCarotte}
+                title="tomateCarotte"
+              />
+              <div className="review">
+                <img className="reviewImage" src={reviewer} alt="reviewer" />
+                <br />
+                Valentin a créé une collecte pour la partager sur Instagram, il
+                a collecté <span className="green">2234 repas</span>
+              </div>
+            </div>
+            <div className="reviewContainer">
+              <img
+                className="reviewBackground"
+                id="reviewBackground3"
+                src={tomate}
+                title="tomate"
+              />
+              <div className="review">
+                <img className="reviewImage" src={reviewer} alt="reviewer" />
+                <br />
+                Sabrina a créé une collecte pour sa famille, elle a collecté{" "}
+                <span className="green">243 repas</span>
+              </div>
+            </div>
           </div>
-          <div className="div-block-15">
-            <div className="text-block-7">Les asso Ravitaillées :</div>
-            <div className="div-block-17">
-              <img
-                src="/landing/images/Group-94.png"
-                width={117}
-                alt=""
-                className="logo-asso"
-              />
-              <img
-                src="/landing/images/logo_protection.png"
-                width={117}
-                alt=""
-                className="logo-asso"
-              />
-              <img
-                src="/landing/images/Group-93.png"
-                width={117}
-                alt=""
-                className="logo-asso"
-              />
+          <div style={{ textAlign: "center", margin: "50px" }}>
+            <Button onClick={() => setShowModal(true)}>
+              Je crée ma collecte
+            </Button>
+          </div>
+          <h2
+            className="heading-3"
+            style={{ fontSize: "25px", marginBottom: "-10px" }}
+          >
+            <strong>
+              Grâce à nos bénévoles et partenaires,
+              <br />
+              nous avons déjà distribué&nbsp;:
+            </strong>
+            <br />
+          </h2>
+        </div>
+      </div>
+      <div className="div-block-19">
+        <div className="div-block-14">
+          <img
+            src="/landing/images/Frame-4.svg"
+            width={73}
+            alt=""
+            className="image-5"
+          />
+          <div className="div-block-13">
+            <div id="plat-number" className="text-block-6 plat-number">
+              {mealCount}
+            </div>
+            <div className="text-block-5">
+              <strong>Repas</strong>
+            </div>
+          </div>
+          <img
+            src="/landing/images/Frame-3.svg"
+            width={72}
+            alt=""
+            className="image-6"
+          />
+        </div>
+      </div>
+      <div className="section-2">
+        <div style={{ textAlign: "center" }}>
+          <div className="text-block-7">Aidés par :</div>
+          <div
+            style={{
+              display: "flex",
+              width: "100%",
+              maxWidth: "400px",
+              margin: "auto",
+              justifyContent: "space-between",
+            }}
+          >
+            <div className="countDisplay">
+              <h1>{donatorCount}</h1>
+              Citoyens
+            </div>
+            <div className="countDisplay">
+              <h1>{benevoleCount}</h1>
+              Bénévoles
+            </div>
+            <div className="countDisplay">
+              <h1>{chefCount}</h1>
+              Chefs
             </div>
           </div>
         </div>
+        <div className="div-block-15">
+          <AssoList />
+        </div>
       </div>
-      <div className="div-block-19" />
-      <div className="section-2">
+      <div className="section-6">
+        <div className="div-block-9" style={{ marginBottom: "50px" }} />
         <div className="w-container">
           <div className="div-block-3">
             <div className="div-block-4">
-              <h3 className="heading-2">Je suis restaurateur</h3>
+              <h3 className="heading-2">Je suis cuisinier</h3>
               <p className="paragraph-2">
-                Rouvrez vos cuisinez ou cuisinez (un peu) plus. <br />
-                <br />
-                On vous met en relation avec les assos qui ont besoin de vous.
-                <br />
+                Sortez les marmites ! Vous nous dites combien de repas vous
+                pouvez cuisiner et quand, nous vous livrons les produits et
+                venons rechercher les plats cuisinés.
               </p>
               <div>
                 <a
@@ -180,7 +284,7 @@ const Landing = () => {
                   target="_blank"
                   className="button-2 w-button"
                 >
-                  Je deviens Ravitailleur
+                  Je cuisine
                   <br />
                 </a>
               </div>
@@ -203,10 +307,11 @@ const Landing = () => {
               />
             </div>
             <div className="div-block-4 right">
-              <h3 className="heading-2">Je suis producteur ou distributeur</h3>
+              <h3 className="heading-2">Je suis bénévole</h3>
               <p className="paragraph-2 right">
-                Donnez-nous vos invendus, nous les distribuerons aux
-                restaurateurs. Nous avons besoin de produits secs et frais.
+                Nous avons besoin de vous ! Transport de marchansises,
+                préparation de commande, inventaires ... inscrivez-vous et nous
+                vous proposerons des missions.
                 <br />
               </p>
               <div>
@@ -215,7 +320,7 @@ const Landing = () => {
                   target="_blank"
                   className="button-2 w-button"
                 >
-                  Je deviens Ravitailleur
+                  Je donne de mon temps
                   <br />
                 </a>
               </div>
@@ -225,17 +330,17 @@ const Landing = () => {
             <div className="div-block-4">
               <h3 className="heading-2">Je suis un citoyen</h3>
               <p className="paragraph-2">
-                Contactez-nous et faites un don pour nous aider à acheter plus
-                de matières premières.
+                Créez et partagez en quelques clics une collecte afin de
+                récollecter des repas au sein de votre entreprise, communauté,
+                famille, groupe d’amis,...
                 <br />
               </p>
               <div>
                 <a
-                  href="https://frichti.typeform.com/to/odhOWE"
-                  target="_blank"
+                  onClick={() => setShowModal(true)}
                   className="button-2 w-button"
                 >
-                  Je deviens Ravitailleur
+                  Je crée ma collecte
                   <br />
                 </a>
               </div>
@@ -247,6 +352,18 @@ const Landing = () => {
                 alt=""
                 className="image-7"
               />
+            </div>
+          </div>
+          <div className="div-block-10 mercis">
+            <h1>
+              Merci à nos généreux
+              <br />
+              partenaires:
+            </h1>
+            <div className="div-block-18">
+              {partenaires.map((p) => (
+                <span className="partenaireName"><a key={p.name} href={p.url} target="_blank">{p.name}</a>•</span>
+              ))}
             </div>
           </div>
         </div>
@@ -319,7 +436,7 @@ const Landing = () => {
               <div className="text-block-3">
                 Recevez des nouvelles du front, entrez votre email :
               </div>
-              <div className="div-block-11">
+              {/* <div className="div-block-11">
                 <img
                   src="/landing/images/Ellipse-4.svg"
                   width={28}
@@ -338,7 +455,7 @@ const Landing = () => {
                   alt=""
                   className="bubble"
                 />
-              </div>
+              </div> */}
             </div>
             <div className="w-form">
               <br />
@@ -360,7 +477,7 @@ const Landing = () => {
                   empty: "Veuillez entrer votre adresse email.",
                   duplicate:
                     "Trop d'inscription récentes pour cette adresse email",
-                  button: "Valider",
+                  button: "Je m'inscris",
                 }}
               />
               <div className="success-message w-form-done">
@@ -374,48 +491,11 @@ const Landing = () => {
               </div>
             </div>
           </div>
-          <div className="div-block-10 mercis">
-            <div className="text-block-4">
-              <strong>Merci à nos partenaires pour leur générosité</strong> :
-            </div>
-            <div className="div-block-18">
-              <img
-                src="/landing/images/logo-frichti-bleu-1.svg"
-                width={96}
-                alt=""
-                className="logo-merci"
-              />
-              <img
-                src="/landing/images/Vendredi-alt---MonoBlack-1.png"
-                width={104}
-                height={72}
-                alt=""
-                className="logo-merci"
-              />
-              <img
-                src="/landing/images/source-logo-1.png"
-                width={123}
-                height={16}
-                alt=""
-                className="logo-merci last"
-              />
-            </div>
-          </div>
         </div>
       </div>
-      <div className="section-3">
-        <div className="container w-container">
-          <div className="div-block-16">
-            <img
-              src="/landing/images/logo_ravitailleur.svg"
-              width={108}
-              alt=""
-            />
-          </div>
-        </div>
-      </div>
+      <Footer />
 
-      <script src="/landing/js/webflow.js" type="text/javascript"></script>
+      {showModal && <PoolModal onClose={() => setShowModal(false)} />}
     </div>
   );
 };

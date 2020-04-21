@@ -6,7 +6,7 @@
 
 .PoolLeft {
   height: 100%;
-  width: 60%;
+  flex-grow: 1;
   background-color: #faf8ea;
   z-index: 0;
   position: relative;
@@ -39,7 +39,7 @@
 }
 
 .PoolRight {
-  width: 40%;
+  width: 350px;
   background-color: #faf29a;
   background-image: url("./carottes.svg");
   background-size: 100% auto;
@@ -48,13 +48,12 @@
 }
 
 .PoolDescription,
-.GiveModule,
 .PoolSummary {
   padding: 60px;
 }
 
-.GiveModule {
-  padding-top: 130px;
+.PoolDescription {
+  padding-bottom: 20px;
 }
 
 .PoolSummary {
@@ -67,6 +66,13 @@
   position: relative;
   padding: 30px;
   padding-top: 45px;
+  margin-top: 80px;
+}
+
+.PoolSummary h2 {
+  text-align: center;
+  font-size: 20px;
+  font-family: "DM Serif Text";
 }
 
 .PoolSummary__MealCount {
@@ -78,15 +84,17 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  width: 200px;
-  height: 90px;
+  width: 230px;
+  height: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  top: -45px;
-  font-family: 'Open Sans';
+  top: -50px;
+  font-family: "Open Sans";
   font-weight: 600;
+  text-align: center;
+  padding: 30px;
 
   font-size: 11px;
 }
@@ -94,17 +102,12 @@
 .Pool .PoolSummary__MealCount h1 {
   margin: 0;
   font-size: 50px;
-  line-height: 55px;;
+  line-height: 55px;
 }
 
 .Pool h1 {
   font-family: "DM Serif Text";
   margin-bottom: 30px;
-}
-
-.GiveModule h1 {
-  text-align: center;
-  font-size: 25px;
 }
 
 .PoolDescription__logo {
@@ -122,11 +125,88 @@
   color: #141414;
 }
 
-.GiveModule__button {
+.PoolDescription--admin .green {
+  color: #46894d;
+}
+
+.PoolDescription--admin h1 .green {
+  border-bottom: 2px dashed #46894d;
+}
+
+.PoolDescription--admin h1 .green::after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  background-image: url("./editable.svg");
+  background-size: 100% 100%;
+  margin-left: 10px;
+  opacity: 0.5;
+  position: relative;
+  bottom: 3px;
+}
+
+.PoolSummary__Donateurs strong {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.PoolSummary__Donateurs {
+  margin-top: 20px;
+  text-align: center;
+  font-family: "Open Sans";
+  font-size: 14px;
+  color: #909090;
+  font-weight: 600;
+}
+
+.PoolSummary__NotEmpty {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.4);
+  font-family: "Open Sans";
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.PoolDescription__Message {
+  width: 100%;
+  padding: 30px;
+  background: #f2eddc;
+  border-radius: 8px;
+  background-image: url("./quotes.svg");
+  background-repeat: no-repeat;
+  background-position-x: 20px;
   text-align: center;
 }
 
-.GiveModule__button .Button {
-  padding-left: 70px;
-  padding-right: 70px;
+.PoolDescription__Message p {
+  font-family: Open Sans;
+  color: rgba(0, 0, 0, 0.4);
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.PoolDescription__Message .Button {
+  font-size: 12px;
+  height: 35px;
+  padding: 0 30px;
+}
+
+.PoolDescription__Message .Button img {
+  width: 12px;
+  margin-left: 10px;
+  position: relative;
+  top: -2px;
+}
+
+@media screen and (max-width: 767px) {
+  .PoolDescription {
+    padding: 20px;
+  }
+  .Pool h1 {
+    font-size: 25px;
+  }
+  .PoolSummary {
+    width: 100%;
+    padding-top: 80px;
+  }
 }

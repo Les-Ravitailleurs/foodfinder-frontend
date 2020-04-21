@@ -1,0 +1,131 @@
+.GiveModule h1 {
+  text-align: center;
+  font-size: 20px;
+}
+
+.GiveModule__button {
+  text-align: center;
+}
+
+.GiveModule__button .Button {
+  padding-left: 70px;
+  padding-right: 70px;
+  border-radius: 0px 0px 5px 5px;
+  width: 100%;
+}
+
+.GiveModule__button .Input {
+  width: 100%;
+  border-radius: 5px 5px 0px 0px;
+  margin-top: 30px;
+}
+
+.GiveModule {
+  padding: 30px;
+  padding-top: 130px;
+}
+
+.GiveModule__MealButtons {
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.GiveModule__MealButton {
+  background: #11782e;
+  box-shadow: 0px 3px 4px rgba(19, 21, 20, 0.16);
+  border-radius: 150px;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  font-family: Open Sans;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome, Opera and Firefox */
+}
+
+.GiveModule__MealButton:hover {
+  transform: scale(0.98);
+}
+
+.GiveModule__MealButton:active {
+  transform: scale(1.02);
+}
+
+.GiveModule__MealButton:last-child {
+  margin-right: 0;
+}
+
+.GiveModule .EditableText {
+  font-size: 27px;
+}
+
+.GiveModule__MealCount {
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top: 50px;
+}
+
+.GiveModule__MealCount p {
+  font-family: Open Sans;
+  font-weight: 600;
+  font-size: 14px;
+  color: #181818;
+  margin-top: 20px;
+}
+
+.GiveModule__Details {
+  margin-top: 10px;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  /* or 143% */
+
+  text-align: center;
+
+  color: #181818;
+}
+
+.GiveModule__Details p {
+  margin: 20px auto;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.GiveModule__Details p:last-child {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.GiveModule__MealCount .Button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 50px;
+  height: 30px;
+  line-height: 30px;
+  padding: 0;
+  border-radius: 3px;
+}
+
+.GiveModule__MealCountEdit {
+  position: relative;
+}
+
+@media screen and (max-width: 767px) {
+  .GiveModule {
+    padding: 20px !important;
+    background-color: #faf29a;
+  }
+}

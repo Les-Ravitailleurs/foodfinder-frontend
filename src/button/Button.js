@@ -7,7 +7,7 @@ const Button = ({ type = "submit", children, disabled, onClick }) => {
     <button
       className={`Button ${disabled ? "Button--disabled" : ""}`}
       type={type}
-      onClick={onClick}
+      onClick={disabled ? null : onClick}
     >
       {children}
     </button>

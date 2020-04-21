@@ -9,7 +9,7 @@ export default function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/collecte/:poolId/merci/:donationId">
+        <Route path="/collecte/:poolId/merci/:mealCount">
           <DonationSuccess />
         </Route>
         <Route path="/collecte/:poolId/admin/:adminId">

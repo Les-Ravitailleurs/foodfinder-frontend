@@ -1,0 +1,18 @@
+.SocialShare {
+    display: flex;
+    justify-content: center;
+}
+
+.SocialShare img {
+    width: 30px;
+    margin-right: 10px;
+}
+
+.SocialShare a {
+    position: relative;
+    top: -7px;
+}
+
+.SocialShare button {
+    outline: none;
+}

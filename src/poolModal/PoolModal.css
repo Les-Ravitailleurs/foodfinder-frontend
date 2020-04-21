@@ -1,0 +1,8 @@
+.PoolModal__description {
+    width: 100%;
+    max-width: 400px;
+    font-family: 'Open Sans';
+    color: #181818;
+    font-size: 12px;
+    margin-bottom: 30px;
+}
