@@ -31,35 +31,16 @@ const Landing = () => {
   const [partenaires, setPartenaires] = useState([]);
   useEffect(() => {
     const setNumbers = async () => {
-      const [
-        { data: chiffres },
-        { data: liste },
-        { data: landing },
-      ] = await Promise.all([
-        axios.get(
-          "https://docs.google.com/spreadsheets/d/e/2PACX-1vSG70iKIq9h_QTuq0vh287JGaHx-W3h0jbPgl2SGvqJaqVZK5cgkLquEfnZqRGDIPWqlyk7ab87d6o3/pub?gid=0&single=true&output=csv"
-        ),
-        axios.get(
-          "https://docs.google.com/spreadsheets/d/e/2PACX-1vSG70iKIq9h_QTuq0vh287JGaHx-W3h0jbPgl2SGvqJaqVZK5cgkLquEfnZqRGDIPWqlyk7ab87d6o3/pub?gid=2120014790&single=true&output=csv"
-        ),
-        api.get("/landing"),
-      ]);
+      const { data: landing } = await api.get("/landing");
+      console.log(landing);
 
-      const LPData = Papa.parse(chiffres);
-      setMealCount(LPData.data[0][1]);
-      setBenevoleCount(LPData.data[2][1]);
-      setChefCount(LPData.data[1][1]);
+      setMealCount(landing.mealCount);
+      setBenevoleCount(landing.benevoleCount);
+      setChefCount(landing.chefCount);
 
-      const ListeData = Papa.parse(liste);
-      const partenaires = [];
-      ListeData.data.forEach((p, i) => {
-        if (i > 0 && p[0]) {
-          partenaires.push({ name: p[0], url: p[1] });
-        }
-      });
-      setPartenaires(partenaires);
+      setPartenaires(landing.partenaires);
 
-      setDonatorCount(landing.count);
+      setDonatorCount(landing.donatorCount);
     };
     setNumbers();
   }, [setMealCount]);
