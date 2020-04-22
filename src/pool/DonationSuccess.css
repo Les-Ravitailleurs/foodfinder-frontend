@@ -4,6 +4,8 @@
   min-height: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow-x:hidden;
 }
 
 .DonationSuccess__logo {
@@ -61,8 +63,8 @@
   box-sizing: border-box;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.06);
   border-radius: 16px;
-  height: 85px;
-  width: 200px;
+  height: 100px;
+  width: 230px;
   top: -20px;
   left: 50%;
   transform: translateX(-50%);
@@ -84,12 +86,12 @@
 
 .DonationSuccess__totalCount h1 {
   margin: 0;
-  font-size: 45px;
+  font-size: 55px;
 }
 
 .DonationSuccess__totalCount span {
-  font-size: 11px;
-  margin-top: -7px;
+  font-size: 13px;
+  margin-top: 3px;
 }
 
 .DonationSuccess p {
@@ -101,10 +103,12 @@
   font-family: "Open Sans";
   font-size: 13px;
   position: absolute;
-  background: #c85742;
+  background: #1e832d;
   box-shadow: 0px 8px 12px rgba(19, 21, 20, 0.08);
   border-radius: 8px;
   color: white;
+  font-weight: bold;
+  -webkit-font-smoothing: subpixel-antialiased;
   width: 50px;
   height: 25px;
   display: flex;
@@ -166,4 +170,11 @@
   .DonationSuccess__new {
     width: 100%;
   }
+}
+
+.DonationSuccess h1.DonationSuccess_thanks {
+  text-align:center;
+  margin-top: 30px;
+  margin-bottom:30px;
+  font-size: 19px;
 }

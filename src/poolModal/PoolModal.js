@@ -57,6 +57,23 @@ const PoolModal = ({ onClose, pool, messageMode }) => {
         {({ isSubmitting, values, handleChange, handleBlur, errors }) => (
           <Form>
             <FormInput
+              name="creatorName"
+              label="Entrez votre prénom"
+              placeholder="Prénom"
+              value={values.creatorName}
+              // onChange={handleChange}
+              // onBlur={handleBlur}
+              error={errors.creatorName}
+              validate={(name) => {
+                if (name.trim().length === 0) {
+                  return "Veuillez entrer votre prénom";
+                } else if (name.trim().length === 1) {
+                  return "Veuillez entrer un prénom d'au moins 2 lettres";
+                }
+              }}
+              hide={pool && messageMode}
+            />
+            <FormInput
               name="creatorEmail"
               label="Entrez votre adresse email"
               placeholder="Adresse email"
@@ -73,23 +90,6 @@ const PoolModal = ({ onClose, pool, messageMode }) => {
               }}
               hide={pool && messageMode}
             />
-            <FormInput
-              name="creatorName"
-              label="Entrez votre nom"
-              placeholder="Nom"
-              value={values.creatorName}
-              // onChange={handleChange}
-              // onBlur={handleBlur}
-              error={errors.creatorName}
-              validate={(name) => {
-                if (name.trim().length === 0) {
-                  return "Veuillez entrer votre nom";
-                } else if (name.trim().length === 1) {
-                  return "Veuillez entrer un nom d'au moins 2 lettres";
-                }
-              }}
-              hide={pool && messageMode}
-            />
             <FormTextArea
               name="message"
               label="Entrez votre message"
@@ -98,7 +98,7 @@ const PoolModal = ({ onClose, pool, messageMode }) => {
               hide={!pool || !messageMode}
             ></FormTextArea>
             <Button type="submit" disabled={isSubmitting}>
-              Je {pool ? "modifie" : "crée"} ma collecte
+              {pool ? messageMode ? 'Valider le message' : 'Je modifie ma collecte' : 'Je crée ma collecte'}
             </Button>
           </Form>
         )}

@@ -48,26 +48,34 @@ const Pool = () => {
   return (
     <div className="Pool">
       <div className="PoolLeft">
-        <div style={{ maxWidth: "1000px", margin: "auto" }}>
-          <img alt="fouet" src={fouet} className="PoolLeft__bgFouet" />
-          <img alt="spatule" src={spatule} className="PoolLeft__bgSpatule" />
-          <img alt="couteau" src={couteau} className="PoolLeft__bgCouteau" />
-          {pool && (
-            <>
-              <PoolDescription pool={pool} getPool={getPool} />
-              {!isMobile && (
-                <>
-                  <br />
-                  <HowWorks />
-                  <br />
-                </>
-              )}
-              {isMobile && <GiveModule pool={pool} />}
-              {isMobile && <HowWorks />}
-              <PoolSummary pool={pool} />
-            </>
-          )}
-          <AssoList />
+        <div className="PoolLeftContent">
+          <div style={{ maxWidth: "1000px", margin: "auto" }}>
+            <img alt="fouet" src={fouet} className="PoolLeft__bgFouet" />
+            <img alt="spatule" src={spatule} className="PoolLeft__bgSpatule" />
+            <img alt="couteau" src={couteau} className="PoolLeft__bgCouteau" />
+            {pool && (
+              <>
+                <PoolDescription pool={pool} getPool={getPool} />
+                {!isMobile && (
+                  <>
+                    <br />
+                    <HowWorks />
+                    <br />
+                  </>
+                )}
+                {isMobile && <GiveModule pool={pool} />}
+                {isMobile && <HowWorks />}
+                <PoolSummary pool={pool} />
+              </>
+            )}
+            <AssoList />
+            <p className="Pool__FrichtiHelp">
+              Les Ravitailleurs sont aidés par Frichti pour la gestion des flux
+              logistiques et financiers.
+              <br />
+              Merci à toute l’équipe pour sa générosité et son soutien.
+            </p>
+          </div>
         </div>
         <Footer />
       </div>

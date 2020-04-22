@@ -21,7 +21,7 @@ const PoolSummary = ({ pool }) => {
           </span>
         )}
       </div>
-      {pool.mealCount === 0 && pool.startAt > 0 && (
+      {pool.admin && pool.mealCount === 0 && pool.startAt > 0 && (
         <div className="PoolSummary__NotEmpty">
           Votre collecte n'est pas vide à sa création car nous avons
           comptabilisé

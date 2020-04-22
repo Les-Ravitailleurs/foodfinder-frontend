@@ -45,6 +45,7 @@ const PoolDescription = ({ pool, getPool }) => {
           <p>
             {pool.message ? pool.message : "Laissez une note aux visiteurs"}
           </p>
+          {!pool.admin && <p className="green">{pool.creatorName}</p>}
           {pool.admin && (
             <Button
               onClick={() => {

@@ -5,6 +5,8 @@ import "./AssoList.css";
 
 import restoDuCoeur from "./restoDuCoeur.svg";
 import secoursPop from "./secoursPop.svg";
+import banlieueSante from "./banlieueSante.png";
+import protectionCivile from "./protectionCivile.png";
 
 const AssoList = () => {
   return (
@@ -13,8 +15,8 @@ const AssoList = () => {
       <div className="AssoList__images">
         <img src={restoDuCoeur} alt="restoDuCoeur" />
         <img src={secoursPop} alt="secoursPop" />{isMobile && <br/>}
-        <img src={restoDuCoeur} alt="restoDuCoeur" />
-        <img src={restoDuCoeur} alt="restoDuCoeur" />
+        <img src={banlieueSante} alt="restoDuCoeur" />
+        <img src={protectionCivile} alt="restoDuCoeur" />
       </div>
     </div>
   );

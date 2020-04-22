@@ -42,6 +42,7 @@
   padding: 20px;
   background: #fff8ad;
   height: 100%;
+  border-radius: 6px;
 }
 
 .reviewContainer:last-child {
@@ -64,10 +65,20 @@
   font-family: "Open Sans";
   font-weight: 600;
   font-size: 13px;
+  width: 0;
+  flex-grow: 1;
 }
 
 .countDisplay h1 {
-  font-size: 55px;
+  font-family: DM Serif Text;
+font-style: normal;
+font-weight: normal;
+font-size: 52px;
+/* identical to box height */
+
+
+color: #181818;
+
   margin-bottom: 5px;
 }
 
@@ -185,6 +196,7 @@ html.w-mod-touch * {
   cursor: pointer;
   border-radius: 0;
 }
+
 
 .email-form .msg-alert {
   margin-top: -10px;
@@ -1977,6 +1989,7 @@ textarea.w-select {
   -ms-flex-pack: center;
   justify-content: center;
   text-align: center;
+  align-items: center;
 }
 
 .heading-2 {
@@ -2312,6 +2325,7 @@ textarea.w-select {
   box-shadow: 0 0 7px 4px rgba(57, 126, 71, 0.08);
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
+  font-size: 14px;
 }
 
 .text-field,
@@ -2324,7 +2338,7 @@ textarea.w-select {
   border-radius: 8px;
   box-shadow: 0 0 7px 4px rgba(0, 0, 0, 0.02);
   font-family: "Open Sans", sans-serif;
-  font-weight: 300;
+  font-weight: bold;
 }
 
 .container-2 {
@@ -2364,7 +2378,6 @@ textarea.w-select {
   text-align: center;
   letter-spacing: 0.5px;
 }
-
 
 .div-block-13 {
   position: relative;
@@ -2442,7 +2455,10 @@ textarea.w-select {
 .text-block-7 {
   margin-bottom: 24px;
   font-family: "DM Serif Text", sans-serif;
-  letter-spacing: 0.5px;
+  font-family: "DM Serif Text";
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .logo-asso {
@@ -2555,7 +2571,7 @@ textarea.w-select {
   display: -ms-flexbox;
   display: flex;
   overflow: visible;
-  width: 700px;
+  width: 800px;
   height: auto;
   margin-right: auto;
   margin-left: auto;
@@ -2623,21 +2639,7 @@ textarea.w-select {
     padding-right: 0px;
     padding-left: 0px;
   }
-  .div-block-18 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
-  }
+
   .image-12 {
     right: -9%;
   }
@@ -2830,7 +2832,6 @@ textarea.w-select {
   }
 
   .countDisplay h1 {
-  
     font-size: 30px;
   }
   .div-block-13 {
@@ -2893,23 +2894,7 @@ textarea.w-select {
     position: relative;
     left: -12px;
   }
-  .div-block-18 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
-  }
+
   .div-block-19 {
     top: -41px;
     height: 80px;
@@ -3006,3 +2991,4 @@ input[type="submit"] {
 .Footer {
   margin-top: 0px !important;
 }
+

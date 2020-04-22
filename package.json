@@ -11,6 +11,7 @@
     "formik": "^2.1.4",
     "query-string": "^6.12.1",
     "react": "^16.13.1",
+    "react-clap-button": "^1.2.8",
     "react-clipboard.js": "^2.0.16",
     "react-device-detect": "^1.11.14",
     "react-dom": "^16.13.1",

@@ -15,6 +15,7 @@
   font-size: 14px;
   line-height: 16px;
   outline: none;
+  -webkit-font-smoothing: subpixel-antialiased;
 }
 
 .Button:hover {

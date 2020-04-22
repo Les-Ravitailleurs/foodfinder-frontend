@@ -23,7 +23,6 @@ const DonationSuccess = () => {
   const [pool, setPool] = useState({});
   const history = useHistory();
   const [showPoolModal, setShowPoolModal] = useState(false);
-  console.log(showPoolModal);
 
   useEffect(() => {
     const getPool = async () => {
@@ -39,10 +38,6 @@ const DonationSuccess = () => {
 
   return (
     <div className="DonationSuccess">
-      <img alt="fouet" src={fouet} className="DonationSuccess__bgFouet" />
-      <img alt="spatule" src={spatule} className="DonationSuccess__bgSpatule" />
-      <img alt="couteau" src={couteau} className="DonationSuccess__bgCouteau" />
-      <img alt="cookies" src={cookies} className="DonationSuccess__bgCookies" />
       <img src={logo} alt="logo" className="DonationSuccess__logo" />
       <div className="DonationSuccess__merci__wrapper">
         <img
@@ -60,8 +55,8 @@ const DonationSuccess = () => {
             <div className="DonationSuccess__newCount">
               +&nbsp;{mealCount || 0}
             </div>
-            <h1>2050</h1>
-            <span>Repas collectés</span>
+            <h1>{pool.mealCount}</h1>
+            <span>repas dans la collecte de {pool.creatorName}</span>
           </div>
           <h1>Merci&nbsp;!</h1>
           <p>
@@ -81,7 +76,7 @@ const DonationSuccess = () => {
         <SocialShare poolId={pool.id} />
       </div>
       <div className="DonationSuccess__new">
-        <h1>Vous aussi, créez voter collecte en un clic.</h1>
+        <h1>Vous aussi, créez votre collecte en un clic.</h1>
         <p>
           Le don que vous venez de faire sera comptabilisé dans cette nouvelle
           collecte. Proposez à vos collègues, amis, proches d’offrir des repas
@@ -97,6 +92,7 @@ const DonationSuccess = () => {
         </Button>
         <br />
       </div>
+      <h1 className="DonationSuccess_thanks">Merci. Chaque repas compte.</h1>
       <br />
       <br />
       <Footer />
@@ -107,6 +103,10 @@ const DonationSuccess = () => {
           }}
         />
       )}
+      <img alt="fouet" src={fouet} className="DonationSuccess__bgFouet" />
+      <img alt="spatule" src={spatule} className="DonationSuccess__bgSpatule" />
+      <img alt="couteau" src={couteau} className="DonationSuccess__bgCouteau" />
+      <img alt="cookies" src={cookies} className="DonationSuccess__bgCookies" />
     </div>
   );
 };

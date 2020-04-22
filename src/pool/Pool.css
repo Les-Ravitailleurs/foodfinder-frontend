@@ -15,6 +15,13 @@
   flex-direction: column;
 }
 
+.PoolLeftContent {
+  width: 100%;
+  max-width: 850px;
+  margin: auto;
+  padding: 80px 100px;
+}
+
 .PoolLeft__bgFouet {
   width: 150px;
   position: absolute;
@@ -47,18 +54,11 @@
   background-repeat: no-repeat;
 }
 
-.PoolDescription,
-.PoolSummary {
-  padding: 60px;
-}
-
 .PoolDescription {
   padding-bottom: 20px;
 }
 
 .PoolSummary {
-  width: calc(100% - 250px);
-  max-width: 500px;
   background: #ffffff;
   box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.05);
   border-radius: 14px;
@@ -73,6 +73,13 @@
   text-align: center;
   font-size: 20px;
   font-family: "DM Serif Text";
+  margin-top: 30px;
+  margin-bottom: 0px;
+}
+
+.Pool .AssoList h1 {
+  margin-top: 30px;
+  font-size: 20px;
 }
 
 .PoolSummary__MealCount {
@@ -120,9 +127,22 @@
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
-  line-height: 30px;
+  line-height: 23px;
+  margin: 10px 0px 20px 0px;
 
   color: #141414;
+}
+
+.Pool__FrichtiHelp {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 20px;
+
+  text-align: center;
+  margin-top: 40px;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .PoolDescription--admin .green {
@@ -164,22 +184,43 @@
   color: rgba(0, 0, 0, 0.4);
   font-family: "Open Sans";
   font-size: 12px;
-  margin-top: 10px;
+  margin-top: 30px;
+  font-weight: 600;
 }
 
 .PoolDescription__Message {
   width: 100%;
-  padding: 30px;
   background: #f2eddc;
   border-radius: 8px;
   background-image: url("./quotes.svg");
   background-repeat: no-repeat;
   background-position-x: 20px;
+  padding: 20px 30px;
+  text-align: left;
+}
+
+.PoolDescription--admin .PoolDescription__Message {
+  padding: 30px;
   text-align: center;
 }
 
 .PoolDescription__Message p {
+  font-family: DM Serif Text;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 27px;
+  margin-top: 0;
+}
+
+.PoolDescription__Message p.green {
+  color:#46894d;
+  margin-bottom: 0;
+}
+
+.PoolDescription--admin .PoolDescription__Message p {
   font-family: Open Sans;
+  font-style: normal;
   color: rgba(0, 0, 0, 0.4);
   font-weight: 600;
   font-size: 12px;
@@ -208,5 +249,9 @@
   .PoolSummary {
     width: 100%;
     padding-top: 80px;
+  }
+
+  .PoolLeftContent {
+    padding: 30px;
   }
 }

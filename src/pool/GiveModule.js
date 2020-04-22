@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { loadStripe } from "@stripe/stripe-js";
+import ClapButton from "react-clap-button";
 
 import api from "../api";
 import "./GiveModule.css";
@@ -30,28 +31,45 @@ const GiveModule = ({ pool }) => {
     });
     setError(error);
   };
+
+  const GiveIcon = ({ addCount }) => (
+    <div
+      className="GiveModule__MealButton__Icon"
+      onClick={() => setMealCount(mealCount + addCount)}
+    >
+      +{addCount}
+    </div>
+  );
+
+  const GiveCountButton = ({ giveCount }) => (
+    <div className="GiveModule__MealButton">
+      <GiveIcon addCount={giveCount} />
+
+      {/* <ClapButton
+        maxCount={1}
+        isClicked={false}
+        iconComponent={(props) => (
+          <GiveIcon {...props} addCount={giveCount} size={70} />
+        )}
+        ref={(r) => {
+          const onClick = r.onClick;
+          r.onClick = (e) => {
+            elem.dispatchEvent(event);
+
+            elem.addEventListener('build', function (e) { }, false);
+            onClick(e);
+          };
+        }}
+      /> */}
+    </div>
+  );
   return (
     <div className="GiveModule">
       <h1>Offrez des repas</h1>
       <div className="GiveModule__MealButtons">
-        <div
-          className="GiveModule__MealButton"
-          onClick={editMealCount ? null : () => setMealCount(mealCount + 1)}
-        >
-          +1
-        </div>
-        <div
-          className="GiveModule__MealButton"
-          onClick={editMealCount ? null : () => setMealCount(mealCount + 10)}
-        >
-          +10
-        </div>
-        <div
-          className="GiveModule__MealButton"
-          onClick={editMealCount ? null : () => setMealCount(mealCount + 100)}
-        >
-          +100
-        </div>
+        <GiveCountButton giveCount={1} />
+        <GiveCountButton giveCount={10} />
+        <GiveCountButton giveCount={100} />
       </div>
       <div className="GiveModule__MealCount">
         {editMealCount && (
@@ -90,7 +108,7 @@ const GiveModule = ({ pool }) => {
           />
         )}
         <br />
-        <p>
+        <p style={{ visibility: mealCount > 0 ? "visible" : "hidden" }}>
           Soit {mealCount} packaging + {mealCount} kg de riz ou de pâtes
           <br />+ {mealCount} kg de légumes
         </p>

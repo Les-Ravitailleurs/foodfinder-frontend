@@ -4,24 +4,24 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Mailchimp from "react-mailchimp-form";
 import { useHistory } from "react-router-dom";
-import queryString from 'query-string'
-
+import queryString from "query-string";
 
 import "./Landing.css";
 import Button from "../button/Button";
 import HowWorks from "../howWorks/HowWorks";
 import PoolModal from "../poolModal/PoolModal";
-import reviewer from "./reviewer.png";
+import reviewer from "./puce-collegue.svg";
+import reviewer2 from "./puce-famille.svg";
+import reviewer3 from "./puce-reseau.svg";
 import tomate from "./tomate.svg";
 import tomateCarotte from "./tomateCarotte.png";
 import Footer from "../footer/Footer";
 import AssoList from "../assoList/AssoList";
 
-
 const Landing = () => {
   const history = useHistory();
-  const query = queryString.parse(history.location.search)
-  const [showModal, setShowModal] = useState(query.collecte === 'creer');
+  const query = queryString.parse(history.location.search);
+  const [showModal, setShowModal] = useState(query.collecte === "creer");
   const [mealCount, setMealCount] = useState("5000");
   const [donatorCount, setDonatorCount] = useState("645");
   const [benevoleCount, setBenevoleCount] = useState("16");
@@ -54,19 +54,16 @@ const Landing = () => {
               />
             </div>
             <h1 className="heading">
-              Ressortons les marmites pour les plus démunis !<br />
+              Aidez nous à cuisiner des milliers
+              <br />
+              de repas pour les plus démunis
             </h1>
             <div className="div-block">
               <p className="paragraph">
-                Alors que les circuits habituels d’approvisionnement des assos
-                sont perturbés (ben oui, restos fermés = pas de dons), nous nous
-                organisons pour permettre aux sans domiciles fixes, aux
-                personnes réfugiées, aux centres d'hébergement ou aux hôtels
-                sociaux de continuer à recevoir des plats et denrées
-                alimentaires !<br />‍<br />
-                <strong className="bold-text">
-                  Producteurs, distributeurs, restaurateurs, rejoignez-nous.
-                </strong>
+                À cause de la crise sanitaire actuelle, des milliers de
+                personnes, en France, ne peuvent plus se nourrir au quotidien.
+                Vous pouvez aider.
+                <br />‍<br />
               </p>
             </div>
             <div className="main-cta">
@@ -130,19 +127,20 @@ const Landing = () => {
           </div> */}
         </div>
         <div className="container-3 w-container">
-          <h2 className="heading-3" style={{ marginTop: "-40px" }}>
-            <strong>
+          <h2
+            className="heading-3"
+            style={{ marginTop: "-40px", fontSize: "28px" }}
+          >
               Ravitaillez depuis chez vous,
               <br />
               créez votre <span className="emphasis">collecte</span>
-            </strong>
             <br />
           </h2>
           <p
             style={{
               textAlign: "center",
               margin: "50px",
-              fontSize: "12px",
+              fontSize: "13px",
               fontFamily: "Open Sans, sans-serif",
             }}
           >
@@ -153,12 +151,12 @@ const Landing = () => {
           </p>
           <div className="reviews">
             <div className="reviewContainer">
-              <img
+              {/* <img
                 className="reviewBackground"
                 id="reviewBackground1"
                 src={tomate}
                 title="tomate"
-              />
+              /> */}
               <div className="review">
                 <img className="reviewImage" src={reviewer} alt="reviewer" />
                 <br />
@@ -167,28 +165,28 @@ const Landing = () => {
               </div>
             </div>
             <div className="reviewContainer">
-              <img
+              {/* <img
                 className="reviewBackground"
                 id="reviewBackground2"
                 src={tomateCarotte}
                 title="tomateCarotte"
-              />
+              /> */}
               <div className="review">
-                <img className="reviewImage" src={reviewer} alt="reviewer" />
+                <img className="reviewImage" src={reviewer3} alt="reviewer" />
                 <br />
                 Valentin a créé une collecte pour la partager sur Instagram, il
                 a collecté <span className="green">2234 repas</span>
               </div>
             </div>
             <div className="reviewContainer">
-              <img
+              {/* <img
                 className="reviewBackground"
                 id="reviewBackground3"
                 src={tomate}
                 title="tomate"
-              />
+              /> */}
               <div className="review">
-                <img className="reviewImage" src={reviewer} alt="reviewer" />
+                <img className="reviewImage" src={reviewer2} alt="reviewer" />
                 <br />
                 Sabrina a créé une collecte pour sa famille, elle a collecté{" "}
                 <span className="green">243 repas</span>
@@ -202,13 +200,15 @@ const Landing = () => {
           </div>
           <h2
             className="heading-3"
-            style={{ fontSize: "25px", marginBottom: "-10px" }}
+            style={{
+              fontSize: "25px",
+              marginBottom: "-10px",
+              paddingTop: "40px",
+            }}
           >
-            <strong>
               Grâce à nos bénévoles et partenaires,
               <br />
               nous avons déjà distribué&nbsp;:
-            </strong>
             <br />
           </h2>
         </div>
@@ -244,7 +244,7 @@ const Landing = () => {
             style={{
               display: "flex",
               width: "100%",
-              maxWidth: "400px",
+              maxWidth: "500px",
               margin: "auto",
               justifyContent: "space-between",
             }}
@@ -263,8 +263,8 @@ const Landing = () => {
             </div>
           </div>
         </div>
-        <div className="div-block-15">
-          <AssoList />
+        <div className="div-block-15" style={{maxWidth: '500px', margin:'auto'}}>
+          <AssoList /><br/><br/><br/><br/>
         </div>
       </div>
       <div className="section-6">
@@ -280,7 +280,7 @@ const Landing = () => {
               </p>
               <div>
                 <a
-                  href="https://frichti.typeform.com/to/odhOWE"
+                  href="https://docs.google.com/forms/d/1R40F0gfAfYHVev3oQV9-g9UoifQzZOZC94Dy7rsMaTE/"
                   target="_blank"
                   className="button-2 w-button"
                 >
@@ -309,14 +309,14 @@ const Landing = () => {
             <div className="div-block-4 right">
               <h3 className="heading-2">Je suis bénévole</h3>
               <p className="paragraph-2 right">
-                Nous avons besoin de vous ! Transport de marchansises,
+                Nous avons besoin de vous ! Transport de marchandises,
                 préparation de commande, inventaires ... inscrivez-vous et nous
                 vous proposerons des missions.
                 <br />
               </p>
               <div>
                 <a
-                  href="https://frichti.typeform.com/to/odhOWE"
+                  href="https://docs.google.com/forms/d/1wPg2c6uNbDwkic3WqvosU3zd_FxVukcEeI9-XJBajLY/"
                   target="_blank"
                   className="button-2 w-button"
                 >
@@ -362,8 +362,28 @@ const Landing = () => {
             </h1>
             <div className="div-block-18">
               {partenaires.map((p) => (
-                <span className="partenaireName"><a key={p.name} href={p.url} target="_blank">{p.name}</a>•</span>
+                <span className="partenaireName">
+                  <a key={p.name} href={p.url} target="_blank">
+                    {p.name}
+                  </a>
+                  •
+                </span>
               ))}
+            </div>
+            <div
+              style={{
+                color: "rgba(0, 0, 0, 0.6)",
+                fontFamily: "Open Sans",
+                fontSize: "13px",
+                padding: "20px",
+                maxWidth: "600px",
+                margin: "auto",
+              }}
+            >
+              Les Ravitailleurs sont aidés par Frichti pour la gestion des flux
+              logistiques et financiers.
+              <br />
+              Merci à toute l’équipe pour sa générosité et son soutien.
             </div>
           </div>
         </div>

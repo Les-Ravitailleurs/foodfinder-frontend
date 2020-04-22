@@ -4,7 +4,7 @@
   border: 1px solid #ebebeb;
   box-sizing: border-box;
   border-radius: 4px;
-  margin-top: 30px;
+  margin-top: 15px;
   display: flex;
   align-items: center;
 }
@@ -37,6 +37,7 @@
 }
 
 .CopyPaste__content {
+  text-align: left;
   font-family: "Open Sans";
   color: rgba(0, 0, 0, 0.6);
   font-size: 12px;
