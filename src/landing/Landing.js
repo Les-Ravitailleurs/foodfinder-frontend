@@ -5,6 +5,7 @@ import axios from "axios";
 import Mailchimp from "react-mailchimp-form";
 import { useHistory } from "react-router-dom";
 import queryString from "query-string";
+import Papa from "papaparse";
 
 import "./Landing.css";
 import Button from "../button/Button";
@@ -17,25 +18,48 @@ import tomate from "./tomate.svg";
 import tomateCarotte from "./tomateCarotte.png";
 import Footer from "../footer/Footer";
 import AssoList from "../assoList/AssoList";
+import api from "../api";
 
 const Landing = () => {
   const history = useHistory();
   const query = queryString.parse(history.location.search);
   const [showModal, setShowModal] = useState(query.collecte === "creer");
-  const [mealCount, setMealCount] = useState("5000");
-  const [donatorCount, setDonatorCount] = useState("645");
-  const [benevoleCount, setBenevoleCount] = useState("16");
-  const [chefCount, setChefCount] = useState("32");
-  const [partenaires, setPartenaires] = useState([
-    { name: "Frichti", url: "https://frichti.co" },
-    { name: "Big Mamma" },
-  ]);
+  const [mealCount, setMealCount] = useState("");
+  const [donatorCount, setDonatorCount] = useState("");
+  const [benevoleCount, setBenevoleCount] = useState("");
+  const [chefCount, setChefCount] = useState("");
+  const [partenaires, setPartenaires] = useState([]);
   useEffect(() => {
     const setNumbers = async () => {
-      const { data } = await axios.get(
-        "https://sheets.googleapis.com/v4/spreadsheets/19aDWWKXLwUBrWyMeXYHaB7sQAxUdYueAaUaAtqo1ut4/values/A2?key=AIzaSyBroGL6GU8PGrCVFCJJjmCCHq1VAu_aJck"
-      );
-      setMealCount(data.values[0]);
+      const [
+        { data: chiffres },
+        { data: liste },
+        { data: landing },
+      ] = await Promise.all([
+        axios.get(
+          "https://docs.google.com/spreadsheets/d/e/2PACX-1vSG70iKIq9h_QTuq0vh287JGaHx-W3h0jbPgl2SGvqJaqVZK5cgkLquEfnZqRGDIPWqlyk7ab87d6o3/pub?gid=0&single=true&output=csv"
+        ),
+        axios.get(
+          "https://docs.google.com/spreadsheets/d/e/2PACX-1vSG70iKIq9h_QTuq0vh287JGaHx-W3h0jbPgl2SGvqJaqVZK5cgkLquEfnZqRGDIPWqlyk7ab87d6o3/pub?gid=2120014790&single=true&output=csv"
+        ),
+        api.get("/landing"),
+      ]);
+
+      const LPData = Papa.parse(chiffres);
+      setMealCount(LPData.data[0][1]);
+      setBenevoleCount(LPData.data[2][1]);
+      setChefCount(LPData.data[1][1]);
+
+      const ListeData = Papa.parse(liste);
+      const partenaires = [];
+      ListeData.data.forEach((p, i) => {
+        if (i > 0 && p[0]) {
+          partenaires.push({ name: p[0], url: p[1] });
+        }
+      });
+      setPartenaires(partenaires);
+
+      setDonatorCount(landing.count);
     };
     setNumbers();
   }, [setMealCount]);
@@ -131,9 +155,9 @@ const Landing = () => {
             className="heading-3"
             style={{ marginTop: "-40px", fontSize: "28px" }}
           >
-              Ravitaillez depuis chez vous,
-              <br />
-              créez votre <span className="emphasis">collecte</span>
+            Ravitaillez depuis chez vous,
+            <br />
+            créez votre <span className="emphasis">collecte</span>
             <br />
           </h2>
           <p
@@ -206,9 +230,9 @@ const Landing = () => {
               paddingTop: "40px",
             }}
           >
-              Grâce à nos bénévoles et partenaires,
-              <br />
-              nous avons déjà distribué&nbsp;:
+            Grâce à nos bénévoles et partenaires,
+            <br />
+            nous avons déjà distribué&nbsp;:
             <br />
           </h2>
         </div>
@@ -263,8 +287,15 @@ const Landing = () => {
             </div>
           </div>
         </div>
-        <div className="div-block-15" style={{maxWidth: '500px', margin:'auto'}}>
-          <AssoList /><br/><br/><br/><br/>
+        <div
+          className="div-block-15"
+          style={{ maxWidth: "500px", margin: "auto" }}
+        >
+          <AssoList />
+          <br />
+          <br />
+          <br />
+          <br />
         </div>
       </div>
       <div className="section-6">
