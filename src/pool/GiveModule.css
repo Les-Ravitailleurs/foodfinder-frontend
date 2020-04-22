@@ -40,8 +40,8 @@
 }
 
 .GiveModule__MealButton__Icon {
-  margin-left: -8px;
-  margin-top: -4px;
+  /* margin-left: -8px;
+  margin-top: -4px; */
   background: #11782e;
   box-shadow: 0px 3px 4px rgba(19, 21, 20, 0.16);
   border-radius: 150px;
@@ -50,7 +50,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 15px;
   font-family: Open Sans;
   color: white;
   font-weight: bold;
@@ -65,7 +64,15 @@
                                 supported by Chrome, Opera and Firefox */
 }
 
-/* .GiveModule__MealButton:hover {
+.GiveModule__MealButton {
+  margin-right: 15px;
+}
+
+.GiveModule__MealButton:last-child {
+  margin-right: 0px;
+}
+
+.GiveModule__MealButton:hover {
   transform: scale(0.98);
 }
 
@@ -75,7 +82,7 @@
 
 .GiveModule__MealButton:last-child {
   margin-right: 0;
-} */
+}
 
 .GiveModule .EditableText {
   font-size: 27px;
@@ -140,5 +147,15 @@
     width: calc(100% + 60px);
     position: relative;
     left: -30px;
+  }
+  .GiveModule__MealButtons {
+    max-width: 250px;
+    margin: auto;
+  }
+  .GiveModule__MealButton {
+    margin-top: 0px;
+  }
+  .GiveModule__MealCount {
+    margin-bottom: 0;
   }
 }
