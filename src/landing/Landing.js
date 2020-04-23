@@ -34,13 +34,15 @@ const Landing = () => {
       const { data: landing } = await api.get("/landing");
       console.log(landing);
 
-      setMealCount(landing.mealCount);
-      setBenevoleCount(landing.benevoleCount);
-      setChefCount(landing.chefCount);
+      setMealCount(parseInt(landing.mealCount, 10).toLocaleString("fr"));
+      setBenevoleCount(
+        parseInt(landing.benevoleCount, 10).toLocaleString("fr")
+      );
+      setChefCount(parseInt(landing.chefCount, 10).toLocaleString("fr"));
 
       setPartenaires(landing.partenaires);
 
-      setDonatorCount(landing.donatorCount);
+      setDonatorCount(parseInt(landing.donatorCount, 10).toLocaleString("fr"));
     };
     setNumbers();
   }, [setMealCount]);
