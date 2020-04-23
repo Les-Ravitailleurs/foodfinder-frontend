@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import logoRavitailleurs from "./logo_ravitailleur.svg";
 import EditableText from "../editableText/EditableText";
@@ -14,13 +15,13 @@ const PoolDescription = ({ pool, getPool }) => {
         pool.admin ? "PoolDescription--admin" : ""
       }`}
     >
-      <a href="/">
+      <Link to="/">
         <img
           className="PoolDescription__logo"
           alt="logo"
           src={logoRavitailleurs}
         />
-      </a>
+      </Link>
       <h1>
         Bienvenue sur la collecte créée par{" "}
         {pool.admin ? (

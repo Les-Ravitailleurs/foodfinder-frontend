@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/static/css/main.f10a80e4.chunk.css",
-    "main.js": "/static/js/main.34b8fc84.chunk.js",
-    "main.js.map": "/static/js/main.34b8fc84.chunk.js.map",
+    "main.js": "/static/js/main.abd08db0.chunk.js",
+    "main.js.map": "/static/js/main.abd08db0.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.1f1f19a3.js",
     "runtime-main.js.map": "/static/js/runtime-main.1f1f19a3.js.map",
-    "static/js/2.9224e093.chunk.js": "/static/js/2.9224e093.chunk.js",
-    "static/js/2.9224e093.chunk.js.map": "/static/js/2.9224e093.chunk.js.map",
+    "static/js/2.ca24f877.chunk.js": "/static/js/2.ca24f877.chunk.js",
+    "static/js/2.ca24f877.chunk.js.map": "/static/js/2.ca24f877.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.95ca04d818dfb377cbe4d5cd9301fcff.js": "/precache-manifest.95ca04d818dfb377cbe4d5cd9301fcff.js",
+    "precache-manifest.02956faa6fd41bd2b10b969d55259562.js": "/precache-manifest.02956faa6fd41bd2b10b969d55259562.js",
     "service-worker.js": "/service-worker.js",
     "static/css/main.f10a80e4.chunk.css.map": "/static/css/main.f10a80e4.chunk.css.map",
-    "static/js/2.9224e093.chunk.js.LICENSE.txt": "/static/js/2.9224e093.chunk.js.LICENSE.txt",
+    "static/js/2.ca24f877.chunk.js.LICENSE.txt": "/static/js/2.ca24f877.chunk.js.LICENSE.txt",
     "static/media/banlieueSante.png": "/static/media/banlieueSante.9b81497d.png",
     "static/media/cookies.svg": "/static/media/cookies.c861e968.svg",
     "static/media/couteau.svg": "/static/media/couteau.aff6a4a1.svg",
@@ -39,8 +39,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.1f1f19a3.js",
-    "static/js/2.9224e093.chunk.js",
+    "static/js/2.ca24f877.chunk.js",
     "static/css/main.f10a80e4.chunk.css",
-    "static/js/main.34b8fc84.chunk.js"
+    "static/js/main.abd08db0.chunk.js"
   ]
 }

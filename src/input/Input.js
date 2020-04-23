@@ -11,6 +11,7 @@ const Input = ({
   onChange,
   onBlur,
   hide,
+  onKeyDown,
 }) => {
   return (
     <div className="Input__wrapper" style={{ display: hide ? "none" : "auto" }}>
@@ -22,6 +23,7 @@ const Input = ({
         value={value}
         onChange={onChange}
         onBlur={onBlur}
+        onKeyDown={onKeyDown}
       ></input>
       {error && <div className="Input__error">{error}</div>}
     </div>

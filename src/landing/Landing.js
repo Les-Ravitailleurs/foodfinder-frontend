@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Mailchimp from "react-mailchimp-form";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import queryString from "query-string";
 import Papa from "papaparse";
 
@@ -32,7 +32,6 @@ const Landing = () => {
   useEffect(() => {
     const setNumbers = async () => {
       const { data: landing } = await api.get("/landing");
-      console.log(landing);
 
       setMealCount(parseInt(landing.mealCount, 10).toLocaleString("fr"));
       setBenevoleCount(
@@ -46,9 +45,25 @@ const Landing = () => {
     };
     setNumbers();
   }, [setMealCount]);
+  const entries = Object.entries(localStorage);
+  const adminLocalStorage = entries.find((e) =>
+    e[0].startsWith("ravit-admin-")
+  );
+  const adminPoolId = adminLocalStorage && adminLocalStorage[0].slice(12);
+  const adminPoolCreatorName =
+    adminPoolId &&
+    localStorage.getItem(`ravit-pool-${adminPoolId}-creator-name`);
 
   return (
     <div>
+      {adminPoolId && false && (
+        <div className="topBanner">
+          <Link to={`/collecte/${adminPoolId}`}>
+            {adminPoolCreatorName}, retrouvez votre collecte en cliquant ici
+          </Link>
+        </div>
+      )}
+
       <div className="section">
         <div className="container-4 w-container">
           <div className="div-block-2">

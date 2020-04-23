@@ -65,8 +65,16 @@ const GiveModule = ({ pool }) => {
   );
 
   const price = mealCount
-    ? mealCount * parseInt(process.env.REACT_APP_MEAL_PRICE)
+    ? mealCount * parseFloat(process.env.REACT_APP_MEAL_PRICE)
     : 0;
+
+  const validateEditMeal = () => {
+    if (editorMealCount !== "") {
+      setMealCount(editorMealCount);
+    }
+    setEditMealCount(false);
+    setEditorMealCount("");
+  };
 
   return (
     <div className="GiveModule">
@@ -84,23 +92,21 @@ const GiveModule = ({ pool }) => {
               value={editorMealCount}
               onChange={(e) => {
                 if (e.target.value) {
-                  setEditorMealCount(parseInt(e.target.value, 10));
+                  const newInt = parseInt(e.target.value, 10);
+                  if (!Number.isNaN(Number(newInt))) {
+                    setEditorMealCount(newInt);
+                  }
                 } else {
                   setEditorMealCount("");
                 }
               }}
-            />
-            <Button
-              onClick={() => {
-                if (editorMealCount !== "") {
-                  setMealCount(editorMealCount);
+              onKeyDown={(e) => {
+                if (e.keyCode === 13) {
+                  validateEditMeal();
                 }
-                setEditMealCount(false);
-                setEditorMealCount("");
               }}
-            >
-              OK
-            </Button>
+            />
+            <Button onClick={validateEditMeal}>OK</Button>
           </div>
         )}
         {!editMealCount && (
@@ -114,8 +120,8 @@ const GiveModule = ({ pool }) => {
         )}
         <br />
         <p style={{ visibility: mealCount > 0 ? "visible" : "hidden" }}>
-          Soit {mealCount} packaging + {mealCount} kg de riz ou de pâtes
-          <br />+ {mealCount} kg de légumes
+          Soit {mealCount}&nbsp;packaging +&nbsp;{(mealCount * 0.25).toFixed(1)}&nbsp;kg de riz
+          ou de pâtes +&nbsp;{(mealCount * 0.15).toFixed(1)}&nbsp;kg de légumes
         </p>
       </div>
       <span className="GiveModule__error">{error && error.message}</span>
@@ -136,7 +142,7 @@ const GiveModule = ({ pool }) => {
           {submitting ? "Redirection..." : `Payer ${price ? `${price}€` : ""}`}
         </Button>
         <div className="GiveModule__Details">
-          <strong>1€ = 1 repas</strong>
+          <strong>{process.env.REACT_APP_MEAL_PRICE}€ = 1 repas</strong>
           <p>
             Le nombre de repas que vous offrez ne sera pas visible sur la page
             de la collecte. Seul votre nom s'affichera.

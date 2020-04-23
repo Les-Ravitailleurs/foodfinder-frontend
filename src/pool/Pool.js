@@ -22,19 +22,20 @@ const Pool = () => {
   const history = useHistory();
 
   if (adminId) {
-    localStorage.setItem(`admin-${poolId}`, adminId);
+    localStorage.setItem(`ravit-admin-${poolId}`, adminId);
     history.push(`/collecte/${poolId}`);
   }
 
   const getPool = useCallback(async () => {
     try {
-      const savedAdminId = localStorage.getItem(`admin-${poolId}`);
+      const savedAdminId = localStorage.getItem(`ravit-admin-${poolId}`);
       const { data } = await api.get(
         `/pool/${poolId}${savedAdminId ? `?adminId=${savedAdminId}` : ""}`
       );
       if (savedAdminId && data.admin === false) {
-        localStorage.removeItem(`admin-${poolId}`);
+        localStorage.removeItem(`ravit-admin-${poolId}`);
       }
+      localStorage.setItem(`ravit-pool-${poolId}-creator-name`, data.creatorName);
       setPool(data);
     } catch (e) {
       history.push("/");
