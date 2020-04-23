@@ -26,5 +26,16 @@
 .Footer__content span {
   font-family: "Open Sans";
   font-size: 13px;
-  color: #181818;
+  color: #838179;
+}
+
+.Footer__content span a {
+  color: #838179;
+}
+
+@media screen and (max-width: 767px) {
+  .Footer__content span {
+    text-align: center;
+    font-size: 10px;
+  }
 }

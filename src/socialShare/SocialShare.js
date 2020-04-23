@@ -18,13 +18,13 @@ const SocialShare = ({ poolId }) => {
     <div className="SocialShare">
       <TwitterShareButton
         url={url}
-        title="Les Ravitailleurs"
+        title="Aidez-moi à collecter des repas pour les plus démunis !"
       >
         <img src={twitter} alt="twitter" />
       </TwitterShareButton>
       <FacebookShareButton
         url={url}
-        quote="Les Ravitailleurs"
+        quote="Aidez-moi à collecter des repas pour les plus démunis !"
       >
         <img src={fb} alt="fb" />
       </FacebookShareButton>

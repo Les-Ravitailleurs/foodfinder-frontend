@@ -63,6 +63,11 @@ const GiveModule = ({ pool }) => {
       /> */}
     </div>
   );
+
+  const price = mealCount
+    ? mealCount * parseInt(process.env.REACT_APP_MEAL_PRICE)
+    : 0;
+
   return (
     <div className="GiveModule">
       <h1>Offrez des repas</h1>
@@ -128,7 +133,7 @@ const GiveModule = ({ pool }) => {
             submitting || mealCount === 0 || editMealCount || !donatorName
           }
         >
-          {submitting ? "Redirection..." : "Payer"}
+          {submitting ? "Redirection..." : `Payer ${price ? `${price}€` : ""}`}
         </Button>
         <div className="GiveModule__Details">
           <strong>1€ = 1 repas</strong>

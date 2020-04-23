@@ -19,7 +19,7 @@
   width: 100%;
   max-width: 850px;
   margin: auto;
-  padding: 80px 100px;
+  padding: 40px 100px;
 }
 
 .PoolLeft__bgFouet {
@@ -46,12 +46,14 @@
 }
 
 .PoolRight {
-  width: 350px;
+  width: 380px;
   background-color: #faf29a;
-  background-image: url("./carottes.svg");
-  background-size: 100% auto;
-  background-position: bottom left;
-  background-repeat: no-repeat;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* background-image: url("./carottes.svg"); */
+  /* background-size: 100% auto; */
+  /* background-position: bottom left; */
+  /* background-repeat: no-repeat; */
 }
 
 .PoolDescription {

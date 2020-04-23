@@ -5,7 +5,12 @@ body {
   height: 100%;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: normal !important;
 }
 
@@ -34,4 +39,17 @@ h1 {
 
 .green {
   color: #11782e;
+}
+
+.mobileOnly {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  .mobileOnly {
+    display: initial;
+  }
+  .desktopOnly {
+    display: none;
+  }
 }
