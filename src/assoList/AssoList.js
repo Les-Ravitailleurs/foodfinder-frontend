@@ -6,7 +6,7 @@ import "./AssoList.css";
 import restoDuCoeur from "./restoDuCoeur.svg";
 import secoursPop from "./secoursPop.svg";
 import banlieueSante from "./banlieueSante.png";
-import protectionCivile from "./protectionCivile.png";
+import protectionCivile from "./protectionCivile.svg";
 
 const AssoList = () => {
   return (

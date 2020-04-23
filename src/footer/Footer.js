@@ -13,7 +13,7 @@ const Footer = () => {
         </a>
         <span style={{minWidth: '180px'}}>
           Design par{" "}
-          <a href="https://source.paris/" target="_blank">
+          <a href="https://source.paris/" target="_blank" rel="noopener noreferrer">
             Source
           </a><span className="desktopOnly"> & </span><span className="mobileOnly">,<br/></span>
           Développement par <a href="mailto:noe.malzieu@gmail.com">Noé Malzieu</a>

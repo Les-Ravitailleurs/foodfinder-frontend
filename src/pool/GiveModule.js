@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { loadStripe } from "@stripe/stripe-js";
-import ClapButton from "react-clap-button";
+// import ClapButton from "react-clap-button";
 
 import api from "../api";
 import "./GiveModule.css";

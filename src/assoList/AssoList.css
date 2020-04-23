@@ -25,6 +25,7 @@
 
 .AssoList__images img:last-child {
     margin-right: 0;
+    transform: scale(0.75);
 }
 .AssoList {
     margin-bottom: 20px;
