@@ -68,7 +68,9 @@ const PoolModal = ({ onClose, pool, messageMode }) => {
                 if (name.trim().length === 0) {
                   return "Veuillez entrer votre prénom";
                 } else if (name.trim().length === 1) {
-                  return "Veuillez entrer un prénom d'au moins 2 lettres";
+                  return "Veuillez entrer un prénom d'au moins 2 caractères";
+                } else if (name.trim().length >= 30) {
+                  return "Veuillez entrer un prénom de moins de 30 caractères";
                 }
               }}
               hide={pool && messageMode}
@@ -98,7 +100,11 @@ const PoolModal = ({ onClose, pool, messageMode }) => {
               hide={!pool || !messageMode}
             ></FormTextArea>
             <Button type="submit" disabled={isSubmitting}>
-              {pool ? messageMode ? 'Valider le message' : 'Je modifie ma collecte' : 'Je crée ma collecte'}
+              {pool
+                ? messageMode
+                  ? "Valider le message"
+                  : "Je modifie ma collecte"
+                : "Je crée ma collecte"}
             </Button>
           </Form>
         )}
