@@ -71,13 +71,12 @@
 
 .countDisplay h1 {
   font-family: DM Serif Text;
-font-style: normal;
-font-weight: normal;
-font-size: 52px;
-/* identical to box height */
+  font-style: normal;
+  font-weight: normal;
+  font-size: 52px;
+  /* identical to box height */
 
-
-color: #181818;
+  color: #181818;
 
   margin-bottom: 5px;
 }
@@ -196,7 +195,6 @@ html.w-mod-touch * {
   cursor: pointer;
   border-radius: 0;
 }
-
 
 .email-form .msg-alert {
   margin-top: -10px;
@@ -2992,3 +2990,18 @@ input[type="submit"] {
   margin-top: 0px !important;
 }
 
+.topBanner {
+  padding: 10px 20px;
+  background-color: #edebda;
+  font-family: Open Sans;
+  color: #333;
+  text-decoration: none;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+.topBanner a {
+  color: #333;
+}

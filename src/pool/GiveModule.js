@@ -132,6 +132,12 @@ const GiveModule = ({ pool }) => {
           onChange={(e) => {
             setDonatorName(e.target.value.slice(0, 200));
           }}
+          onKeyDown={(e) => {
+            if (submitting || mealCount === 0 || editMealCount || !donatorName) return;
+            if (e.keyCode === 13) {
+              donate();
+            }
+          }}
         />
         <Button
           onClick={donate}

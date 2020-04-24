@@ -56,11 +56,10 @@ const Landing = () => {
 
   return (
     <div>
-      {adminPoolId && false && (
+      {adminPoolId && (
         <div className="topBanner">
-          <Link to={`/collecte/${adminPoolId}`}>
-            {adminPoolCreatorName}, retrouvez votre collecte en cliquant ici
-          </Link>
+          {adminPoolCreatorName}, retrouvez votre collecte{" "}
+          <Link to={`/collecte/${adminPoolId}`}>en cliquant ici</Link>
         </div>
       )}
 
