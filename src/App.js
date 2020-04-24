@@ -1,13 +1,25 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Router, Switch, Route } from "react-router-dom";
+import ReactGA from "react-ga";
+import { createBrowserHistory } from "history";
 
 import Landing from "./landing/Landing";
 import Pool from "./pool/Pool";
 import DonationSuccess from "./pool/DonationSuccess";
 
+const customHistory = createBrowserHistory();
+
+if (process.env.NODE_ENV === "production") {
+  ReactGA.initialize("UA-162359879-1");
+  customHistory.listen((location) => {
+    ReactGA.set({ page: location.pathname });
+    ReactGA.pageview(location.pathname);
+  });
+}
+
 export default function App() {
   return (
-    <Router>
+    <Router history={customHistory}>
       <Switch>
         <Route path="/collecte/:poolId/merci/:mealCount">
           <DonationSuccess />
