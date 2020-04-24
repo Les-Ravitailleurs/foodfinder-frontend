@@ -11,6 +11,8 @@ const customHistory = createBrowserHistory();
 
 if (process.env.NODE_ENV === "production") {
   ReactGA.initialize("UA-162359879-1");
+  ReactGA.set({ page: customHistory.location.pathname });
+  ReactGA.pageview(customHistory.location.pathname);
   customHistory.listen((location) => {
     ReactGA.set({ page: location.pathname });
     ReactGA.pageview(location.pathname);
