@@ -56,14 +56,15 @@ const Landing = () => {
 
   return (
     <div>
-      {adminPoolId && (
-        <div className="topBanner">
-          {adminPoolCreatorName}, retrouvez votre collecte{" "}
-          <Link to={`/collecte/${adminPoolId}`}>en cliquant ici</Link>
-        </div>
-      )}
-
-      <div className="section">
+      <div className="section" style={{ position: "relative" }}>
+        {adminPoolId && (
+          <div className="topBanner">
+            <strong>{adminPoolCreatorName},</strong>
+            <br />
+            retrouvez votre collecte{" "}
+            <Link to={`/collecte/${adminPoolId}`}>en cliquant ici</Link>
+          </div>
+        )}
         <div className="container-4 w-container">
           <div className="div-block-2">
             <div className="div-block">
