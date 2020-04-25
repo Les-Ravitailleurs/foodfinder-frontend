@@ -8,6 +8,7 @@ import "./GiveModule.css";
 import Button from "../button/Button";
 import EditableText from "../editableText/EditableText";
 import Input from "../input/Input";
+import EmailModal from "../EmailModal/emailModal";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
@@ -18,18 +19,23 @@ const GiveModule = ({ pool }) => {
   const [submitting, setSubmitting] = useState(false);
   const [editMealCount, setEditMealCount] = useState(false);
   const [error, setError] = useState(null);
+  const [showEmailModal, setShowEmailModal] = useState(false);
   const donate = async () => {
     setSubmitting(true);
-    const { data } = await api.post("/donation", {
-      mealCount,
-      poolId: pool.id,
-      donatorName: donatorName.trim(),
-    });
-    const stripe = await stripePromise;
-    const { error } = await stripe.redirectToCheckout({
-      sessionId: data.checkoutSessionId,
-    });
-    setError(error);
+    setTimeout(() => {
+      setShowEmailModal(true);
+      setSubmitting(false);
+    }, 1000);
+    // const { data } = await api.post("/donation", {
+    //   mealCount,
+    //   poolId: pool.id,
+    //   donatorName: donatorName.trim(),
+    // });
+    // const stripe = await stripePromise;
+    // const { error } = await stripe.redirectToCheckout({
+    //   sessionId: data.checkoutSessionId,
+    // });
+    // setError(error);
   };
 
   const GiveIcon = ({ addCount }) => (
@@ -120,8 +126,9 @@ const GiveModule = ({ pool }) => {
         )}
         <br />
         <p style={{ visibility: mealCount > 0 ? "visible" : "hidden" }}>
-          Soit {mealCount}&nbsp;packaging +&nbsp;{(mealCount * 0.25).toFixed(1)}&nbsp;kg de riz
-          ou de pâtes +&nbsp;{(mealCount * 0.15).toFixed(1)}&nbsp;kg de légumes
+          Soit {mealCount}&nbsp;packaging +&nbsp;{(mealCount * 0.25).toFixed(1)}
+          &nbsp;kg de riz ou de pâtes +&nbsp;{(mealCount * 0.15).toFixed(1)}
+          &nbsp;kg de légumes
         </p>
       </div>
       <span className="GiveModule__error">{error && error.message}</span>
@@ -133,7 +140,8 @@ const GiveModule = ({ pool }) => {
             setDonatorName(e.target.value.slice(0, 200));
           }}
           onKeyDown={(e) => {
-            if (submitting || mealCount === 0 || editMealCount || !donatorName) return;
+            if (submitting || mealCount === 0 || editMealCount || !donatorName)
+              return;
             if (e.keyCode === 13) {
               donate();
             }
@@ -159,6 +167,14 @@ const GiveModule = ({ pool }) => {
           </p>
         </div>
       </div>
+      {showEmailModal && (
+        <EmailModal
+          poolId={pool.id}
+          name={donatorName}
+          mealCount={mealCount}
+          onClose={() => setShowEmailModal(false)}
+        />
+      )}
     </div>
   );
 };
