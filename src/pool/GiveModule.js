@@ -22,20 +22,20 @@ const GiveModule = ({ pool }) => {
   const [showEmailModal, setShowEmailModal] = useState(false);
   const donate = async () => {
     setSubmitting(true);
-    setTimeout(() => {
-      setShowEmailModal(true);
-      setSubmitting(false);
-    }, 1000);
-    // const { data } = await api.post("/donation", {
-    //   mealCount,
-    //   poolId: pool.id,
-    //   donatorName: donatorName.trim(),
-    // });
-    // const stripe = await stripePromise;
-    // const { error } = await stripe.redirectToCheckout({
-    //   sessionId: data.checkoutSessionId,
-    // });
-    // setError(error);
+    // setTimeout(() => {
+    //   setShowEmailModal(true);
+    //   setSubmitting(false);
+    // }, 1000);
+    const { data } = await api.post("/donation", {
+      mealCount,
+      poolId: pool.id,
+      donatorName: donatorName.trim(),
+    });
+    const stripe = await stripePromise;
+    const { error } = await stripe.redirectToCheckout({
+      sessionId: data.checkoutSessionId,
+    });
+    setError(error);
   };
 
   const GiveIcon = ({ addCount }) => (
