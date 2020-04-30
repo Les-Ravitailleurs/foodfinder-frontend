@@ -55,7 +55,7 @@ const DonationSuccess = () => {
             <div className="DonationSuccess__newCount">
               +&nbsp;{mealCount || 0}
             </div>
-            <h1>{pool.mealCount + pool.startAt}</h1>
+            <h1>{pool.mealCount && pool.mealCount + pool.startAt}</h1>
             <span>repas dans la collecte de {pool.creatorName}</span>
           </div>
           <h1>Merci&nbsp;!</h1>
