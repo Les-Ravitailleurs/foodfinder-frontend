@@ -1,5 +1,5 @@
 import React from "react";
-import { isMobile } from "react-device-detect";
+import isMobile from "../isMobile";
 
 import "./AssoList.css";
 
@@ -14,7 +14,8 @@ const AssoList = () => {
       <h1>Les assos Ravitaillées :</h1>
       <div className="AssoList__images">
         <img src={restoDuCoeur} alt="restoDuCoeur" />
-        <img src={secoursPop} alt="secoursPop" />{isMobile && <br/>}
+        <img src={secoursPop} alt="secoursPop" />
+        {isMobile && <br />}
         <img src={banlieueSante} alt="restoDuCoeur" />
         <img src={protectionCivile} alt="restoDuCoeur" />
       </div>

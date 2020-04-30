@@ -16,7 +16,7 @@ import successRightHand from "./successRightHand.svg";
 import CopyPaste from "../copyPaste/CopyPaste";
 import Button from "../button/Button";
 import PoolModal from "../poolModal/PoolModal";
-import SocialShare from '../socialShare/SocialShare';
+import SocialShare from "../socialShare/SocialShare";
 
 const DonationSuccess = () => {
   const { mealCount, poolId } = useParams();
@@ -55,7 +55,7 @@ const DonationSuccess = () => {
             <div className="DonationSuccess__newCount">
               +&nbsp;{mealCount || 0}
             </div>
-            <h1>{pool.mealCount}</h1>
+            <h1>{pool.mealCount + pool.startAt}</h1>
             <span>repas dans la collecte de {pool.creatorName}</span>
           </div>
           <h1>Merci&nbsp;!</h1>

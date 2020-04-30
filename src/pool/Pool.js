@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import { isMobile } from "react-device-detect";
+import isMobile from "../isMobile";
 
 import "./Pool.css";
 import PoolDescription from "./PoolDescription";
@@ -35,7 +35,10 @@ const Pool = () => {
       if (savedAdminId && data.admin === false) {
         localStorage.removeItem(`ravit-admin-${poolId}`);
       }
-      localStorage.setItem(`ravit-pool-${poolId}-creator-name`, data.creatorName);
+      localStorage.setItem(
+        `ravit-pool-${poolId}-creator-name`,
+        data.creatorName
+      );
       setPool(data);
     } catch (e) {
       history.push("/");

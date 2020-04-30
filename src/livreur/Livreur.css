@@ -1,0 +1,28 @@
+.Livreur__Container {
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.Livreur__Logo {
+  max-width: 150px;
+  display: block;
+  margin: auto;
+  margin-bottom: 40px;
+}
+
+.Livreur__SpinContainer {
+  text-align: center;
+}
+
+.Livreur__Back {
+  font-size: 25px;
+}
+
+.Livreur__Tournee {
+  margin-bottom: 30px;
+}
+
+.Livreur__Tournee--done .ant-card-body {
+  display: none;
+}
