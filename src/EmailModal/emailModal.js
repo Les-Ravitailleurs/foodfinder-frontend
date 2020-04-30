@@ -1,16 +1,13 @@
 import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import isEmail from "validator/lib/isEmail";
-import { useHistory } from "react-router-dom";
 
 import Modal from "../modal/Modal";
 import FormInput from "../input/FormInput";
-import FormTextArea from "../textarea/FormTextArea";
 import Button from "../button/Button";
 import api from "../api";
 
 const EmailModal = ({ onClose, poolId, name, mealCount }) => {
-  const history = useHistory();
   const [done, setDone] = useState(false);
   return (
     <Modal onClose={onClose}>
@@ -29,7 +26,7 @@ const EmailModal = ({ onClose, poolId, name, mealCount }) => {
         validateOnBlur={false}
         onSubmit={async (values, { setSubmitting }) => {
           setSubmitting(true);
-          const { data } = await api.post("/saveEmail", {
+          await api.post("/saveEmail", {
             ...values,
             poolId,
             name,

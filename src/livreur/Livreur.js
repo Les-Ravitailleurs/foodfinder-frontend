@@ -1,6 +1,6 @@
 import { uniq, without } from "lodash";
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Typography, Card, Tag, Spin, Alert, Button } from "antd";
 import api from "../api";
 import logo from "../pool/logo_ravitailleur.svg";
@@ -38,7 +38,7 @@ const Livreur = () => {
       setLivreurData(data);
     };
     getData();
-  }, []);
+  }, [livreurId]);
   if (!livreurData)
     return (
       <div className="Livreur__SpinContainer">
@@ -162,6 +162,7 @@ const Livreur = () => {
                       `https://www.google.com/maps/place/${task.fullAddress}`
                     )}
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     {task.fullAddress}
                   </a>
