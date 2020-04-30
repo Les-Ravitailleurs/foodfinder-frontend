@@ -116,17 +116,17 @@ const Livreur = () => {
               <Card
                 title={
                   <span>
-                    {task.contact}{" "}
                     {task.phone && (
                       <span>
-                        &nbsp;&nbsp;
                         <PhoneTwoTone
                           onClick={() =>
                             (window.location.href = `tel:${task.phone}`)
                           }
                         />
+                        &nbsp;&nbsp;
                       </span>
                     )}
+                    {task.contact}
                   </span>
                 }
                 extra={
