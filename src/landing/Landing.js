@@ -391,7 +391,11 @@ const Landing = () => {
             </h1>
             <div className="div-block-18">
               {partenaires.map((p) => (
-                <span className="partenaireName">
+                <span
+                  className={`partenaireName ${
+                    p.url ? "partenaireName__hasLink" : ""
+                  }`}
+                >
                   <a key={p.name} href={p.url} target="_blank">
                     {p.name}
                   </a>

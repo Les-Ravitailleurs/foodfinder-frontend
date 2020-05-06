@@ -17,6 +17,12 @@
 .partenaireName a {
   color: #505050;
   margin-right: 5px;
+  cursor: default;
+}
+
+.partenaireName.partenaireName__hasLink a {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .reviews {
