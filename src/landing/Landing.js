@@ -398,8 +398,8 @@ const Landing = () => {
                 >
                   <a key={p.name} href={p.url} target="_blank">
                     {p.name}
-                  </a>
-                  •
+                  </a>{" "}
+                  •{" "}
                 </span>
               ))}
             </div>
