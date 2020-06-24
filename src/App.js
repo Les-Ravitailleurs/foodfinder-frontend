@@ -1,45 +1,51 @@
-import React from "react";
-import { Router, Switch, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter, Switch, Route, useLocation } from "react-router-dom";
 import ReactGA from "react-ga";
-import { createBrowserHistory } from "history";
 
 import Landing from "./landing/Landing";
 import Pool from "./pool/Pool";
 import Livreur from "./livreur/Livreur";
 import DonationSuccess from "./pool/DonationSuccess";
 
-const customHistory = createBrowserHistory();
-
 if (process.env.NODE_ENV === "production") {
   ReactGA.initialize("UA-162359879-1");
-  ReactGA.set({ page: customHistory.location.pathname });
-  ReactGA.pageview(customHistory.location.pathname);
-  customHistory.listen((location) => {
-    ReactGA.set({ page: location.pathname });
-    ReactGA.pageview(location.pathname);
-  });
 }
+
+const AppContent = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (process.env.NODE_ENV === "production") {
+      ReactGA.set({ page: location.pathname });
+      ReactGA.pageview(location.pathname);
+    }
+  }, [location]);
+
+  return (
+    <Switch>
+      <Route path="/collecte/:poolId/merci/:mealCount">
+        <DonationSuccess />
+      </Route>
+      <Route path="/collecte/:poolId/admin/:adminId">
+        <Pool />
+      </Route>
+      <Route path="/collecte/:poolId">
+        <Pool />
+      </Route>
+      <Route path="/livreur/:livreurId">
+        <Livreur />
+      </Route>
+      <Route path="/">
+        <Landing />
+      </Route>
+    </Switch>
+  );
+};
 
 export default function App() {
   return (
-    <Router history={customHistory}>
-      <Switch>
-        <Route path="/collecte/:poolId/merci/:mealCount">
-          <DonationSuccess />
-        </Route>
-        <Route path="/collecte/:poolId/admin/:adminId">
-          <Pool />
-        </Route>
-        <Route path="/collecte/:poolId">
-          <Pool />
-        </Route>
-        <Route path="/livreur/:livreurId">
-          <Livreur />
-        </Route>
-        <Route path="/">
-          <Landing />
-        </Route>
-      </Switch>
-    </Router>
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
   );
 }
