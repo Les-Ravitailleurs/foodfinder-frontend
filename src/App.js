@@ -23,13 +23,13 @@ const AppContent = () => {
 
   return (
     <Switch>
-      <Route path="/collecte/:poolId/merci/:mealCount">
+      <Route path="/collecte/merci/:mealCount">
         <DonationSuccess />
       </Route>
-      <Route path="/collecte/:poolId/admin/:adminId">
+      {/* <Route path="/collecte/:poolId/admin/:adminId">
         <Pool />
-      </Route>
-      <Route path="/collecte/:poolId">
+      </Route> */}
+      <Route path="/collecte">
         <Pool />
       </Route>
       <Route path="/livreur/:livreurId">

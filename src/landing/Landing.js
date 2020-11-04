@@ -1,6 +1,7 @@
 /* eslint-disable */
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+
 import axios from "axios";
 import Mailchimp from "react-mailchimp-form";
 import { useHistory, Link } from "react-router-dom";
@@ -18,537 +19,566 @@ import tomate from "./tomate.svg";
 import tomateCarotte from "./tomateCarotte.png";
 import Footer from "../footer/Footer";
 import AssoList from "../assoList/AssoList";
+import CollectesSummary from "../collectesSummary/CollectesSummary";
 import api from "../api";
 
 const Landing = () => {
-  const history = useHistory();
-  const query = queryString.parse(history.location.search);
-  const [showModal, setShowModal] = useState(query.collecte === "creer");
-  const [mealCount, setMealCount] = useState("");
-  const [donatorCount, setDonatorCount] = useState("");
-  const [benevoleCount, setBenevoleCount] = useState("");
-  const [chefCount, setChefCount] = useState("");
-  const [partenaires, setPartenaires] = useState([]);
+  const [poolData, setPoolData] = useState(null);
+  const poolId = process.env.REACT_APP_RAVIT_POOL_ID;
+
+  const getPool = useCallback(async () => {
+    try {
+      const { data } = await api.get(`/pool/${poolId}`);
+
+      setPoolData(data);
+    } catch (e) {
+      console.log(e);
+    }
+  }, [poolId]);
+
   useEffect(() => {
-    const setNumbers = async () => {
-      const { data: landing } = await api.get("/landing");
-
-      setMealCount(parseInt(landing.mealCount, 10).toLocaleString("fr"));
-      setBenevoleCount(
-        parseInt(landing.benevoleCount, 10).toLocaleString("fr")
-      );
-      setChefCount(parseInt(landing.chefCount, 10).toLocaleString("fr"));
-
-      setPartenaires(landing.partenaires);
-
-      setDonatorCount(parseInt(landing.donatorCount, 10).toLocaleString("fr"));
-    };
-    setNumbers();
-  }, [setMealCount]);
-  const entries = Object.entries(localStorage);
-  const adminLocalStorage = entries.find((e) =>
-    e[0].startsWith("ravit-admin-")
-  );
-  const adminPoolId = adminLocalStorage && adminLocalStorage[0].slice(12);
-  const adminPoolCreatorName =
-    adminPoolId &&
-    localStorage.getItem(`ravit-pool-${adminPoolId}-creator-name`);
+    getPool();
+  }, [getPool]);
 
   return (
     <div>
-      <div className="section" style={{ position: "relative" }}>
-        {adminPoolId && (
-          <div className="topBanner">
-            <strong>{adminPoolCreatorName},</strong>
-            <br />
-            retrouvez votre collecte{" "}
-            <Link to={`/collecte/${adminPoolId}`}>en cliquant ici</Link>
-          </div>
-        )}
-        <div className="container-4 w-container">
-          <div className="div-block-2">
-            <div className="div-block">
-              <img
-                src="/landing/images/logo_ravitailleur.svg"
-                width={191}
-                alt=""
-                className="image"
-              />
-            </div>
-            <h1 className="heading">
-              Aidez nous à cuisiner des milliers
+      <div className="secondary position-relative text-center top-section">
+        <div id="collectesClosed" className="topBanner">
+          Les collectes sont actuellement en pause.
+          <br />
+          Pour toute question : contact@lesravitailleurs.org
+        </div>
+        <img
+          id="top-carotte"
+          className="top-image"
+          src="/landing/images/top-carotte.svg"
+        />
+        <img
+          id="top-casserole"
+          className="top-image"
+          src="/landing/images/top-casserole.svg"
+        />
+        <img
+          id="top-fouet"
+          className="top-image"
+          src="/landing/images/top-fouet.svg"
+        />
+        <img
+          id="top-rouleau"
+          className="top-image"
+          src="/landing/images/top-rouleau.svg"
+        />
+        <div className="container">
+          <img className="logo mt-5 mb-5" src="/landing/images/logo.svg" />
+          <h1>Changez leur monde avec des marmites</h1>
+          <div className="row justify-content-center">
+            <div className="mb-3 col-lg-8">
+              Restaurateurs, cuisinez pour les plus précaires. Particuliers,
               <br />
-              de repas pour les plus démunis
-            </h1>
-            <div className="div-block">
-              <p className="paragraph">
-                À cause de la crise sanitaire actuelle, des milliers de
-                personnes, en France, ne peuvent plus se nourrir au quotidien.
-                Vous pouvez aider.
-                <br />‍<br />
-              </p>
-            </div>
-            <div className="main-cta">
-              <br />
-              <Button onClick={() => setShowModal(true)}>
-                Je crée ma collecte
-              </Button>
+              financez leurs matières premières
             </div>
           </div>
-        </div>
-        <img
-          src="/landing/images/carotte.svg"
-          width={147}
-          alt=""
-          className="image-9"
-        />
-        <img
-          src="/landing/images/casserole.svg"
-          width={207}
-          alt=""
-          className="image-10"
-        />
-        <img
-          src="/landing/images/fouet.svg"
-          width={264}
-          alt=""
-          className="image-12"
-        />
-        <img
-          src="/landing/images/rouleau-1.svg"
-          width={292}
-          alt=""
-          className="image-11"
-        />
-      </div>
-      <div className="section-7">
-        <div className="div-block-20">
-          <HowWorks />
-          {/* <div>
-            <div className="text-block-10">Les Ravitailleurs partenaires :</div>
-          </div>
-          <div className="div-block-21">
-            <img
-              src="/landing/images/BIG-MAMMA_2.png"
-              width={103}
-              id="w-node-192eb1ae600c-427335c4"
-              alt=""
-            />
-            <img
-              src="/landing/images/logo-frichti-bleu-1.svg"
-              width={100}
-              id="w-node-b563d32dfe57-427335c4"
-              alt=""
-            />
-            <img
-              src="/landing/images/LOGO-Kinn-Khao-22-02-62-02.jpg"
-              width={150}
-              id="w-node-8d7ba9c207d7-427335c4"
-              alt=""
-            />
-          </div> */}
-        </div>
-        <div className="container-3 w-container">
-          <h2
-            className="heading-3"
-            style={{ marginTop: "-40px", fontSize: "28px" }}
-          >
-            Ravitaillez depuis chez vous,
-            <br />
-            créez votre <span className="emphasis">collecte</span>
-            <br />
-          </h2>
-          <p
-            style={{
-              textAlign: "center",
-              margin: "50px",
-              fontSize: "13px",
-              fontFamily: "Open Sans, sans-serif",
-            }}
-          >
-            Créez et partagez en quelques clics une collecte afin de récolter
-            des repas
-            <br />
-            au sein de votre entreprise, communauté, famille, groupe d'amis...
-          </p>
-          <div className="reviews">
-            <div className="reviewContainer">
-              {/* <img
-                className="reviewBackground"
-                id="reviewBackground1"
-                src={tomate}
-                title="tomate"
-              /> */}
-              <div className="review">
-                <img className="reviewImage" src={reviewer} alt="reviewer" />
-                <br />
-                Clémence a créé une collecte pour que ses collègues offrent des
-                repas et a collecté <span className="green">568 repas</span>
-              </div>
-            </div>
-            <div className="reviewContainer">
-              {/* <img
-                className="reviewBackground"
-                id="reviewBackground2"
-                src={tomateCarotte}
-                title="tomateCarotte"
-              /> */}
-              <div className="review">
-                <img className="reviewImage" src={reviewer3} alt="reviewer" />
-                <br />
-                Valentin a créé une collecte pour la partager sur Instagram, il
-                a collecté <span className="green">2234 repas</span>
-              </div>
-            </div>
-            <div className="reviewContainer">
-              {/* <img
-                className="reviewBackground"
-                id="reviewBackground3"
-                src={tomate}
-                title="tomate"
-              /> */}
-              <div className="review">
-                <img className="reviewImage" src={reviewer2} alt="reviewer" />
-                <br />
-                Sabrina a créé une collecte pour sa famille, elle a collecté{" "}
-                <span className="green">243 repas</span>
-              </div>
-            </div>
-          </div>
-          <div style={{ textAlign: "center", margin: "50px" }}>
-            <Button onClick={() => setShowModal(true)}>
-              Je crée ma collecte
-            </Button>
-          </div>
-          <h2
-            className="heading-3"
-            style={{
-              fontSize: "25px",
-              marginBottom: "-10px",
-              paddingTop: "40px",
-            }}
-          >
-            Grâce à nos bénévoles et partenaires,
-            <br />
-            nous avons déjà distribué&nbsp;:
-            <br />
-          </h2>
-        </div>
-      </div>
-      <div className="div-block-19">
-        <div className="div-block-14">
-          <img
-            src="/landing/images/Frame-4.svg"
-            width={73}
-            alt=""
-            className="image-5"
-          />
-          <div className="div-block-13">
-            <div id="plat-number" className="text-block-6 plat-number">
-              {mealCount}
-            </div>
-            <div className="text-block-5">
-              <strong>Repas</strong>
-            </div>
-          </div>
-          <img
-            src="/landing/images/Frame-3.svg"
-            width={72}
-            alt=""
-            className="image-6"
-          />
-        </div>
-      </div>
-      <div className="section-2">
-        <div style={{ textAlign: "center" }}>
-          <div className="text-block-7">Aidés par :</div>
-          <div
-            style={{
-              display: "flex",
-              width: "100%",
-              maxWidth: "500px",
-              margin: "auto",
-              justifyContent: "space-between",
-            }}
-          >
-            <div className="countDisplay">
-              <h1>{donatorCount}</h1>
-              Citoyens
-            </div>
-            <div className="countDisplay">
-              <h1>{benevoleCount}</h1>
-              Bénévoles
-            </div>
-            <div className="countDisplay">
-              <h1>{chefCount}</h1>
-              Chefs
-            </div>
-          </div>
-        </div>
-        <div
-          className="div-block-15"
-          style={{ maxWidth: "500px", margin: "auto" }}
-        >
-          <AssoList />
-          <br />
-          <br />
-          <br />
-          <br />
-        </div>
-      </div>
-      <div className="section-6">
-        <div className="div-block-9" style={{ marginBottom: "50px" }} />
-        <div className="w-container">
-          <div className="div-block-3">
-            <div className="div-block-4">
-              <h3 className="heading-2">Je suis cuisinier</h3>
-              <p className="paragraph-2">
-                Sortez les marmites ! Vous nous dites combien de repas vous
-                pouvez cuisiner et quand, nous vous livrons les produits et
-                venons rechercher les plats cuisinés.
-              </p>
-              <div>
-                <a
-                  href="https://docs.google.com/forms/d/1R40F0gfAfYHVev3oQV9-g9UoifQzZOZC94Dy7rsMaTE/"
-                  target="_blank"
-                  className="button-2 w-button"
-                >
-                  Je cuisine
-                  <br />
-                </a>
-              </div>
-            </div>
-            <div className="div-block-5">
-              <img
-                src="/landing/images/Frame-1.svg"
-                width={189}
-                alt=""
-                className="image-3"
-              />
-            </div>
-          </div>
-          <div className="div-block-3">
-            <div className="div-block-5">
-              <img
-                src="/landing/images/producteurs.png"
-                alt=""
-                className="image-13"
-              />
-            </div>
-            <div className="div-block-4 right">
-              <h3 className="heading-2">Je suis bénévole</h3>
-              <p className="paragraph-2 right">
-                Nous avons besoin de vous ! Transport de marchandises,
-                préparation de commande, inventaires ... inscrivez-vous et nous
-                vous proposerons des missions.
-                <br />
-              </p>
-              <div>
-                <a
-                  href="https://docs.google.com/forms/d/1wPg2c6uNbDwkic3WqvosU3zd_FxVukcEeI9-XJBajLY/"
-                  target="_blank"
-                  className="button-2 w-button"
-                >
-                  Je donne de mon temps
-                  <br />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="div-block-3">
-            <div className="div-block-4">
-              <h3 className="heading-2">Je suis un citoyen</h3>
-              <p className="paragraph-2">
-                Créez et partagez en quelques clics une collecte afin de
-                récollecter des repas au sein de votre entreprise, communauté,
-                famille, groupe d’amis,...
-                <br />
-              </p>
-              <div>
-                <a
-                  onClick={() => setShowModal(true)}
-                  className="button-2 w-button"
-                >
-                  Je crée ma collecte
-                  <br />
-                </a>
-              </div>
-            </div>
-            <div className="div-block-5">
-              <img
-                src="/landing/images/Frame-2.svg"
-                width={177}
-                alt=""
-                className="image-7"
-              />
-            </div>
-          </div>
-          <div className="div-block-10 mercis">
-            <h1>
-              Merci à nos généreux
-              <br />
-              partenaires:
-            </h1>
-            <div className="div-block-18">
-              {partenaires.map((p) => (
-                <span
-                  className={`partenaireName ${
-                    p.url ? "partenaireName__hasLink" : ""
-                  }`}
-                >
-                  <a key={p.name} href={p.url} target="_blank">
-                    {p.name}
-                  </a>{" "}
-                  •{" "}
-                </span>
-              ))}
-            </div>
-            <div
-              style={{
-                color: "rgba(0, 0, 0, 0.6)",
-                fontFamily: "Open Sans",
-                fontSize: "13px",
-                padding: "20px",
-                maxWidth: "600px",
-                margin: "auto",
-              }}
+          <Link className="button button-big mt-5 mb-3" to="/collecte">
+            Accéder à la collecte
+          </Link>
+          <div className="text-center mb-5">
+            <a
+              className="small"
+              href="https://forms.gle/RW1AxsqnpPzeW9NY7"
+              target="_blank"
             >
-              Les Ravitailleurs sont aidés par Frichti pour la gestion des flux
-              logistiques et financiers.
-              <br />
-              Merci à toute l’équipe pour sa générosité et son soutien.
+              Vous êtes restaurateur&nbsp;?
+            </a>
+          </div>
+          <div className="row justify-content-center">
+            <div className="col-lg-5">
+              <h3 className="mt-5 mb-4">
+                Chaque repas compte,
+                <br className="d-sm-inline d-none" />
+                alors on les compte pour vous
+              </h3>
             </div>
           </div>
         </div>
       </div>
-      <div className="section-4">
-        <div className="w-container">
-          <div
-            data-animation="slide"
-            data-duration={500}
-            data-infinite={1}
-            className="w-slider"
-          >
-            <div className="w-slider-mask">
-              <div className="slide w-slide">
+      <div className="text-center curve-bg">
+        <div className="container">
+          <div className="row">
+            <div className="col-2 col-sm-3 meals-count-hand-left">
+              <img src="/landing/images/hand-left-black.svg" />
+            </div>
+            <div className="col-8 col-sm-6">
+              <div className="meals-count">
+                <div className="meals-count-number" id="meals-count-number">
+                  &nbsp;
+                </div>
+                <div className="bold mb-3">
+                  Repas cuisinés
+                  <br />
+                  par les chefs et restos Ravitailleurs
+                </div>
+                {/* <img
+              src="/landing/images/hand-right.svg"
+              class="meals-count-hand-right"
+            /> */}
+              </div>
+            </div>
+            <div className="col-2 col-sm-3 meals-count-hand-right">
+              <img src="/landing/images/hand-right-black.svg" />
+            </div>
+          </div>
+          <h2 className="mt-5 mb-5">
+            Urgence confinement&nbsp;!
+            <br />
+            Nouvel objectif: financer 100&nbsp;000 repas
+            <br />
+            avant le 31 décembre 2020
+          </h2>
+          <div className="row justify-content-center">
+            <div className="mb-3 col-lg-8">
+              Particuliers, participez à la grande collecte Ravitailleurs et
+              obtenez un reçu fiscal pour votre don
+            </div>
+          </div>
+          <CollectesSummary
+            mealsCount={poolData ? poolData.startAt + poolData.mealCount : 0}
+            donatorsCount={poolData ? poolData.donationsCount : 0}
+          />
+          <Link className="button button-big mt-4 mb-5" to="/collecte">
+            Accéder à la collecte
+          </Link>
+
+          <h2 className="mt-5 mb-5">Ils cuisinent pour les plus démunis</h2>
+          <div className="row justify-content-between partners-block">
+            <div className="col-6 col-md-3">
+              <img
+                className="partner-logo-deco"
+                id="partner-logo-deco-tomates"
+                src="/landing/images/partner-deco-tomates.svg"
+              />
+              <div className="partner-block">
                 <img
-                  src="/landing/images/Ellipse-5-1.png"
-                  width={100}
-                  alt=""
-                  className="image-4"
+                  className="partner-logo"
+                  src="/landing/images/partner-frichti.svg"
                 />
-                <div className="text-block">
-                  “Donnez-nous vos invendus, nous les distribuerons aux
-                  restaurateurs. Nous avons besoin de produits secs et frais.”
+                <h3 className="pb-3 mb-3">Frichti</h3>
+                <div className="bold">
+                  <span className="green" id="frichti-events-count" />
+                  &nbsp;Événements
+                  <br />
+                  <span className="green" id="frichti-meals-count" />
+                  &nbsp;Repas
                 </div>
-                <div>
-                  <em className="italic-text-2">Thierry Marx, Ravitailleur</em>
+              </div>
+            </div>
+            <div className="col-6 col-md-3 mt-md-5">
+              <img
+                className="partner-logo-deco"
+                id="partner-logo-deco-cloche"
+                src="/landing/images/partner-deco-cloche.svg"
+              />
+              <div className="partner-block">
+                <img
+                  className="partner-logo"
+                  src="/landing/images/partner-loufoque.svg"
+                />
+                <h3 className="pb-3 mb-3">Loufoque</h3>
+                <div className="bold">
+                  <span className="green" id="loufoque-events-count" />
+                  &nbsp;Événements
+                  <br />
+                  <span className="green" id="loufoque-meals-count" />
+                  &nbsp;Repas
                 </div>
               </div>
-              <div className="w-slide" />
             </div>
-            <div className="left-arrow w-slider-arrow-left">
-              <div className="icon">
-                <img src="/landing/images/Vector-1.svg" alt="" />
+            <div className="col-6 col-md-3">
+              <img
+                className="partner-logo-deco"
+                id="partner-logo-deco-toques"
+                src="/landing/images/partner-deco-toques.svg"
+              />
+              <div className="partner-block">
+                <img
+                  className="partner-logo"
+                  src="/landing/images/partner-aux-deux-amis.svg"
+                />
+                <h3 className="pb-3 mb-3">Aux Deux Amis</h3>
+                <div className="bold">
+                  <span className="green" id="aux-deux-amis-events-count" />
+                  &nbsp;Événements
+                  <br />
+                  <span className="green" id="aux-deux-amis-meals-count" />
+                  &nbsp;Repas
+                </div>
               </div>
             </div>
-            <div className="right-arrow w-slider-arrow-right">
-              <div className="icon">
-                <img src="/landing/images/Vector.svg" alt="" />
+            <div className="col-6 col-md-3 mt-md-5">
+              <img
+                className="partner-logo-deco"
+                id="partner-logo-deco-fouet"
+                src="/landing/images/partner-deco-fouet.svg"
+              />
+              <div className="partner-block">
+                <img
+                  className="partner-logo"
+                  src="/landing/images/partner-big-mamma.svg"
+                />
+                <h3 className="pb-3 mb-3">Big Mamma</h3>
+                <div className="bold">
+                  <span className="green" id="big-mamma-events-count" />
+                  &nbsp;Événements
+                  <br />
+                  <span className="green" id="big-mamma-meals-count" />
+                  &nbsp;Repas
+                </div>
               </div>
             </div>
-            <div className="slide-nav w-slider-nav w-round" />
+          </div>
+          <div className="row">
+            <div className="col-12">
+              <div
+                className="button-secondary mb-4"
+                data-toggle="modal"
+                data-target="#partnersModal"
+                id="partners-modal-button"
+              >
+                Voir tous les partenaires
+              </div>
+            </div>
+          </div>
+          <div
+            className="modal fade"
+            id="partnersModal"
+            tabIndex={-1}
+            role="dialog"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div className="modal-dialog modal-dialog-centered" role="document">
+              <div className="modal-content">
+                <div className="modal-header text-left">
+                  <h2 className="mb-0">
+                    Merci à tous ces généreux restaurateurs&nbsp;:
+                  </h2>
+                  <button
+                    type="button"
+                    className="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <img src="/landing/images/close.svg" />
+                  </button>
+                </div>
+                <div className="modal-body text-left" id="partners-list" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div className="section-5">
-        <div className="w-container">
-          <div className="div-block-8">
-            <div className="div-block-6">
-              <div className="text-block-2">
-                <strong>
-                  Téléchargez notre guide pour cuisiner en toute sécurité
-                  sanitaire
-                </strong>
-                <br />
+      <div className="how-works mt-5">
+        <div className="container pt-5 pb-5">
+          <div className="col-md-9 how-works-left-container">
+            <div className="how-works-left text-center">
+              <h2>Comment ça marche&nbsp;?</h2>
+              <div className="how-works-content">
+                <div className="how-works-digit mt-4">1.</div>
+                <div>
+                  Vous financez les matières
+                  <br />
+                  premières
+                </div>
+                <div className="how-works-digit mt-4">2.</div>
+                <div>
+                  Nos chefs partenaires
+                  <br />
+                  cuisinent avec le 💛
+                </div>
+                <div className="how-works-digit mt-4">3.</div>
+                <div>
+                  Une personne isolée ou
+                  <br />
+                  exclue se régale
+                </div>
+              </div>
+              <Link className="button mt-5" to="/collecte">
+                Je donne
+              </Link>
+              <img
+                src="/landing/images/running-chef.svg"
+                className="how-works-illu d-none d-md-inline"
+              />
+            </div>
+          </div>
+          <div className="col-md-7" />
+          <div className="col-12">
+            <img
+              src="/landing/images/running-chef.svg"
+              className="d-inline d-md-none how-works-illu-mobile"
+            />
+          </div>
+        </div>
+      </div>
+      <div className="container text-center mb-5">
+        <h2 className="mt-5 mb-3">Nous sommes fiers de les ravitailler</h2>
+        <div className="row align-items-center">
+          <div className="col-1 d-none d-sm-block">
+            <img
+              className="carousel-arrow"
+              id="carousel-arrow-left"
+              src="/landing/images/left-arrow.svg"
+            />
+          </div>
+          <div className="col-sm-10 col">
+            <div className="assos-logos-wrapper">
+              <div className="assos-logos">
+                <img
+                  className="asso-logo"
+                  src="/landing/images/restos-du-coeur.svg"
+                />
+                <img
+                  className="asso-logo"
+                  src="/landing/images/protection-civile.svg"
+                />
+                <img
+                  className="asso-logo"
+                  src="/landing/images/secours-populaire.svg"
+                />
+                <img className="asso-logo" src="/landing/images/utopia.svg" />
+                <img
+                  className="asso-logo"
+                  src="/landing/images/banlieues-sante.svg"
+                />
+                <img
+                  className="asso-logo"
+                  src="/landing/images/la-table-ouverte.svg"
+                />
+                <img
+                  className="asso-logo"
+                  src="/landing/images/action-froid.svg"
+                />
               </div>
             </div>
-            <div className="div-block-7">
-              <a href="#" className="button-3 w-button">
-                Télécharger notre guide{" "}
+          </div>
+          <div className="col-1 d-none d-sm-block">
+            <img
+              className="carousel-arrow"
+              id="carousel-arrow-right"
+              src="/landing/images/right-arrow.svg"
+            />
+          </div>
+        </div>
+      </div>
+      <div className="secondary red-banner">
+        <div className="overflow-hidden">
+          <div className="container text-center">
+            <h1 className="mt-5">
+              Restaurateurs, faites juste ce que vous aimez
+            </h1>
+            <div>Vous cuisinez, on s’occupe du reste</div>
+            <div className="row text-left value-props">
+              <div className="col-12 col-md-4">
+                <div className="value-prop">
+                  <img src="/landing/images/chef.svg" />
+                  <h3>Zéro temps perdu</h3>
+                  <p>
+                    Vous cuisinez, nous nous chargeons de l'organisation avec
+                    l'association.
+                  </p>
+                </div>
+              </div>
+              <div className="col-12 col-md-4">
+                <div className="value-prop">
+                  <img src="/landing/images/cookies.svg" />
+                  <h3>Zéro coût</h3>
+                  <p>
+                    Vous cuisinez, nous vous remboursons les matières premières
+                    sous 30 jours.
+                  </p>
+                </div>
+              </div>
+              <div className="col-12 col-md-4">
+                <div className="value-prop">
+                  <img className="mt-4" src="/landing/images/fruits.svg" />
+                  <h3>Retour garanti</h3>
+                  <p>
+                    Vous cuisinez, l’association vous fait un retour en images
+                    sur l’événement.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <a
+              className="button mb-5 mt-sm-5 mt-2"
+              href="https://forms.gle/RW1AxsqnpPzeW9NY7"
+              target="_blank"
+            >
+              Je rejoins le mouvement
+            </a>
+            <div className="row our-mission-wrapper mt-5">
+              {/* <img
+            id="our-mission-hand-1"
+            class="d-none d-sm-inline"
+            src="/landing/images/hand-right.svg"
+          />
+          <img
+            id="our-mission-hand-2"
+            class="d-none d-sm-inline"
+            src="/landing/images/hand-right.svg"
+          /> */}
+              <div className="col">
+                <div className="row our-mission no-gutters text-left">
+                  <div className="col-12 col-lg-8">
+                    <div className="our-mission-left">
+                      <span className="our-mission-title">NOTRE MISSION</span>
+                      <h1>Lutter contre l’exclusion via le bien manger</h1>
+                      <div className="mt-4">
+                        Manger sain et à sa faim, c’est se considérer, se sentir
+                        considéré. Notre mission : rendre le bien manger
+                        accessible à tous.
+                        <br />
+                        <br />
+                        Nous sommes nés pendant le confinement pour répondre à
+                        l’urgence alimentaire. En deux mois, nous avons mobilisé
+                        des centaines de bénévoles et cuisiné des dizaines de
+                        milliers de repas.
+                        <br />
+                        <br />
+                        Aujourd’hui, nous écrivons un nouveau chapitre des
+                        Ravitailleurs. Notre objectif : avoir de l’impact auprès
+                        de 100 000 personnes chaque mois. Vous-voulez nous aider
+                        à y parvenir ? <br />
+                        <br />
+                        Écrivez-nous à contact@lesravitailleurs.org
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-12 col-lg-4 our-mission-right">
+                    <img
+                      src="/landing/images/repas.svg"
+                      className="our-mission-img"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="container">
+          <div className="row">
+            <div className="asso-cta-block-wrapper">
+              <div className="asso-cta-block">
+                <h2>Vous êtes une association&nbsp;?</h2>
+                <div>Faites vivre un moment spécial à vos bénéficiaires</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="yellow-curve" id="associations-section">
+        <div className="container">
+          <div id="yellow-disc" className="d-none d-sm-block">
+            <img
+              className="d-none d-lg-inline"
+              src="/landing/images/yellow-disc.png"
+            />
+            <img
+              className="d-lg-none"
+              src="/landing/images/yellow-disc-small.png"
+            />
+          </div>
+          <div className="row">
+            <div className="col-12 col-sm-9 bold">
+              <div>
+                💛&nbsp;&nbsp;&nbsp;Nos restaurateurs cuisinent pour vous avec
+                le coeur
+              </div>
+              <div className="mt-3">
+                👨‍🍳&nbsp;&nbsp;&nbsp;Pas de nouveau process à mettre en place, on
+                s’occupe de tout
+              </div>
+              <div className="mt-3 mb-5">
+                🤝&nbsp;&nbsp;&nbsp;Tout est gratuit
+              </div>
+            </div>
+            <div className="col-3 d-none d-sm-block">
+              {/* <img id="asso-cta-image" src="/landing/images/plateau.svg" /> */}
+            </div>
+            <div className="col-12">
+              <a
+                className="button text-center"
+                href="https://forms.gle/a6NXyCZr7zeuJFqFA"
+                target="_blank"
+              >
+                Je prends contact
               </a>
             </div>
           </div>
         </div>
       </div>
-      <div className="section-6">
-        <div className="div-block-9" />
-        <div className="container-2 w-container">
-          <div className="div-block-10">
-            <div className="div-block-12">
-              <div className="text-block-3">
-                Recevez des nouvelles du front, entrez votre email :
-              </div>
-              {/* <div className="div-block-11">
-                <img
-                  src="/landing/images/Ellipse-4.svg"
-                  width={28}
-                  alt=""
-                  className="bubble"
-                />
-                <img
-                  src="/landing/images/Ellipse-4.svg"
-                  width={28}
-                  alt=""
-                  className="bubble"
-                />
-                <img
-                  src="/landing/images/Ellipse-4.svg"
-                  width={28}
-                  alt=""
-                  className="bubble"
-                />
-              </div> */}
-            </div>
-            <div className="w-form">
-              <br />
-              <Mailchimp
-                action="https://lesravitailleurs.us19.list-manage.com/subscribe/post?u=30b516ffce51a9335e4e21f7c&amp;id=8a045718d8"
-                fields={[
-                  {
-                    name: "EMAIL",
-                    placeholder: "Adresse e-mail",
-                    type: "email",
-                    required: true,
-                  },
-                ]}
-                className="email-form"
-                messages={{
-                  sending: "Enregistrement...",
-                  success: "Merci pour votre inscription !",
-                  error: "Une erreur est survenue.",
-                  empty: "Veuillez entrer votre adresse email.",
-                  duplicate:
-                    "Trop d'inscription récentes pour cette adresse email",
-                  button: "Je m'inscris",
-                }}
-              />
-              <div className="success-message w-form-done">
-                <div className="text-block-8">Merci !</div>
-              </div>
-              <div className="error-message w-form-fail">
-                <div className="text-block-9">
-                  Oops! Il semblerait qu'une erreur s'est produite. Veuillez
-                  réessayer.
-                </div>
-              </div>
+      <div className="red-banner text-center">
+        <h2>En direct des cuisines</h2>
+        <a
+          className="button-secondary mt-3 mb-5"
+          href="https://www.instagram.com/ravitailleurs/"
+          target="_blank"
+        >
+          <img src="/landing/images/insta.svg" /> Ravitailleurs
+        </a>
+        <div className="insta-feed-wrapper">
+          <img id="insta-hand-left" src="/landing/images/hand-left.svg" />
+          <img id="insta-hand-right" src="/landing/images/hand-right.svg" />
+          <div id="instagram-feed">
+            <div className="instagram_gallery">
+              <a>
+                <img src="/landing/images/insta-square-1.svg" />
+              </a>
+              <a>
+                <img src="/landing/images/insta-square-2.svg" />
+              </a>
+              <a>
+                <img src="/landing/images/insta-square-1.svg" />
+              </a>
+              <a>
+                <img src="/landing/images/insta-square-2.svg" />
+              </a>
+              <a>
+                <img src="/landing/images/insta-square-1.svg" />
+              </a>
+              <a>
+                <img src="/landing/images/insta-square-2.svg" />
+              </a>
             </div>
           </div>
         </div>
       </div>
-      <Footer />
-
-      {showModal && <PoolModal onClose={() => setShowModal(false)} />}
+      <div className="secondary footer pt-3 pb-3">
+        <div className="container">
+          <div className="row align-items-center text-center">
+            <div className="col-sm-3 col-12 mb-3 mb-sm-0">
+              <img src="/landing/images/logo.svg" />
+            </div>
+            <div className="col-sm-6 col-12 mb-3 mb-sm-0">
+              <span>
+                Design par
+                <a href="https://source.paris/" target="_blank">
+                  Source
+                </a>{" "}
+                &amp; Développement par
+                <a
+                  href="https://www.linkedin.com/in/noemalzieu"
+                  target="_blank"
+                >
+                  Noé Malzieu
+                </a>
+              </span>
+            </div>
+            <div className="col-sm-3 col-12">
+              <span>Tous droits réservés © 2020</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

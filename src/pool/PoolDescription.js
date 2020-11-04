@@ -22,7 +22,7 @@ const PoolDescription = ({ pool, getPool }) => {
           src={logoRavitailleurs}
         />
       </Link>
-      <h1>
+      {/* <h1>
         Bienvenue sur la collecte créée par{" "}
         {pool.admin ? (
           <EditableText
@@ -36,12 +36,16 @@ const PoolDescription = ({ pool, getPool }) => {
           <span className="green">{pool.creatorName}</span>
         )}
       </h1>
+       */}
+       <h1>
+        Bienvenue sur la collecte des<br/><span className="green">Ravitailleurs</span>
+      </h1>
       <p>
         Les plus démunis ont besoin, aujourd’hui plus que jamais, d’aide
         alimentaire. Sans domiciles fixes, migrants, centres d’hébergements,
         hôtels sociaux n’ont plus assez de plats préparés pour vivre.
       </p>
-      {(pool.admin || pool.message) && (
+      {/* {(pool.admin || pool.message) && (
         <div className="PoolDescription__Message">
           <p>
             {pool.message ? pool.message : "Laissez une note aux visiteurs"}
@@ -59,7 +63,7 @@ const PoolDescription = ({ pool, getPool }) => {
             </Button>
           )}
         </div>
-      )}
+      )} */}
       {showEditModal && (
         <PoolModal
           pool={pool}

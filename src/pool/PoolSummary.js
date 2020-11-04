@@ -30,8 +30,8 @@ const PoolSummary = ({ pool }) => {
         </div>
       )}
       <h2>Partagez la collecte</h2>
-      <CopyPaste poolId={pool.id} />
-      <SocialShare poolId={pool.id} />
+      <CopyPaste poolId={''} />
+      <SocialShare poolId={''} />
       {pool.donationsNames.length > 0 && (
         <div className="PoolSummary__Donateurs">
           <strong>Donateurs</strong>

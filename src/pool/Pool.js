@@ -11,20 +11,22 @@ import api from "../api";
 import Footer from "../footer/Footer";
 import AssoList from "../assoList/AssoList";
 import HowWorks from "../howWorks/HowWorks";
+import CollectesSummary from "../collectesSummary/CollectesSummary";
 
 import couteau from "./couteau.svg";
 import fouet from "./fouet1.svg";
 import spatule from "./spatule.svg";
 
 const Pool = () => {
-  const { poolId, adminId } = useParams();
+  // const { poolId, adminId } = useParams();
   const [pool, setPool] = useState(null);
   const history = useHistory();
+  const poolId = process.env.REACT_APP_RAVIT_POOL_ID;
 
-  if (adminId) {
-    localStorage.setItem(`ravit-admin-${poolId}`, adminId);
-    history.push(`/collecte/${poolId}`);
-  }
+  // if (adminId) {
+  //   localStorage.setItem(`ravit-admin-${poolId}`, adminId);
+  //   history.push(`/collecte/${poolId}`);
+  // }
 
   const getPool = useCallback(async () => {
     try {
@@ -69,6 +71,12 @@ const Pool = () => {
                 )}
                 {isMobile && <GiveModule pool={pool} />}
                 {isMobile && <HowWorks />}
+                <div className="Pool__CollectesSummary">
+                  <CollectesSummary
+                    mealsCount={pool ? pool.startAt + pool.mealCount : 0}
+                    donatorsCount={pool ? pool.donationsCount : 0}
+                  />
+                </div>
                 <PoolSummary pool={pool} />
               </>
             )}

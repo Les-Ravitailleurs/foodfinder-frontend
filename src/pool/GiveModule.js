@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Formik, Form, Field } from "formik";
 
 import { loadStripe } from "@stripe/stripe-js";
 // import ClapButton from "react-clap-button";
@@ -8,35 +9,20 @@ import "./GiveModule.css";
 import Button from "../button/Button";
 import EditableText from "../editableText/EditableText";
 import Input from "../input/Input";
-import EmailModal from "../EmailModal/emailModal";
+import Modal from "../modal/Modal";
+import FormInput from "../input/FormInput";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
 const GiveModule = ({ pool }) => {
   const [mealCount, setMealCount] = useState(0);
   const [editorMealCount, setEditorMealCount] = useState("");
-  const [donatorName, setDonatorName] = useState("");
+  // const [donatorName, setDonatorName] = useState("");
+  // const [donatorAddress, setDonatorAddress] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [editMealCount, setEditMealCount] = useState(false);
   const [error, setError] = useState(null);
-  const [showEmailModal, setShowEmailModal] = useState(false);
-  const donate = async () => {
-    setSubmitting(true);
-    // setTimeout(() => {
-    //   setShowEmailModal(true);
-    //   setSubmitting(false);
-    // }, 1000);
-    const { data } = await api.post("/donation", {
-      mealCount,
-      poolId: pool.id,
-      donatorName: donatorName.trim(),
-    });
-    const stripe = await stripePromise;
-    const { error } = await stripe.redirectToCheckout({
-      sessionId: data.checkoutSessionId,
-    });
-    setError(error);
-  };
+  const [showTaxModal, setShowTaxModal] = useState(false);
 
   const GiveIcon = ({ addCount }) => (
     <div
@@ -116,25 +102,31 @@ const GiveModule = ({ pool }) => {
           </div>
         )}
         {!editMealCount && (
-          <EditableText
-            text={`${mealCount} repas`}
-            onClick={() => {
-              setEditorMealCount(mealCount > 0 ? mealCount : "");
-              setEditMealCount(true);
-            }}
-          />
+          <div style={{ marginBottom: "10px" }}>
+            <EditableText
+              text={`${mealCount} repas`}
+              onClick={() => {
+                setEditorMealCount(mealCount > 0 ? mealCount : "");
+                setEditMealCount(true);
+              }}
+            />
+          </div>
         )}
         <br />
-        <p style={{ visibility: mealCount > 0 ? "visible" : "hidden" }}>
+
+        <strong style={{ fontSize: "14px" }}>
+          {process.env.REACT_APP_MEAL_PRICE}€ = 1 repas
+        </strong>
+        {/* <p style={{ visibility: mealCount > 0 ? "visible" : "hidden" }}>
           Soit {mealCount}&nbsp;packaging +&nbsp;{(mealCount * 0.25).toFixed(1)}
           &nbsp;kg de riz ou de pâtes +&nbsp;{(mealCount * 0.15).toFixed(1)}
           &nbsp;kg de légumes
-        </p>
+        </p> */}
       </div>
       <span className="GiveModule__error">{error && error.message}</span>
       <div className="GiveModule__button">
-        <Input
-          placeholder="Votre nom"
+        {/* <Input
+          placeholder="Nom de donateur"
           value={donatorName}
           onChange={(e) => {
             setDonatorName(e.target.value.slice(0, 200));
@@ -146,34 +138,118 @@ const GiveModule = ({ pool }) => {
               donate();
             }
           }}
-        />
+        /> */}
         <Button
-          onClick={donate}
+          onClick={() => setShowTaxModal(true)}
           disabled={
-            submitting || mealCount === 0 || editMealCount || !donatorName
+            submitting || mealCount === 0 || editMealCount
+            //  || !donatorName
           }
         >
           {submitting ? "Redirection..." : `Payer ${price ? `${price}€` : ""}`}
         </Button>
         <div className="GiveModule__Details">
-          <strong>{process.env.REACT_APP_MEAL_PRICE}€ = 1 repas</strong>
+          <strong>
+            {mealCount === 0
+              ? "66% du montant déductible des impôts"
+              : `Soit ${(34 * price) / 100}€ après déduction d'impôts`}
+          </strong>
           <p>
             Le nombre de repas que vous offrez ne sera pas visible sur la page
             de la collecte. Seul votre nom s'affichera.
           </p>
-          <p>
+          {/* <p>
             Le paiement se fera directement auprès de notre fournisseur Frichti,
             qui nous fournit l'équivalent en matières premières
-          </p>
+          </p> */}
         </div>
       </div>
-      {showEmailModal && (
-        <EmailModal
-          poolId={pool.id}
-          name={donatorName}
-          mealCount={mealCount}
-          onClose={() => setShowEmailModal(false)}
-        />
+      {showTaxModal && (
+        <Modal onClose={() => setShowTaxModal(false)}>
+          <h1>Informations pour votre reçu fiscal</h1>
+          <p className="PoolModal__description">
+            Des informations complémentaires sont nécessaires pour que nous
+            puissions générer votre reçu fiscal. Votre adresse est
+            confidentielle et n’apparaîtra pas sur le site.
+          </p>
+
+          <Formik
+            initialValues={{
+              donatorName: "",
+              donatorAddress: "",
+              hideDonatorName: false,
+            }}
+            validateOnChange={false}
+            validateOnBlur={false}
+            onSubmit={async (values, { setSubmitting }) => {
+              const { data } = await api.post("/donation", {
+                mealCount,
+                poolId: pool.id,
+                donatorName: values.donatorName.trim(),
+                donatorAddress: values.donatorAddress.trim(),
+                hideDonatorName: values.hideDonatorName,
+              });
+              const stripe = await stripePromise;
+              const { error } = await stripe.redirectToCheckout({
+                sessionId: data.checkoutSessionId,
+              });
+              setSubmitting(false);
+              console.log(error);
+            }}
+          >
+            {({ isSubmitting, values, handleChange, handleBlur, errors }) => (
+              <Form>
+                <FormInput
+                  name="donatorName"
+                  label="Nom complet"
+                  placeholder="Gérard Menvusa"
+                  value={values.donatorName}
+                  // onChange={handleChange}
+                  // onBlur={handleBlur}
+                  error={errors.donatorName}
+                  validate={(name) => {
+                    if (name.trim().length === 0) {
+                      return "Veuillez entrer votre nom complet";
+                    }
+                  }}
+                />
+                <div
+                  style={{
+                    textAlign: "left",
+                    display: "flex",
+                    alignItems: "center",
+                    marginBottom: "20px",
+                  }}
+                >
+                  <Field type="checkbox" name="hideDonatorName" />
+                  <span
+                    className="Input__label"
+                    style={{ margin: "0 0 0 10px", fontWeight: 400 }}
+                  >
+                    Masquer votre nom de la liste des donateurs
+                  </span>
+                </div>
+                <FormInput
+                  name="donatorAddress"
+                  label="Adresse complète"
+                  placeholder="Ex: 17 rue de Paris, 75011 Paris"
+                  value={values.donatorAddress}
+                  // onChange={handleChange}
+                  // onBlur={handleBlur}
+                  error={errors.donatorAddress}
+                  validate={(email) => {
+                    if (email.trim().length === 0) {
+                      return "Veuillez entrer votre adresse";
+                    }
+                  }}
+                />
+                <Button type="submit" disabled={isSubmitting}>
+                  {isSubmitting ? "Redirection..." : "Valider"}
+                </Button>
+              </Form>
+            )}
+          </Formik>
+        </Modal>
       )}
     </div>
   );

@@ -2,11 +2,6 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
-    <link
-      href="%PUBLIC_URL%/favicon.png"
-      rel="shortcut icon"
-      type="image/x-icon"
-    />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <link
@@ -18,19 +13,186 @@
       rel="stylesheet"
     />
 
+    <link rel="icon" href="favicon.ico" />
     <title>Les Ravitailleurs</title>
     <meta property="og:title" content="Les Ravitailleurs" />
     <meta property="og:type" content="website" />
     <meta
       property="og:description"
-      content="Aidez-nous à cuisiner des milliers de repas pour les plus démunis. Des milliers de personnes, en France, ne peuvent plus se nourrir au quotidien. Vous pouvez aider."
+      content="Luttons ensemble contre l'exclusion via le bien manger. Restaurateurs, cuisinez pour les plus précaires. Rejoignez les Ravitailleurs."
     />
-    <meta name="description" content="Aidez-nous à cuisiner des milliers de repas pour les plus démunis. Des milliers de personnes, en France, ne peuvent plus se nourrir au quotidien. Vous pouvez aider." />
+    <meta
+      name="description"
+      content="Luttons ensemble contre l'exclusion via le bien manger. Restaurateurs, cuisinez pour les plus précaires. Rejoignez les Ravitailleurs."
+    />
     <meta property="og:url" content="https://lesravitailleurs.org/" />
     <meta
       property="og:image"
-      content="https://lesravitailleurs.s3.eu-west-3.amazonaws.com/ravitailleursShare.jpg"
+      content="https://ravitailleurs.s3.eu-west-3.amazonaws.com/ravitailleursShare.jpg"
     />
+    <script>
+      let pageReady = false;
+      let spreadsheetResults = null;
+      let pageUpdated = false;
+
+      const updateContentIfReady = () => {
+        if (pageReady && spreadsheetResults && !pageUpdated) {
+          $("#meals-count-number").text(
+            spreadsheetResults.mealsCount.toLocaleString()
+          );
+          let partnersHtml = ``;
+          let alreadyBigOrPinkMamma = null;
+          spreadsheetResults.restaurants.forEach((restaurant) => {
+            if (restaurant.name === "Frichti") {
+              $("#frichti-events-count").text(
+                restaurant.eventsCount.toLocaleString()
+              );
+              $("#frichti-meals-count").text(
+                restaurant.mealsCount.toLocaleString()
+              );
+            }
+            if (restaurant.name === "Loufoque") {
+              $("#loufoque-events-count").text(
+                restaurant.eventsCount.toLocaleString()
+              );
+              $("#loufoque-meals-count").text(
+                restaurant.mealsCount.toLocaleString()
+              );
+            }
+            if (restaurant.name === "Aux Deux Amis") {
+              $("#aux-deux-amis-events-count").text(
+                restaurant.eventsCount.toLocaleString()
+              );
+              $("#aux-deux-amis-meals-count").text(
+                restaurant.mealsCount.toLocaleString()
+              );
+            }
+            if (
+              restaurant.name === "Big Mamma" ||
+              restaurant.name === "Pink Mamma"
+            ) {
+              if (!alreadyBigOrPinkMamma) {
+                alreadyBigOrPinkMamma = restaurant;
+              } else {
+                $("#big-mamma-events-count").text(
+                  (
+                    alreadyBigOrPinkMamma.eventsCount + restaurant.eventsCount
+                  ).toLocaleString()
+                );
+                $("#big-mamma-meals-count").text(
+                  (
+                    alreadyBigOrPinkMamma.mealsCount + restaurant.mealsCount
+                  ).toLocaleString()
+                );
+              }
+            }
+            partnersHtml = `
+                  ${partnersHtml}
+                  <div class="partner-list-item mb-2 mb-sm-3">
+                    <h3 class="mr-2">${
+                      restaurant.website
+                        ? `<a href="${restaurant.website}" target="_blank">`
+                        : ""
+                    }${restaurant.name}${restaurant.website ? `</a>` : ""}</h3>
+                    •<span class="ml-2 green">${restaurant.eventsCount.toLocaleString()}</span> Évènements,
+                    <span class="green">${restaurant.mealsCount.toLocaleString()}</span> Repas
+                  </div>
+                `;
+          });
+          $("#partners-list").html(partnersHtml);
+          pageUpdated = true;
+        }
+      };
+
+      fetch(
+        "https://d1ynm3a7sf.execute-api.eu-west-3.amazonaws.com/default/GetLandingData"
+      ).then((r) => {
+        r.json().then((j) => {
+          spreadsheetResults = j;
+          updateContentIfReady();
+        });
+      });
+    </script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./bootstrap.min.css" />
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.instagramFeed/1.3.2/jquery.instagramFeed.min.js"></script>
+    <script>
+      function getUrlVars() {
+        var queries = {};
+        $.each(document.location.search.substr(1).split("&"), function (c, q) {
+          var i = q.split("=");
+          if (i.length >= 2) {
+            queries[i[0].toString()] = i[1].toString();
+          }
+        });
+        return queries;
+      }
+      $(document).ready(function () {
+        pageReady = true;
+        const urlParams = getUrlVars();
+        if (urlParams && urlParams.redirectedFrom) {
+          const redirectedFrom = decodeURIComponent(urlParams.redirectedFrom);
+          if (redirectedFrom.startsWith("/collecte")) {
+            $("#collectesClosed").show();
+          }
+        }
+        updateContentIfReady();
+        // Asso logos carousel
+        const assosLogosCount = $(".asso-logo").length;
+        let currentAssoLogo = 0;
+        function updateAssoLogoPosition() {
+          $(".assos-logos").css("left", `${-25 * currentAssoLogo}%`);
+        }
+        $("#carousel-arrow-right").click(function () {
+          currentAssoLogo = Math.min(currentAssoLogo + 1, assosLogosCount - 4);
+          updateAssoLogoPosition();
+        });
+        $("#carousel-arrow-left").click(function () {
+          currentAssoLogo = Math.max(currentAssoLogo - 1, 0);
+          updateAssoLogoPosition();
+        });
+
+        // Instagram feed
+        $.instagramFeed({
+          username: "ravitailleurs",
+          container: "#instagram-feed",
+          display_profile: false,
+          display_biography: false,
+          items: 6,
+          items_per_row: 6,
+        });
+
+        // Scroll to associations
+
+        $("#association-cta").click(function () {
+          $([document.documentElement, document.body]).animate(
+            {
+              scrollTop: $("#associations-section").offset().top - 150,
+            },
+            1000
+          );
+        });
+      });
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
