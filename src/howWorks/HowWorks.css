@@ -8,9 +8,9 @@
 
 .HowWorks__title {
   font-family: "DM Serif Text";
-  font-size: 16px;
+  font-size: 20px;
   color: #181818;
-  margin: 20px auto;
+  margin: 0px auto 20px auto;
 }
 
 .HowWorks__step {
@@ -30,9 +30,10 @@
 .HowWorks__step__description {
   font-family: "Open Sans";
   color: #141414;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-align: left;
+  line-height: 1.3em;
 }
 
 @media screen and (max-width: 767px) {

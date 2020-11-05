@@ -312,7 +312,7 @@ a:hover {
   .partners-block .col-6:nth-child(2n) {
     padding-left: 7.5px;
   }
-  .partners-block .col-6:nth-child(2n+1) {
+  .partners-block .col-6:nth-child(2n + 1) {
     padding-right: 7.5px;
   }
 }
@@ -467,6 +467,7 @@ a:hover {
 
 .carousel-arrow {
   cursor: pointer;
+  max-width: 100%;
 }
 
 .assos-logos-wrapper {
@@ -489,11 +490,15 @@ a:hover {
 .assos-logos-wrapper .assos-logos .asso-logo {
   width: 25%;
   flex: 25% 0 0;
+  min-width: 25%;
+  max-width: 25%;
 }
 @media (max-width: 575.98px) {
   .assos-logos-wrapper .assos-logos .asso-logo {
     width: 33%;
     flex: 33% 0 0;
+    min-width: 33%;
+    max-width: 33%;
   }
 }
 
@@ -729,7 +734,8 @@ a:hover {
     flex: calc(50% - 1px) 0 0 !important;
     margin-top: 2px !important;
   }
-  .insta-feed-wrapper .instagram_gallery a:nth-child(5), .insta-feed-wrapper .instagram_gallery a:nth-child(6) {
+  .insta-feed-wrapper .instagram_gallery a:nth-child(5),
+  .insta-feed-wrapper .instagram_gallery a:nth-child(6) {
     display: none !important;
   }
 }

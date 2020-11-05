@@ -29,7 +29,6 @@ const Landing = () => {
   const getPool = useCallback(async () => {
     try {
       const { data } = await api.get(`/pool/${poolId}`);
-
       setPoolData(data);
     } catch (e) {
       console.log(e);
@@ -39,6 +38,12 @@ const Landing = () => {
   useEffect(() => {
     getPool();
   }, [getPool]);
+
+  setTimeout(() => {
+    if (updateContentIfReady) {
+      updateContentIfReady();
+    }
+  }, 1000);
 
   return (
     <div>
@@ -127,7 +132,7 @@ const Landing = () => {
               <img src="/landing/images/hand-right-black.svg" />
             </div>
           </div>
-          <h2 className="mt-5 mb-5">
+          <h2 className="mt-5 mb-4">
             Urgence confinement&nbsp;!
             <br />
             Nouvel objectif: financer 50&nbsp;000 repas
@@ -321,7 +326,7 @@ const Landing = () => {
       </div>
       <div className="container text-center mb-5">
         <h2 className="mt-5 mb-3">Nous sommes fiers de les ravitailler</h2>
-        <div className="row align-items-center">
+        <div className="row no-gutters align-items-center">
           <div className="col-1 d-none d-sm-block">
             <img
               className="carousel-arrow"

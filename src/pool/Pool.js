@@ -64,7 +64,6 @@ const Pool = () => {
                 <PoolDescription pool={pool} getPool={getPool} />
                 {!isMobile && (
                   <>
-                    <br />
                     <HowWorks />
                     <br />
                   </>
@@ -80,13 +79,68 @@ const Pool = () => {
                 <PoolSummary pool={pool} />
               </>
             )}
-            <AssoList />
-            <p className="Pool__FrichtiHelp">
+            <div className="container text-center mb-5">
+              <h2 className="mt-5 mb-3">
+                Nous sommes fiers de les ravitailler
+              </h2>
+              <div className="row no-gutters align-items-center">
+                <div className="col-1 d-none d-sm-block">
+                  <img
+                    className="carousel-arrow"
+                    id="carousel-arrow-left"
+                    src="/landing/images/left-arrow.svg"
+                  />
+                </div>
+                <div className="col-sm-10 col">
+                  <div className="assos-logos-wrapper">
+                    <div className="assos-logos">
+                      <img
+                        className="asso-logo"
+                        src="/landing/images/restos-du-coeur.svg"
+                      />
+                      <img
+                        className="asso-logo"
+                        src="/landing/images/protection-civile.svg"
+                      />
+                      <img
+                        className="asso-logo"
+                        src="/landing/images/secours-populaire.svg"
+                      />
+                      <img
+                        className="asso-logo"
+                        src="/landing/images/utopia.svg"
+                      />
+                      <img
+                        className="asso-logo"
+                        src="/landing/images/banlieues-sante.svg"
+                      />
+                      <img
+                        className="asso-logo"
+                        src="/landing/images/la-table-ouverte.svg"
+                      />
+                      <img
+                        className="asso-logo"
+                        src="/landing/images/action-froid.svg"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="col-1 d-none d-sm-block">
+                  <img
+                    className="carousel-arrow"
+                    id="carousel-arrow-right"
+                    src="/landing/images/right-arrow.svg"
+                  />
+                </div>
+              </div>
+            </div>
+            {/* <AssoList /> */}
+            {/* <p className="Pool__FrichtiHelp">
               Les Ravitailleurs sont aidés par Frichti pour la gestion des flux
               logistiques et financiers.
               <br />
               Merci à toute l’équipe pour sa générosité et son soutien.
-            </p>
+            </p> */}
           </div>
         </div>
         <Footer />

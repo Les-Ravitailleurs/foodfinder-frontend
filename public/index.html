@@ -33,10 +33,9 @@
     <script>
       let pageReady = false;
       let spreadsheetResults = null;
-      let pageUpdated = false;
 
       const updateContentIfReady = () => {
-        if (pageReady && spreadsheetResults && !pageUpdated) {
+        if (pageReady && spreadsheetResults) {
           $("#meals-count-number").text(
             spreadsheetResults.mealsCount.toLocaleString()
           );
@@ -100,7 +99,6 @@
                 `;
           });
           $("#partners-list").html(partnersHtml);
-          pageUpdated = true;
         }
       };
 
@@ -162,11 +160,11 @@
         function updateAssoLogoPosition() {
           $(".assos-logos").css("left", `${-25 * currentAssoLogo}%`);
         }
-        $("#carousel-arrow-right").click(function () {
+        $(document).on("click", "#carousel-arrow-right", function () {
           currentAssoLogo = Math.min(currentAssoLogo + 1, assosLogosCount - 4);
           updateAssoLogoPosition();
         });
-        $("#carousel-arrow-left").click(function () {
+        $(document).on("click", "#carousel-arrow-left", function () {
           currentAssoLogo = Math.max(currentAssoLogo - 1, 0);
           updateAssoLogoPosition();
         });

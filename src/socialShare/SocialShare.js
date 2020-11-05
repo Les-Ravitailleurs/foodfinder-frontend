@@ -43,7 +43,7 @@ const SocialShare = ({ poolId }) => {
         <img
           src={messenger}
           alt="messenger"
-          style={{ height: 50, top: 7, position: "relative" }}
+          style={{ height: 50, top: 9, position: "relative" }}
         />
       </a>
     </div>
