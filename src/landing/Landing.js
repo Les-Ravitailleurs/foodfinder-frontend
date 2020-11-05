@@ -130,7 +130,7 @@ const Landing = () => {
           <h2 className="mt-5 mb-5">
             Urgence confinement&nbsp;!
             <br />
-            Nouvel objectif: financer 100&nbsp;000 repas
+            Nouvel objectif: financer 50&nbsp;000 repas
             <br />
             avant le 31 décembre 2020
           </h2>

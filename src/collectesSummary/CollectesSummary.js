@@ -25,6 +25,7 @@ const Gauge = ({ collectesPercent, isVisible }) => {
       setDecale(true);
     }, 400);
   }
+  collectesPercent = Math.round(collectesPercent * 10) / 10;
   return (
     <div className="collectes-gauge-wrapper">
       <div
