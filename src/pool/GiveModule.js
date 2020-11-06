@@ -154,10 +154,10 @@ const GiveModule = ({ pool }) => {
               ? "66% du montant déductible des impôts"
               : `Soit ${(34 * price) / 100}€ après déduction d'impôts`}
           </strong>
-          {/* <p>
-            Le nombre de repas que vous offrez ne sera pas visible sur la page
-            de la collecte. Seul votre nom s'affichera.
-          </p> */}
+          <p>
+            Les 2€ par repas correspondent au remboursement des matières
+            premières et des packagings aux restaurateurs.
+          </p>
           {/* <p>
             Le paiement se fera directement auprès de notre fournisseur Frichti,
             qui nous fournit l'équivalent en matières premières
