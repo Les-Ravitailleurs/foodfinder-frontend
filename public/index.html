@@ -181,10 +181,10 @@
 
         // Scroll to associations
 
-        $("#association-cta").click(function () {
+        $(document).on("click", "#restaurateur-cta", function () {
           $([document.documentElement, document.body]).animate(
             {
-              scrollTop: $("#associations-section").offset().top - 150,
+              scrollTop: $("#restaurateur-section").offset().top,
             },
             1000
           );

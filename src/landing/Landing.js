@@ -89,8 +89,7 @@ const Landing = () => {
           <div className="text-center mb-5">
             <a
               className="small"
-              href="https://forms.gle/RW1AxsqnpPzeW9NY7"
-              target="_blank"
+              id="restaurateur-cta"
             >
               Vous êtes restaurateur&nbsp;?
             </a>
@@ -307,7 +306,7 @@ const Landing = () => {
                 </div>
               </div>
               <Link className="button mt-5" to="/collecte">
-                Je donne
+                Accéder à la collecte
               </Link>
               <img
                 src="/landing/images/running-chef.svg"
@@ -374,7 +373,7 @@ const Landing = () => {
           </div>
         </div>
       </div>
-      <div className="secondary red-banner">
+      <div className="secondary red-banner" id="restaurateur-section">
         <div className="overflow-hidden">
           <div className="container text-center">
             <h1 className="mt-5">
