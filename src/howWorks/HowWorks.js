@@ -26,9 +26,8 @@ const HowWorks = () => {
         <div className="HowWorks__step">
           <div className="HowWorks__step__number">3.</div>
           <div className="HowWorks__step__description">
-            Nous les livrons
-            <br />
-           aux associations partenaires
+            Nos associations <br />
+            partenaires les distribuent
           </div>
         </div>
       </div>
