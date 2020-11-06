@@ -201,7 +201,7 @@ const GiveModule = ({ pool }) => {
               <Form>
                 <FormInput
                   name="donatorName"
-                  label="Nom complet"
+                  label="Nom complet ou nom de votre entreprise"
                   placeholder="Gérard Menvusa"
                   value={values.donatorName}
                   // onChange={handleChange}
@@ -209,7 +209,7 @@ const GiveModule = ({ pool }) => {
                   error={errors.donatorName}
                   validate={(name) => {
                     if (name.trim().length === 0) {
-                      return "Veuillez entrer votre nom complet";
+                      return "Veuillez entrer votre nom complet ou le nom de votre entreprise";
                     }
                   }}
                 />
