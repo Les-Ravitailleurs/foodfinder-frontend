@@ -146,7 +146,7 @@ const GiveModule = ({ pool }) => {
             //  || !donatorName
           }
         >
-          {submitting ? "Redirection..." : `Payer ${price ? `${price}€` : ""}`}
+          {submitting ? "Redirection..." : `Donner ${price ? `${price}€` : ""}`}
         </Button>
         <div className="GiveModule__Details">
           <strong>
@@ -157,6 +157,10 @@ const GiveModule = ({ pool }) => {
           <p>
             Les 2€ par repas correspondent au remboursement des matières
             premières et des packagings aux restaurateurs.
+          </p>
+          <p>
+            Les Ravitailleurs est une association loi 1901 d’intérêt général,
+            enregistrée sous le numéro RNA W751256667
           </p>
           {/* <p>
             Le paiement se fera directement auprès de notre fournisseur Frichti,
