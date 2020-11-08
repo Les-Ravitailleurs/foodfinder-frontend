@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
+import ReactGA from "react-ga";
 
 import { loadStripe } from "@stripe/stripe-js";
 // import ClapButton from "react-clap-button";
@@ -140,7 +141,16 @@ const GiveModule = ({ pool }) => {
           }}
         /> */}
         <Button
-          onClick={() => setShowTaxModal(true)}
+          onClick={() => {
+            setShowTaxModal(true);
+            if (process.env.NODE_ENV === "production") {
+              ReactGA.event({
+                category: "Collectes",
+                action: "click_donatepage",
+                value: price,
+              });
+            }
+          }}
           disabled={
             submitting || mealCount === 0 || editMealCount
             //  || !donatorName
@@ -186,6 +196,13 @@ const GiveModule = ({ pool }) => {
             validateOnChange={false}
             validateOnBlur={false}
             onSubmit={async (values, { setSubmitting }) => {
+              if (process.env.NODE_ENV === "production") {
+                ReactGA.event({
+                  category: "Collectes",
+                  action: "click_donateform",
+                  value: price,
+                });
+              }
               const { data } = await api.post("/donation", {
                 mealCount,
                 poolId: pool.id,

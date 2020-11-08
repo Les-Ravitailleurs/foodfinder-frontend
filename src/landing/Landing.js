@@ -7,6 +7,7 @@ import Mailchimp from "react-mailchimp-form";
 import { useHistory, Link } from "react-router-dom";
 import queryString from "query-string";
 import Papa from "papaparse";
+import ReactGA from "react-ga";
 
 import "./Landing.css";
 import Button from "../button/Button";
@@ -83,14 +84,22 @@ const Landing = () => {
               financez leurs matières premières
             </div>
           </div>
-          <Link className="button button-big mt-5 mb-3" to="/collecte">
+          <Link
+            className="button button-big mt-5 mb-3"
+            to="/collecte"
+            onClick={() => {
+              if (process.env.NODE_ENV === "production") {
+                ReactGA.event({
+                  category: "Collectes",
+                  action: "click_collect",
+                });
+              }
+            }}
+          >
             Accéder à la collecte
           </Link>
           <div className="text-center mb-5">
-            <a
-              className="small"
-              id="restaurateur-cta"
-            >
+            <a className="small" id="restaurateur-cta">
               Vous êtes restaurateur&nbsp;?
             </a>
           </div>
@@ -148,7 +157,18 @@ const Landing = () => {
             mealsCount={poolData ? poolData.startAt + poolData.mealCount : 0}
             donatorsCount={poolData ? poolData.donationsCount : 0}
           />
-          <Link className="button button-big mt-4 mb-5" to="/collecte">
+          <Link
+            className="button button-big mt-4 mb-5"
+            to="/collecte"
+            onClick={() => {
+              if (process.env.NODE_ENV === "production") {
+                ReactGA.event({
+                  category: "Collectes",
+                  action: "click_collect",
+                });
+              }
+            }}
+          >
             Accéder à la collecte
           </Link>
 
@@ -305,7 +325,18 @@ const Landing = () => {
                   exclue se régale
                 </div>
               </div>
-              <Link className="button mt-5" to="/collecte">
+              <Link
+                className="button mt-5"
+                to="/collecte"
+                onClick={() => {
+                  if (process.env.NODE_ENV === "production") {
+                    ReactGA.event({
+                      category: "Collectes",
+                      action: "click_collect",
+                    });
+                  }
+                }}
+              >
                 Accéder à la collecte
               </Link>
               <img
@@ -416,6 +447,14 @@ const Landing = () => {
               className="button mb-5 mt-sm-5 mt-2"
               href="https://forms.gle/RW1AxsqnpPzeW9NY7"
               target="_blank"
+              onClick={() => {
+                if (process.env.NODE_ENV === "production") {
+                  ReactGA.event({
+                    category: "Restaurants",
+                    action: "click_restoform",
+                  });
+                }
+              }}
             >
               Je rejoins le mouvement
             </a>
@@ -513,6 +552,14 @@ const Landing = () => {
                 className="button text-center"
                 href="https://forms.gle/a6NXyCZr7zeuJFqFA"
                 target="_blank"
+                onClick={() => {
+                  if (process.env.NODE_ENV === "production") {
+                    ReactGA.event({
+                      category: "Associations",
+                      action: "click_assoform",
+                    });
+                  }
+                }}
               >
                 Je prends contact
               </a>
