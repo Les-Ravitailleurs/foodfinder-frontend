@@ -30,12 +30,16 @@ const Gauge = ({ collectesPercent, isVisible }) => {
     <div className="collectes-gauge-wrapper">
       <div
         className="collectes-cuistot"
-        style={{ marginLeft: `${decale ? collectesPercent : 0}%` }}
+        style={{
+          marginLeft: `${decale ? collectesPercent : 0}%`,
+          height: "84px",
+          width: "72px",
+        }}
       >
         <Lottie
           options={defaultOptions}
           isClickToPauseDisabled={true}
-          height={80}
+          height={84}
         />
       </div>
       <div
