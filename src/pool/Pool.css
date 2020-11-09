@@ -297,6 +297,12 @@
   width: 314px;
 }
 
+@media (max-width: 767px) {
+  .Pool__CollectesSummary .collectes-summary-image.d-none {
+    display: none !important;
+  }
+}
+
 .Pool__CollectesSummary .row {
   margin: 0 !important;
 }
