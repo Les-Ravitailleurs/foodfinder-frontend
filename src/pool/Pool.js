@@ -94,10 +94,10 @@ const Pool = () => {
                 <div className="col-sm-10 col">
                   <div className="assos-logos-wrapper">
                     <div className="assos-logos">
-                      <img
+                      {/* <img
                         className="asso-logo"
                         src="/landing/images/restos-du-coeur.svg"
-                      />
+                      /> */}
                       <img
                         className="asso-logo"
                         src="/landing/images/protection-civile.svg"
