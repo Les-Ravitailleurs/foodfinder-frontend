@@ -117,14 +117,14 @@ const CollectesSummary = ({ mealsCount, donatorsCount }) => {
           </div>
         </div>
         <div className="row justify-content-center">
-          {/* <TrackVisibility className="col-12"> */}
           <VisibilitySensor onChange={handleVisibilityChange}>
-            <Gauge
-              collectesPercent={collectesPercent}
-              isVisible={isGaugeVisible}
-            />
+            <div className="col-12">
+              <Gauge
+                collectesPercent={collectesPercent}
+                isVisible={isGaugeVisible}
+              />
+            </div>
           </VisibilitySensor>
-          {/* </TrackVisibility> */}
         </div>
       </div>
     </>
