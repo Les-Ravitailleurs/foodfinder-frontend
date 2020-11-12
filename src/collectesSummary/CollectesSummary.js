@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Lottie from "react-lottie";
-import TrackVisibility from "react-on-screen";
+import VisibilitySensor from "react-visibility-sensor";
 import moment from "moment";
 
 import cuistot from "./cuistot.json";
@@ -67,6 +67,10 @@ const CollectesSummary = ({ mealsCount, donatorsCount }) => {
   const now = moment();
   const end = moment("2020-12-31T23:00:00.000Z");
   const daysCount = end.diff(now, "days");
+  const [isGaugeVisible, setIsGaugeVisible] = useState(false);
+  const handleVisibilityChange = (isVisible) => {
+    if (isVisible) setIsGaugeVisible(true);
+  };
   return (
     <>
       <div className="collectes-summary-images d-lg-block d-none">
@@ -113,9 +117,14 @@ const CollectesSummary = ({ mealsCount, donatorsCount }) => {
           </div>
         </div>
         <div className="row justify-content-center">
-          <TrackVisibility className="col-12">
-            <Gauge collectesPercent={collectesPercent} />
-          </TrackVisibility>
+          {/* <TrackVisibility className="col-12"> */}
+          <VisibilitySensor onChange={handleVisibilityChange}>
+            <Gauge
+              collectesPercent={collectesPercent}
+              isVisible={isGaugeVisible}
+            />
+          </VisibilitySensor>
+          {/* </TrackVisibility> */}
         </div>
       </div>
     </>
