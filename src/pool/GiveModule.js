@@ -209,6 +209,7 @@ const GiveModule = ({ pool }) => {
                 donatorName: values.donatorName.trim(),
                 donatorAddress: values.donatorAddress.trim(),
                 hideDonatorName: values.hideDonatorName,
+                volunteerId: pool.volunteer && pool.volunteer.id,
               });
               const stripe = await stripePromise;
               const { error } = await stripe.redirectToCheckout({

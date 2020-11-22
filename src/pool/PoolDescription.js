@@ -37,9 +37,21 @@ const PoolDescription = ({ pool, getPool }) => {
         )}
       </h1>
        */}
-       <h1>
-        Bienvenue sur la collecte des<br/><span className="green">Ravitailleurs</span>
-      </h1>
+      {!pool.volunteer && (
+        <h1>
+          Bienvenue sur la collecte des
+          <br />
+          <span className="green">Ravitailleurs</span>
+        </h1>
+      )}
+      {pool.volunteer && (
+        <h1>
+          <span className="green">{pool.volunteer.name}</span> vous invite à participer à la
+          <br />
+          collecte des <span className="green">Ravitailleurs</span>
+        </h1>
+      )}
+
       <p>
         Les plus démunis ont besoin, aujourd’hui plus que jamais, d’aide
         alimentaire. Sans domiciles fixes, migrants, centres d’hébergements,

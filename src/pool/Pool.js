@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import isMobile from "../isMobile";
+import queryString from "query-string";
 
 import "./Pool.css";
 import PoolDescription from "./PoolDescription";
@@ -19,6 +20,7 @@ import spatule from "./spatule.svg";
 
 const Pool = () => {
   // const { poolId, adminId } = useParams();
+  const { rav: volunteer } = queryString.parse(window.location.search);
   const [pool, setPool] = useState(null);
   const history = useHistory();
   const poolId = process.env.REACT_APP_RAVIT_POOL_ID;
@@ -32,7 +34,7 @@ const Pool = () => {
     try {
       const savedAdminId = localStorage.getItem(`ravit-admin-${poolId}`);
       const { data } = await api.get(
-        `/pool/${poolId}${savedAdminId ? `?adminId=${savedAdminId}` : ""}`
+        `/pool/${poolId}${volunteer ? `?volunteer=${volunteer}` : ""}`
       );
       if (savedAdminId && data.admin === false) {
         localStorage.removeItem(`ravit-admin-${poolId}`);

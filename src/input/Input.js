@@ -12,6 +12,9 @@ const Input = ({
   onBlur,
   hide,
   onKeyDown,
+  subLabel,
+  onFocus,
+  autocomplete,
 }) => {
   return (
     <div className="Input__wrapper" style={{ display: hide ? "none" : "auto" }}>
@@ -24,8 +27,12 @@ const Input = ({
         onChange={onChange}
         onBlur={onBlur}
         onKeyDown={onKeyDown}
+        onFocus={onFocus}
+        autocomplete={autocomplete}
       ></input>
       {error && <div className="Input__error">{error}</div>}
+      {subLabel && <div className="Input__subLabel">{subLabel}</div>}
+      
     </div>
   );
 };

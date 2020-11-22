@@ -1,0 +1,363 @@
+.Dashboard {
+  position: relative;
+}
+.Dashboard .logo {
+  max-width: 230px;
+}
+
+.DashboardBox {
+  background: #ffffff;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 14px;
+  padding: 40px 32px;
+  margin-top: 20px;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 600;
+  position: relative;
+}
+
+.DashboardBoxMetrics h3 {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.DashboardBoxMetrics .green {
+  margin-bottom: 0;
+  font-size: 24px;
+  line-height: 33px;
+  font-weight: 400;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.DashboardBoxMetrics .col-4 {
+  padding-top: 20px;
+}
+
+.DashboardBoxMetrics .col-4:nth-child(2) {
+  border-left: 1px solid #ebebeb;
+  border-right: 1px solid #ebebeb;
+}
+
+.DashboardBoxRow {
+  margin-top: 20px;
+  border-top: 1px solid #ebebeb;
+}
+
+.DonationRow {
+  display: flex;
+  font-size: 14px;
+  line-height: 20px;
+  color: rgba(0, 0, 0, 0.7);
+  padding: 12px 30px;
+  
+}
+
+.DonationRow:nth-child(2n) {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.DonationRow .black {
+  color: black;
+}
+
+.DonationRow span {
+  font-size: 12px;
+}
+
+.DonationEmoji {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.DonationLikeCount {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 11px;
+  line-height: 10px;
+  margin-top: 3px;
+}
+
+.DonationContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.DashboardBoxChart {
+  margin-top: 20px;
+}
+
+.DashboardBoxChartButtons {
+  height: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  margin-top: 5px;
+}
+.DashboardBoxChartButtons .col-3 {
+  cursor: pointer;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.4);
+  font-weight: 700;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+}
+
+.DashboardBoxChartButtons .col-3 div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.DashboardChartButtonSelected {
+  color: white !important;
+  background-color: #1e832d !important;
+  border-radius: 5px;
+  height: 48px !important;
+  position: relative;
+}
+
+.chartjsTooltip {
+  position: relative;
+  background-color: #1e832d;
+  border-radius: 15px;
+  color: rgba(255, 255, 255, 0.7);
+  width: auto !important;
+  height: auto !important;
+  min-width: 320px;
+  font-weight: 600;
+  transform: translate(calc(-50% - 6px), calc(-100% - 27px));
+}
+
+.chartjsTooltip:after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%) rotate(45deg);
+  background: #0f6c29;
+  border-radius: 2px;
+}
+
+.chartjsTooltip h3 {
+  color: white;
+  font-size: 44px;
+  line-height: 44px;
+  font-weight: 400;
+  color: white;
+}
+
+.tooltipLeft {
+  padding: 10px;
+  padding-left: 20px;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* border: 1px solid purple; */
+}
+.tooltipDate {
+  font-weight: 700;
+  font-size: 12px;
+  color: white;
+  text-align: center;
+  background-color: #0f6c29;
+  border-radius: 0px 0px 15px 15px;
+  padding: 12px 0px;
+}
+
+.tooltipRight {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  /* border: 1px solid orange; */
+  margin-left: -15px;
+}
+
+.tooltipRight div {
+  height: 33%;
+  flex-basis: 33%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+}
+
+.tooltipRight div:nth-child(2) {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.tooltipRight .white {
+  color: white !important;
+}
+
+.DashboardSelectors {
+  color: rgba(0, 0, 0, 0.4);
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 19px;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  margin-bottom: 18px;
+}
+
+.DashboardSelector {
+  flex-grow: 1;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.DashboardSelectorSelected {
+  color: white;
+  background-color: #11782e;
+}
+
+.DashboardDonationListContainer {
+  padding-bottom: 0px;
+}
+
+.DashboardDonationList {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  width: calc(100% + 60px);
+  position: relative;
+  left: -30px;
+
+  max-height: 419px;
+  overflow-y: scroll;
+  padding-bottom: 5px;
+}
+
+.DashboardBox p {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 28px;
+}
+
+.DashboardBox canvas {
+  height: 138px !important;
+}
+
+.CanvasContainer {
+  height: 138px;
+  width: 100%;
+  position: relative;
+}
+
+.EmojiElement {
+  display: inline-block;
+  width: 10%;
+  font-size: 24px;
+  line-height: 33px;
+  text-align: center;
+}
+
+@media (min-width: 992px) {
+  .EmojiElement {
+    width: 6.25%;
+  }
+}
+
+.EmojiList {
+  width: 100%;
+}
+
+.DashboardSpatule {
+  position: absolute;
+  width: 180px;
+  left: 0;
+  top: 180px;
+}
+
+.DashboardFouet {
+  position: absolute;
+  width: 185px;
+  right: 0;
+  z-index: 0;
+  top: 0;
+  transform: translateY(-50%);
+}
+
+.DashboardLemonTomato {
+  position: absolute;
+  top: 0;
+  transform: translateY(-78%);
+  width: 100%;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.DashboardBox .button {
+  margin: auto;
+  margin-top: 50px;
+  display: inline-block;
+}
+
+.DashboardScrollBoxes {
+  overflow-x: scroll;
+  padding-bottom: 20px;
+}
+
+.DashboardScrollBoxes .DashboardScrollContainer {
+  width: calc(200%);
+}
+
+.DashboardScrollContainerElement:first-child {
+  padding-right: 7.5px;
+  padding-left: 15px;
+}
+
+.DashboardScrollContainerElement:last-child {
+  padding-left: 7.5px;
+  padding-right: 15px;
+}
+
+@media (min-width: 992px) {
+  .DashboardScrollBoxes {
+    width: calc(100% + 30px);
+    overflow-x: visible;
+    padding-bottom: 0px;
+  }
+  .DashboardScrollBoxes .DashboardScrollContainer {
+    width: auto;
+  }
+  .DashboardScrollContainerElement:first-child {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  .DashboardScrollContainerElement:last-child {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}

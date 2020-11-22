@@ -6,6 +6,7 @@ import Landing from "./landing/Landing";
 import Pool from "./pool/Pool";
 import Livreur from "./livreur/Livreur";
 import DonationSuccess from "./pool/DonationSuccess";
+import Dashboard from "./dashboard/Dashboard";
 
 if (process.env.NODE_ENV === "production") {
   ReactGA.initialize("UA-162359879-1");
@@ -32,8 +33,14 @@ const AppContent = () => {
       <Route path="/collecte">
         <Pool />
       </Route>
+      <Route path="/dashboard">
+        <Dashboard />
+      </Route>
       <Route path="/livreur/:livreurId">
         <Livreur />
+      </Route>
+      <Route path="/linkcreation">
+        <Landing linkcreation />
       </Route>
       <Route path="/">
         <Landing />

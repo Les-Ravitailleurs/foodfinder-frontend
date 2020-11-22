@@ -4,9 +4,15 @@ import Clipboard from "react-clipboard.js";
 import "./CopyPaste.css";
 import link from "./link.svg";
 
-const CopyPaste = ({ poolId }) => {
+const CopyPaste = ({ poolId, volunteerUsername, dashboardToken }) => {
   const [copied, setCopied] = useState(false);
-  const textToCopy = `${document.location.protocol}//${document.location.host}/collecte/${poolId}`;
+  const textToCopy = dashboardToken
+    ? `${document.location.protocol}//${document.location.host}/dashboard?token=${dashboardToken}`
+    : `${document.location.protocol}//${
+        document.location.host
+      }/collecte/${poolId}${
+        volunteerUsername ? `?rav=${volunteerUsername}` : ""
+      }`;
   const justCopied = () => {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);

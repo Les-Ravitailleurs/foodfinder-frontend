@@ -1,0 +1,30 @@
+.VolunteerModal__description {
+  width: 100%;
+  max-width: 400px;
+  font-family: "Open Sans";
+  color: #181818;
+  font-size: 12px;
+  margin-bottom: 30px;
+}
+
+.emoji-mart-bar,
+.emoji-mart-search {
+  display: none;
+}
+
+.emoji-mart-category[aria-label="Frequently Used"] {
+  display: none;
+}
+
+.emoji-mart {
+  position: absolute;
+  width: calc(100% - 20px) !important;
+  left: 10px;
+  top: 45px;
+}
+
+.emoji-mart-emoji,
+.emoji-mart-category-list li {
+  outline: none !important;
+  cursor: pointer;
+}

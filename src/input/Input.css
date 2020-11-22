@@ -1,5 +1,5 @@
 .Input__wrapper {
-    text-align: left;
+  text-align: left;
 }
 
 .Input {
@@ -43,4 +43,13 @@
   font-size: 11px;
   line-height: 28px;
   color: red;
+}
+
+.Input__subLabel {
+  font-size: 13px;
+  line-height: 28px;
+  font-family: "Open Sans";
+  color: rgba(24, 24, 24, 0.7);
+  font-weight: normal;
+  max-width: 540px;
 }

@@ -22,10 +22,12 @@ import Footer from "../footer/Footer";
 import AssoList from "../assoList/AssoList";
 import CollectesSummary from "../collectesSummary/CollectesSummary";
 import api from "../api";
+import VolunteerModal from "../volunteerModal/VolunteerModal";
 
-const Landing = () => {
+const Landing = ({ linkcreation }) => {
   const [poolData, setPoolData] = useState(null);
   const poolId = process.env.REACT_APP_RAVIT_POOL_ID;
+  const [showVolunteerModal, setShowVolunteerModal] = useState(linkcreation);
 
   const getPool = useCallback(async () => {
     try {
@@ -46,14 +48,26 @@ const Landing = () => {
     }
   }, 1000);
 
+  const volunteerData = localStorage.getItem(`ravit-volunteer`);
+  const volunteer = volunteerData && JSON.parse(volunteerData);
+  console.log(volunteer);
+
   return (
     <div>
       <div className="secondary position-relative text-center top-section">
-        <div id="collectesClosed" className="topBanner">
-          Les collectes sont actuellement en pause.
-          <br />
-          Pour toute question : contact@lesravitailleurs.org
-        </div>
+        {showVolunteerModal && (
+          <VolunteerModal onClose={() => setShowVolunteerModal(false)} />
+        )}
+        {volunteer && (
+          <div className="topBanner">
+            {volunteer.name}, accède à ton tableau
+            <br />
+            de bord{' '}
+            <Link to={`/dashboard/?token=${volunteer.id}`}>
+              en cliquant ici
+            </Link>
+          </div>
+        )}
         <img
           id="top-carotte"
           className="top-image"
