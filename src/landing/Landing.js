@@ -63,7 +63,7 @@ const Landing = ({ linkcreation }) => {
             {volunteer.name}, accède à ton tableau
             <br />
             de bord{' '}
-            <Link to={`/dashboard/?token=${volunteer.id}`}>
+            <Link to={`/dashboard?token=${volunteer.id}`}>
               en cliquant ici
             </Link>
           </div>
