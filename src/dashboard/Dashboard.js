@@ -247,7 +247,7 @@ const dashboardBox = (
             Repas
           </div>
           <div className="col-4">
-            <h3 className="green">{data.donationsCount.toLocaleString()}€</h3>
+            <h3 className="green">{data.donationsCount.toLocaleString()}</h3>
             Dons
           </div>
           <div className="col-4">
@@ -525,7 +525,7 @@ const Dashboard = () => {
               <span className="green">{dashboardData.volunteer.name}</span>
             </h1>
             <div className="DashboardBox">
-              <h3>Ton lien vers la collecte</h3>
+              <h3>Votre lien vers la collecte</h3>
               <CopyPaste
                 poolId={""}
                 volunteerUsername={dashboardData.volunteer.username}
@@ -533,6 +533,13 @@ const Dashboard = () => {
               <h3 style={{ fontSize: 18, marginTop: 30 }}>
                 Le lien vers le guide du bénévole
               </h3>
+              <a
+                style={{ opacity: 0.7 }}
+                href="https://bit.ly/3pTSU1c"
+                target="_blank"
+              >
+                https://bit.ly/3pTSU1c
+              </a>
             </div>
             <div class="row DashboardScrollBoxes">
               <div class="col-12">
@@ -610,8 +617,8 @@ const Dashboard = () => {
             <div className="DashboardBox">
               <h3>Votre impact 💪</h3>
               <p>
-                Ci-dessous, un repas récolté = un emoji. Tu peux filtrer les
-                dons que tu as récoltés et les dons totaux.
+                Ci-dessous, un repas récolté = un emoji. Vous pouvez filtrer les
+                dons que vous avez récoltés et les dons totaux.
               </p>
               <div
                 className="DashboardSelectors"

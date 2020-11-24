@@ -22,14 +22,14 @@ const VolunteerModal = ({ onClose, volunteer, messageMode }) => {
     return (
       <Modal onClose={onClose}>
         <h1>
-          Ton lien a bien été créé
+          Votre lien a bien été créé
           <br />
           <span className="green">{createdVolunteer.name}</span>
         </h1>
         <div className="mb-3 text-left">
-          <label className="Input__label">Ton lien</label>
+          <label className="Input__label">Votre lien</label>
           <div className="Input__subLabel">
-            C’est le lien à partager aux personnes à qui tu diffuseras la
+            C’est le lien à partager aux personnes à qui vous diffuserez la
             collecte
           </div>
           <CopyPaste
@@ -39,11 +39,11 @@ const VolunteerModal = ({ onClose, volunteer, messageMode }) => {
         </div>
         <div className="mb-3 text-left">
           <label className="Input__label">
-            Le lien vers ton tableau de bord
+            Le lien vers votre tableau de bord
           </label>
           <div className="Input__subLabel">
-            Il est strictement personnel et te permettra de suivre les dons
-            effectués via ton lien.
+            Il est strictement personnel et vous permettra de suivre les dons
+            effectués via votre lien.
           </div>
           <CopyPaste dashboardToken={createdVolunteer.id} />
         </div>
@@ -61,8 +61,8 @@ const VolunteerModal = ({ onClose, volunteer, messageMode }) => {
     <Modal onClose={onClose}>
       <h1>Hello nouveau collector !</h1>
       <p className="VolunteerModal__description">
-        Remplis le formulaire ci-dessous, tu recevras en retour ton lien vers la
-        collecte et le lien vers ton tableau de bord.
+        Remplissez le formulaire ci-dessous, vous recevrez en retour votre lien vers la
+        collecte et le lien vers votre tableau de bord.
       </p>
       <Formik
         initialValues={{
@@ -105,9 +105,9 @@ const VolunteerModal = ({ onClose, volunteer, messageMode }) => {
               error={errors.email}
               validate={(email) => {
                 if (email.trim().length === 0) {
-                  return "Entre une adresse email pour continuer";
+                  return "Veuillez entrer une adresse email";
                 } else if (!isEmail(email)) {
-                  return "Entre une adresse email valide pour continuer";
+                  return "Veuillez entrer une adresse email valide";
                 }
               }}
             />
@@ -121,10 +121,10 @@ const VolunteerModal = ({ onClose, volunteer, messageMode }) => {
               error={errors.username}
               validate={(email) => {
                 if (email.trim().length === 0) {
-                  return "Entre un pseudo pour continuer";
+                  return "Veuillez entrer un pseudo";
                 }
               }}
-              subLabel="Qui apparaîtra dans l’URL de ton lien"
+              subLabel="Qui apparaîtra dans l’URL de votre lien"
             />
             <FormInput
               name="name"
@@ -136,10 +136,10 @@ const VolunteerModal = ({ onClose, volunteer, messageMode }) => {
               error={errors.name}
               validate={(email) => {
                 if (email.trim().length === 0) {
-                  return "Entre un nom pour continuer";
+                  return "Veuillez entrer un nom";
                 }
               }}
-              subLabel="Apparaîtra sur la collecte quand on cliquera sur ton lien"
+              subLabel="Apparaîtra sur la collecte quand on cliquera sur votre lien"
             />
             <div style={{ position: "relative" }}>
               <FormInput
@@ -160,11 +160,11 @@ const VolunteerModal = ({ onClose, volunteer, messageMode }) => {
                 error={errors.emoji}
                 validate={(emoji) => {
                   if (emoji.trim().length === 0) {
-                    return "Entre un emoji";
+                    return "Veuillez entrer un emoji";
                   }
                 }}
                 autocomplete="off"
-                subLabel="Choisis un emoji, les autres bénévoles pourront te féliciter pour les dons que tu as effectués en cliquant dessus dans leur tableau de bord."
+                subLabel="Choisissez un emoji, les autres bénévoles pourront vous féliciter pour les dons faits via votre lien en cliquant dessus dans leur tableau de bord."
               />
               {showEmojiList && (
                 <Picker
