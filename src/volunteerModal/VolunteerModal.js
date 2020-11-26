@@ -128,8 +128,8 @@ const VolunteerModal = ({ onClose, volunteer, messageMode }) => {
             />
             <FormInput
               name="name"
-              label="Nom"
-              placeholder="Ex: Gérard"
+              label="Nom Complet"
+              placeholder="Ex: Gérard Mevusa"
               value={values.name}
               // onChange={handleChange}
               // onBlur={handleBlur}
