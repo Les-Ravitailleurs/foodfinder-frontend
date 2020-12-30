@@ -154,11 +154,8 @@ const Landing = ({ linkcreation }) => {
             </div>
           </div>
           <h2 className="mt-5 mb-4">
-            Urgence confinement&nbsp;!
-            <br />
-            Nouvel objectif: financer 50&nbsp;000 repas
-            <br />
-            avant le 31 décembre 2020
+          Financez les ingrédients des restaurateurs.<br/>
+2€ = 1 repas
           </h2>
           <div className="row justify-content-center">
             <div className="mb-3 col-lg-8">

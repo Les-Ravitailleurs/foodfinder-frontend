@@ -459,6 +459,12 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+@media (max-width: 767px) {
+  .Pool__Mission {
+    flex-direction: column;
+  }
+}
+
 .NewsWrapper {
   background-color: white;
   border-radius: 14px;
@@ -507,4 +513,17 @@
 
   color: #666666;
   margin-left: 10px;
+}
+
+
+@media (max-width: 767px) {
+  .NewsItem {
+    flex-direction: column;
+  }
+  .NewsLogo img {
+    width: 100%;
+  }
+  .NewsWrapper {
+    overflow-x: scroll;
+  }
 }

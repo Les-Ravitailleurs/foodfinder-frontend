@@ -65,7 +65,7 @@ const Gauge = ({ collectesPercent, isVisible }) => {
 const CollectesSummary = ({ mealsCount, donatorsCount }) => {
   const collectesPercent = mealsCount / 500;
   const now = moment();
-  const end = moment("2020-12-31T23:00:00.000Z");
+  const end = moment("2021-02-28T23:00:00.000Z");
   const daysCount = end.diff(now, "days");
   const [isGaugeVisible, setIsGaugeVisible] = useState(false);
   const handleVisibilityChange = (isVisible) => {
