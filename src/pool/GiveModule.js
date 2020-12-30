@@ -15,6 +15,8 @@ import FormInput from "../input/FormInput";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
+let pictosCount = 0;
+
 const GiveModule = ({ pool }) => {
   const [mealCount, setMealCount] = useState(0);
   const [editorMealCount, setEditorMealCount] = useState("");
@@ -25,14 +27,51 @@ const GiveModule = ({ pool }) => {
   const [error, setError] = useState(null);
   const [showTaxModal, setShowTaxModal] = useState(false);
 
-  const GiveIcon = ({ addCount }) => (
-    <div
-      className="GiveModule__MealButton__Icon"
-      onClick={() => setMealCount(mealCount + addCount)}
-    >
-      +{addCount}
-    </div>
-  );
+  const GiveIcon = ({ addCount }) => {
+    return (
+      <div
+        id={`GiveModule__MealButton-${addCount}`}
+        className="GiveModule__MealButton__Icon"
+        onClick={() => {
+          const singleTime = addCount === 10 ? 20 : 6;
+          for (let i = 1; i <= addCount; i += 1) {
+            const currentPictosCount = pictosCount;
+            window
+              .jQuery(`.GiveModule__MealButtons`)
+              .append(
+                `<div id="GiveModule__MealButton__Picto-${
+                  currentPictosCount + i
+                }" class="GiveModule__MealButton__Picto__${addCount}">🥗</div>`
+              );
+            setTimeout(() => {
+              setMealCount(mealCount + i);
+              window
+                .jQuery(
+                  `#GiveModule__MealButton__Picto-${currentPictosCount + i}`
+                )
+                .addClass("GiveModule__MealButton__Picto__Animate");
+              setTimeout(() => {
+                window
+                  .jQuery(
+                    `#GiveModule__MealButton__Picto-${currentPictosCount + i}`
+                  )
+                  .remove();
+              }, 700);
+            }, (i - 1) * singleTime);
+            pictosCount += addCount;
+          }
+        }}
+      >
+        <div>
+          <span className="GiveModule__MealButton__Add">Ajouter</span>
+          <br />
+          {addCount}
+          <br />
+          repas
+        </div>
+      </div>
+    );
+  };
 
   const GiveCountButton = ({ giveCount }) => (
     <div className="GiveModule__MealButton">
@@ -72,11 +111,6 @@ const GiveModule = ({ pool }) => {
   return (
     <div className="GiveModule">
       <h1>Offrez des repas</h1>
-      <div className="GiveModule__MealButtons">
-        <GiveCountButton giveCount={1} />
-        <GiveCountButton giveCount={10} />
-        <GiveCountButton giveCount={100} />
-      </div>
       <div className="GiveModule__MealCount">
         {editMealCount && (
           <div className="GiveModule__MealCountEdit">
@@ -113,17 +147,20 @@ const GiveModule = ({ pool }) => {
             />
           </div>
         )}
-        <br />
-
-        <strong style={{ fontSize: "14px" }}>
-          {process.env.REACT_APP_MEAL_PRICE}€ = 1 repas
-        </strong>
-        {/* <p style={{ visibility: mealCount > 0 ? "visible" : "hidden" }}>
-          Soit {mealCount}&nbsp;packaging +&nbsp;{(mealCount * 0.25).toFixed(1)}
-          &nbsp;kg de riz ou de pâtes +&nbsp;{(mealCount * 0.15).toFixed(1)}
-          &nbsp;kg de légumes
-        </p> */}
       </div>
+      <div className="GiveModule_Reset" onClick={() => setMealCount(0)}>
+        Réinitialiser
+      </div>
+      <div className="GiveModule__MealButtons">
+        <GiveCountButton giveCount={1} />
+        <GiveCountButton giveCount={10} />
+        <GiveCountButton giveCount={100} />
+      </div>
+      <strong
+        style={{ fontSize: "14px", textAlign: "center", display: "block" }}
+      >
+        {process.env.REACT_APP_MEAL_PRICE}€ = 1 repas
+      </strong>
       <span className="GiveModule__error">{error && error.message}</span>
       <div className="GiveModule__button">
         {/* <Input
@@ -203,20 +240,28 @@ const GiveModule = ({ pool }) => {
                   value: price,
                 });
               }
-              const { data } = await api.post("/donation", {
-                mealCount,
-                poolId: pool.id,
-                donatorName: values.donatorName.trim(),
-                donatorAddress: values.donatorAddress.trim(),
-                hideDonatorName: values.hideDonatorName,
-                volunteerId: pool.volunteer && pool.volunteer.id,
-              });
-              const stripe = await stripePromise;
-              const { error } = await stripe.redirectToCheckout({
-                sessionId: data.checkoutSessionId,
-              });
-              setSubmitting(false);
-              console.log(error);
+              try {
+                const { data } = await api.post("/donation", {
+                  mealCount,
+                  poolId: pool.id,
+                  donatorName: values.donatorName.trim(),
+                  donatorAddress: values.donatorAddress.trim(),
+                  hideDonatorName: values.hideDonatorName,
+                  volunteerId: pool.volunteer && pool.volunteer.id,
+                });
+                const stripe = await stripePromise;
+                const { error } = await stripe.redirectToCheckout({
+                  sessionId: data.checkoutSessionId,
+                });
+                setSubmitting(false);
+                if (error) {
+                  console.log(error);
+                  alert(error);
+                }
+              } catch (e) {
+                console.log(e);
+                alert(e);
+              }
             }}
           >
             {({ isSubmitting, values, handleChange, handleBlur, errors }) => (

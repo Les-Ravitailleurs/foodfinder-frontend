@@ -50,7 +50,6 @@ const Landing = ({ linkcreation }) => {
 
   const volunteerData = localStorage.getItem(`ravit-volunteer`);
   const volunteer = volunteerData && JSON.parse(volunteerData);
-  console.log(volunteer);
 
   return (
     <div>

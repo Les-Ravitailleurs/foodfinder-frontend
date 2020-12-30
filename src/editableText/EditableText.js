@@ -7,7 +7,7 @@ const EditableText = ({ text, onClick }) => {
   return (
     <span className="EditableText" onClick={onClick}>
       <span>{text}</span>
-      <img src={editable} alt="editable" />
+      {/* <img src={editable} alt="editable" /> */}
     </span>
   );
 };

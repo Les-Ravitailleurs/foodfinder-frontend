@@ -29,6 +29,7 @@
 
 .GiveModule__MealButtons {
   display: flex;
+  position: relative;
   margin-bottom: 20px;
   justify-content: space-between;
 }
@@ -44,12 +45,11 @@
 .GiveModule__MealButton__Icon {
   /* margin-left: -8px;
   margin-top: -4px; */
+  z-index: 2;
+  position: relative;
   background: #11782e;
   box-shadow: 0px 3px 4px rgba(19, 21, 20, 0.16);
-  border-radius: 150px;
-  width: 72px;
-  height: 72px;
-  display: flex;
+  border-radius: 2px;
   align-items: center;
   justify-content: center;
   font-family: Open Sans;
@@ -64,10 +64,19 @@
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently
                                 supported by Chrome, Opera and Firefox */
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 18px;
+}
+
+.GiveModule__MealButton__Add {
+  font-size: 12px;
 }
 
 .GiveModule__MealButton {
   margin-right: 15px;
+  position: relative;
+  z-index:2;
 }
 
 .GiveModule__MealButton:last-child {
@@ -93,7 +102,36 @@
 .GiveModule__MealCount {
   text-align: center;
   /* margin-bottom: 30px; */
-  margin-top: 50px;
+  margin-top: 30px;
+}
+.GiveModule__MealButton__Picto__1 {
+  position: absolute;
+  top: 30px;
+  left: 35px;
+  transition: all 0.7s cubic-bezier(0.33, 0, 0, 1);
+  z-index: 0;
+}
+
+.GiveModule__MealButton__Picto__10 {
+  position: absolute;
+  top: 30px;
+  left: 142px;
+  transition: all 0.7s cubic-bezier(0.33, 0, 0, 1);
+  z-index: 0;
+}
+
+.GiveModule__MealButton__Picto__100 {
+  position: absolute;
+  top: 30px;
+  left: 252px;
+  transition: all 0.7s cubic-bezier(0.33, 0, 0, 1);
+  z-index: 0;
+}
+
+.GiveModule__MealButton__Picto__Animate {
+  top: -70px;
+  left: 134px;
+  opacity: 0;
 }
 
 .GiveModule__MealCount p {
@@ -162,4 +200,18 @@
   .GiveModule__MealCount {
     margin-bottom: 0;
   }
+}
+
+.GiveModule_Reset {
+  cursor: pointer;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  text-decoration-line: underline;
+  color: #397e47;
+  display: block;
+  text-align: center;
+  margin-top: 20px;
 }

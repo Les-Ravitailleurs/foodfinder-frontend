@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import Button from "../button/Button";
 
 import CopyPaste from "../copyPaste/CopyPaste";
-import SocialShare from '../socialShare/SocialShare';
+import SocialShare from "../socialShare/SocialShare";
 
 const PoolSummary = ({ pool }) => {
+  const [showAllDonators, setShowAllDonators] = useState(false);
   return (
     <div className="PoolSummary">
       <div className="PoolSummary__MealCount">
@@ -30,14 +32,25 @@ const PoolSummary = ({ pool }) => {
         </div>
       )}
       <h2>Partagez la collecte</h2>
-      <CopyPaste poolId={''} />
-      <SocialShare poolId={''} />
+      <CopyPaste poolId={""} />
+      <SocialShare poolId={""} />
       {pool.donationsNames.length > 0 && (
-        <div className="PoolSummary__Donateurs">
+        <div className={`PoolSummary__Donateurs ${showAllDonators ? 'PoolSummary__Donateurs__All' : ''}`}>
           <strong>Donateurs</strong>
           <br />
           <br />
           {pool.donationsNames.join(" • ")}
+        </div>
+      )}
+      {!showAllDonators && (
+        <div className="PoolSummary__Donateurs__Button">
+          <Button
+            onClick={() => {
+              setShowAllDonators(true);
+            }}
+          >
+            Voir les {pool.donationsNames.length} donateurs
+          </Button>
         </div>
       )}
     </div>

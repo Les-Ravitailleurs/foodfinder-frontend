@@ -47,6 +47,7 @@
 
 .PoolRight {
   width: 380px;
+  min-width: 380px;
   background-color: #faf29a;
   overflow-y: auto;
   overflow-x: hidden;
@@ -183,6 +184,25 @@
   font-size: 14px;
   color: #909090;
   font-weight: 600;
+  max-height: 250px;
+  overflow: hidden;
+  position: relative;
+}
+
+.PoolSummary__Donateurs__All {
+  max-height: none;
+}
+
+.PoolSummary__Donateurs__Button {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  bottom: 10px;
+  height: 132px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .PoolSummary__NotEmpty {
@@ -359,4 +379,132 @@
     z-index: 0;
     left: 0;
   }
+}
+
+.Pool__LastMissions {
+  background: #ffffff;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 14px;
+  text-align: center;
+  padding: 37px;
+  margin-top: 50px;
+}
+
+.Pool__Mission {
+  display: flex;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  border-radius: 14px;
+  margin-top: 30px;
+  font-size: 14px;
+}
+
+.Pool__Mission__Left {
+  flex: 1 1 0px;
+  display: flex;
+  text-align: left;
+  padding: 20px;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.Pool__Mission__Left > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Pool__Mission__Left__MealCount {
+  font-family: DM Serif Display;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 44px;
+  line-height: 44px;
+  margin-right: 25px;
+  /* identical to box height, or 100% */
+  width: 60px;
+  color: #11782e;
+}
+
+.Pool__Mission__Left strong {
+  font-family: DM Serif Display;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 20px;
+  /* identical to box height, or 167% */
+
+  color: #181818;
+}
+
+.Pool__Mission__Right {
+  flex: 1 1 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Pool__Mission__Right__Half {
+  flex: 1 1 0px;
+  display: flex;
+  align-items: center;
+  padding-left: 13px;
+  text-align: left;
+}
+
+.Pool__Mission__Right__Half span {
+  display: inline-block;
+  width: 50px;
+}
+
+.Pool__Mission__Right__Half:first-child {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.NewsWrapper {
+  background-color: white;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+}
+
+.NewsContent {
+  font-family: DM Serif Text;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 25px;
+  padding: 20px 30px;
+  text-align: left;
+  color: #181818;
+  display: flex;
+  align-items: center;
+}
+
+.NewsItem {
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  transition: all 0.7s cubic-bezier(0.33, 0, 0, 1);
+}
+
+.NewsLogo {
+  display: flex;
+  align-items: center;
+}
+
+.NewsLogo img {
+  width: 160px;
+}
+
+.NewsContent a {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 28px;
+  /* identical to box height, or 200% */
+
+  text-decoration-line: underline;
+
+  color: #666666;
+  margin-left: 10px;
 }
