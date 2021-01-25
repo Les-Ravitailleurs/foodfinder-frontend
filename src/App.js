@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Switch, Route, useLocation } from "react-router-dom";
 import ReactGA from "react-ga";
+import LogRocket from "logrocket";
 
 import Landing from "./landing/Landing";
 import Pool from "./pool/Pool";
@@ -10,6 +11,7 @@ import Dashboard from "./dashboard/Dashboard";
 
 if (process.env.NODE_ENV === "production") {
   ReactGA.initialize("UA-162359879-1");
+  LogRocket.init("19l3b1/les-ravitailleurs");
 }
 
 const AppContent = () => {
