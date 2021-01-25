@@ -27,6 +27,10 @@
   padding: 110px 30px 0px 30px;
 }
 
+.GiveModule__MealButtons__Container {
+  position: relative;
+}
+
 .GiveModule__MealButtons {
   display: flex;
   position: relative;
@@ -76,7 +80,7 @@
 .GiveModule__MealButton {
   margin-right: 15px;
   position: relative;
-  z-index:2;
+  z-index: 2;
 }
 
 .GiveModule__MealButton:last-child {

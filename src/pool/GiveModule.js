@@ -16,6 +16,7 @@ import FormInput from "../input/FormInput";
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
 let pictosCount = 0;
+const foodPictos = ["🍏", "🌶", "🥑", "🌽", "🥕", "🍅"];
 
 const GiveModule = ({ pool }) => {
   const [mealCount, setMealCount] = useState(0);
@@ -33,15 +34,17 @@ const GiveModule = ({ pool }) => {
         id={`GiveModule__MealButton-${addCount}`}
         className="GiveModule__MealButton__Icon"
         onClick={() => {
-          const singleTime = addCount === 10 ? 20 : 6;
+          const singleTime = addCount === 10 ? 20 : 10;
           for (let i = 1; i <= addCount; i += 1) {
             const currentPictosCount = pictosCount;
+            const pictoIndex = (currentPictosCount + i) % foodPictos.length;
+            const picto = foodPictos[pictoIndex];
             window
-              .jQuery(`.GiveModule__MealButtons`)
+              .jQuery(`.GiveModule__MealButtons__Container`)
               .append(
                 `<div id="GiveModule__MealButton__Picto-${
                   currentPictosCount + i
-                }" class="GiveModule__MealButton__Picto__${addCount}">🥗</div>`
+                }" class="GiveModule__MealButton__Picto__${addCount}">${picto}</div>`
               );
             setTimeout(() => {
               setMealCount(mealCount + i);
@@ -151,10 +154,12 @@ const GiveModule = ({ pool }) => {
       <div className="GiveModule_Reset" onClick={() => setMealCount(0)}>
         Réinitialiser
       </div>
-      <div className="GiveModule__MealButtons">
-        <GiveCountButton giveCount={1} />
-        <GiveCountButton giveCount={10} />
-        <GiveCountButton giveCount={100} />
+      <div className="GiveModule__MealButtons__Container">
+        <div className="GiveModule__MealButtons">
+          <GiveCountButton giveCount={1} />
+          <GiveCountButton giveCount={10} />
+          <GiveCountButton giveCount={100} />
+        </div>
       </div>
       <strong
         style={{ fontSize: "14px", textAlign: "center", display: "block" }}

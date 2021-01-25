@@ -112,7 +112,7 @@ const Pool = () => {
             )}
             <div className="Pool__LastMissions">
               <h3>Les dernières missions effectuées</h3>
-              {retraits.map((retrait) => (
+              {retraits.slice(0, 5).map((retrait) => (
                 <div className="Pool__Mission">
                   <div className="Pool__Mission__Left">
                     <div className="Pool__Mission__Left__MealCount">
