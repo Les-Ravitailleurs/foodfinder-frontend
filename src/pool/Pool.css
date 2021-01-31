@@ -495,10 +495,14 @@
 .NewsLogo {
   display: flex;
   align-items: center;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  justify-content: center;
+
 }
 
 .NewsLogo img {
-  width: 160px;
+  height: 160px;
 }
 
 .NewsContent a {
@@ -512,7 +516,6 @@
   text-decoration-line: underline;
 
   color: #666666;
-  margin-left: 10px;
 }
 
 

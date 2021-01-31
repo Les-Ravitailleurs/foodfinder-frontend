@@ -18,10 +18,10 @@ import CollectesSummary from "../collectesSummary/CollectesSummary";
 import couteau from "./couteau.svg";
 import fouet from "./fouet1.svg";
 import spatule from "./spatule.svg";
-import tf1 from "./tf1.svg";
-import leParisien from "./leParisien.svg";
-import franceBleu from "./franceBleu.svg";
-import parisMatch from "./parisMatch.svg";
+import tf1 from "./tf1.png";
+import leParisien from "./leParisien.png";
+import franceBleu from "./franceBleu.png";
+import parisMatch from "./parisMatch.png";
 
 moment.locale("fr");
 
@@ -160,11 +160,8 @@ const Pool = () => {
                       </div>
                       <div className="NewsContent">
                         <div>
-                          Depuis sa création au premier confinement, ce
-                          collectif a permis à des restaurateurs parisiens de
-                          cuisiner bénévolement plus de 59 000 repas, distribués
-                          aux plus démunis par les associations d’entraide.{" "}
-                          <a
+                        Depuis sa création au premier confinement, ce collectif a permis à des restaurateurs parisiens de&nbsp;...{' '}
+                        <br/><a
                             href="https://www.leparisien.fr/paris-75/paris-avec-les-ravitailleurs-des-chefs-cuisiniers-rallument-les-feux-pour-les-plus-demunis-09-12-2020-8413315.php"
                             target="_blank"
                           >
@@ -179,12 +176,8 @@ const Pool = () => {
                       </div>
                       <div className="NewsContent">
                         <div>
-                          Pol Maire, ingénieur, a lancé "Les Ravitailleurs". Ce
-                          collectif de restaurateurs et de maraîchers vient en
-                          aide aux associations pour distribuer des repas aux
-                          plus démunis, particulièrement vulnérables en cette
-                          période de confinement.
-                          <a
+                        Pol Maire, ingénieur, a lancé "Les Ravitailleurs". Ce collectif de restaurateurs et de maraîchers&nbsp;...{' '}
+                        <br/><a
                             href="https://www.lci.fr/social/video-confinement-une-chaine-de-solidarite-pour-offrir-des-repas-aux-plus-demunis-2150757.html"
                             target="_blank"
                           >
@@ -199,10 +192,8 @@ const Pool = () => {
                       </div>
                       <div className="NewsContent">
                         <div>
-                          50.000 repas distribués en 8 semaines&nbsp;! Pol
-                          Marie, un des créateurs des "Ravitailleurs", nous
-                          explique le fonctionnement de cette initiative.
-                          <a
+                        50.000 repas distribués en 8 semaines ! Pol Marie, un des créateurs des "Ravitailleurs", nous&nbsp;...{' '}
+                          <br/><a
                             href="https://www.francebleu.fr/vie-quotidienne/famille-enfants/les-ravitailleurs-connectent-cuisiniers-et-associations-pour-venir-en-aide-aux-plus-demunis-1590418345"
                             target="_blank"
                           >
@@ -217,13 +208,8 @@ const Pool = () => {
                       </div>
                       <div className="NewsContent">
                         <div>
-                          Pol Maire, un ancien de chez Frichti, a lancé Les
-                          Ravitailleurs, un collectifs d'acteur de la
-                          restauration qui vient en aide aux associations pour
-                          distribuer des repas aux plus démunis,
-                          particulièrement vulnérables en cette période de
-                          confinement.
-                          <a
+                        Pol Maire, un ancien de chez Frichti, a lancé Les Ravitailleurs, un collectifs d'acteur de la restauration&nbsp;...{' '}
+                        <br/><a
                             href="https://www.parismatch.com/Actu/Societe/Les-Ravitailleurs-une-itinative-pour-venir-en-aide-aux-plus-demunis-1680917"
                             target="_blank"
                           >
