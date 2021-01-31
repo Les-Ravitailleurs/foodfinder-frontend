@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e3744a5a9120df02bb1650704e376071",
+    "revision": "3c2256275244150fa265e220e1f30242",
     "url": "/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/2.e56c7c91.chunk.css"
   },
   {
-    "revision": "e23bd371fcaf2c78d652",
-    "url": "/static/css/main.81f9020d.chunk.css"
+    "revision": "4f3588c174ee8212f4e8",
+    "url": "/static/css/main.e9936651.chunk.css"
   },
   {
     "revision": "9591282a2306b5fc5baa",
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/2.5728abfb.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "e23bd371fcaf2c78d652",
-    "url": "/static/js/main.c5e442ab.chunk.js"
+    "revision": "4f3588c174ee8212f4e8",
+    "url": "/static/js/main.d6e70956.chunk.js"
   },
   {
     "revision": "68a9665f6992de0c4239",
@@ -64,16 +64,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/fouet1.b63718ef.svg"
   },
   {
-    "revision": "7c32397a1c4ecf94b0baff4669c4b1d5",
-    "url": "/static/media/franceBleu.7c32397a.svg"
+    "revision": "bd8f7c354bb4811acdfe332032b5e389",
+    "url": "/static/media/franceBleu.bd8f7c35.png"
   },
   {
     "revision": "7ba86bea509a587de6f849aea4b91ae0",
     "url": "/static/media/greenFouet.7ba86bea.svg"
   },
   {
-    "revision": "c32a5a9802726ac5faa83845d73b0c26",
-    "url": "/static/media/leParisien.c32a5a98.svg"
+    "revision": "870d61f4f834530b5cb90171ca6f7d75",
+    "url": "/static/media/leParisien.870d61f4.png"
   },
   {
     "revision": "26671425d3392f370fefbec3dca5a7d4",
@@ -104,8 +104,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/messenger.f2f50094.svg"
   },
   {
-    "revision": "7b2c37f6699f7770ff6719ad0b566eb3",
-    "url": "/static/media/parisMatch.7b2c37f6.svg"
+    "revision": "dfe84553f2fdb0e022cd6a731bf718b5",
+    "url": "/static/media/parisMatch.dfe84553.png"
   },
   {
     "revision": "bf68fedc0d346dd64c8c3733c2ef8805",
@@ -160,8 +160,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/successRightHand.8b78f375.svg"
   },
   {
-    "revision": "db5e4c6f97962cbfd9f337d3e96914a4",
-    "url": "/static/media/tf1.db5e4c6f.svg"
+    "revision": "e4ca5689edffe4fd04f0f5c6e27bf3ea",
+    "url": "/static/media/tf1.e4ca5689.png"
   },
   {
     "revision": "55145f70abfa33069ec6577a292e4997",
