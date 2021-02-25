@@ -36,7 +36,7 @@ const PoolSummary = ({ pool }) => {
       <SocialShare poolId={""} />
       {pool.donationsNames.length > 0 && (
         <div className={`PoolSummary__Donateurs ${showAllDonators ? 'PoolSummary__Donateurs__All' : ''}`}>
-          <strong>Donateurs</strong>
+          <strong>Donateurs Ravitailleurs</strong>
           <br />
           <br />
           {pool.donationsNames.join(" • ")}
