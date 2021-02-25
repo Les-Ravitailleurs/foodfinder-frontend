@@ -64,9 +64,6 @@ const Gauge = ({ collectesPercent, isVisible }) => {
 
 const CollectesSummary = ({ mealsCount, donatorsCount }) => {
   const collectesPercent = mealsCount / 500;
-  const now = moment();
-  const end = moment("2021-02-28T23:00:00.000Z");
-  const daysCount = end.diff(now, "days");
   const [isGaugeVisible, setIsGaugeVisible] = useState(false);
   const handleVisibilityChange = (isVisible) => {
     if (isVisible) setIsGaugeVisible(true);
@@ -93,7 +90,7 @@ const CollectesSummary = ({ mealsCount, donatorsCount }) => {
                     &nbsp;Repas
                   </h3>
                 </div>
-                <div className="col-lg-3 col-6 collectes-summary-section collectes-summary-section--borders">
+                <div className="col-12 col-lg-6 collectes-summary-section collectes-summary-section--borders">
                   Donateurs
                   <br />
                   <h3>
@@ -103,13 +100,6 @@ const CollectesSummary = ({ mealsCount, donatorsCount }) => {
                         : `${parseInt(donatorsCount / 1000, 10)}k`}
                     </span>
                     &nbsp;Personnes
-                  </h3>
-                </div>
-                <div className="col-lg-3 col-6 collectes-summary-section">
-                  Temps restant
-                  <br />
-                  <h3>
-                    <span className="green">{daysCount}</span>&nbsp;Jours
                   </h3>
                 </div>
               </div>

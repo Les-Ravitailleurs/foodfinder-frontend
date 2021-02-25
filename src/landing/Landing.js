@@ -159,8 +159,7 @@ const Landing = ({ linkcreation }) => {
           </h2>
           <div className="row justify-content-center">
             <div className="mb-3 col-lg-8">
-              Particuliers, participez à la grande collecte Ravitailleurs et
-              obtenez un reçu fiscal pour votre don
+            Particuliers, participez au financement de notre budget 2021 et obtenez un reçu fiscal pour votre don
             </div>
           </div>
           <CollectesSummary

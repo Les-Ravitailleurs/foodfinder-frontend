@@ -55,7 +55,7 @@ const PoolDescription = ({ pool, getPool }) => {
       <p>
         Les plus démunis ont besoin, aujourd’hui plus que jamais, d’aide
         alimentaire. Sans domiciles fixes, migrants, centres d’hébergements,
-        hôtels sociaux n’ont plus assez de plats préparés pour vivre.
+        hôtels sociaux n’ont plus assez de plats préparés pour vivre.<br/>Nous projetons de cuisiner et distribuer au moins 50 000 repas en 2021. Aidez-nous à les financer ! C’est 100% transparent : 1 repas = 2€
       </p>
       {/* {(pool.admin || pool.message) && (
         <div className="PoolDescription__Message">
