@@ -361,3 +361,20 @@
     padding-right: 15px;
   }
 }
+
+
+.Dashboard .collectes-summary-section {
+  background-color: transparent;
+}
+
+.Dashboard .collectes-summary-wrapper {
+  background-color: white;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.Dashboard .collectes-gauge-wrapper {
+  max-width: calc(100% - 30px);
+  margin-left: 15px;
+  margin-bottom: 30px;
+}

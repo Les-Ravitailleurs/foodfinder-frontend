@@ -62,7 +62,7 @@ const Gauge = ({ collectesPercent, isVisible }) => {
   );
 };
 
-const CollectesSummary = ({ mealsCount, donatorsCount }) => {
+const CollectesSummary = ({ mealsCount, donatorsCount, title }) => {
   const collectesPercent = mealsCount / 500;
   const [isGaugeVisible, setIsGaugeVisible] = useState(false);
   const handleVisibilityChange = (isVisible) => {
@@ -80,8 +80,8 @@ const CollectesSummary = ({ mealsCount, donatorsCount }) => {
           <div className="col-12">
             <div className="collectes-summary">
               <div className="row text-center text-lg-left">
-                <div className="col-12 col-lg-6 collectes-summary-section">
-                  Déjà récoltés
+                <div className="col-12 collectes-summary-section">
+                  {title || 'Déjà récoltés'}
                   <br />
                   <h3>
                     <span className="green">
@@ -90,7 +90,7 @@ const CollectesSummary = ({ mealsCount, donatorsCount }) => {
                     &nbsp;Repas
                   </h3>
                 </div>
-                <div className="col-12 col-lg-6 collectes-summary-section collectes-summary-section--borders">
+                {/* <div className="col-12 col-lg-6 collectes-summary-section collectes-summary-section--borders">
                   Donateurs
                   <br />
                   <h3>
@@ -101,7 +101,7 @@ const CollectesSummary = ({ mealsCount, donatorsCount }) => {
                     </span>
                     &nbsp;Personnes
                   </h3>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

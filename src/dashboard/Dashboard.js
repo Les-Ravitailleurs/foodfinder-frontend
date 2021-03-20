@@ -13,6 +13,7 @@ import lemontomato from "../collectesSummary/lemon-tomato.svg";
 import "./Dashboard.css";
 
 import api from "../api";
+import CollectesSummary from "../collectesSummary/CollectesSummary";
 
 moment.locale("fr");
 
@@ -228,14 +229,28 @@ const dashboardBox = (
   stats,
   chartId,
   chartCount,
-  setChartCount
+  setChartCount,
+  subtitle
 ) => {
   const average = data.donationsCount
     ? parseInt((data.amount / 100 / data.donationsCount) * 100) / 100
     : 0;
   return (
     <div className="DashboardBox DashboardBoxMetrics">
-      <h3>{title}</h3>
+      <h3>
+        {title}
+        {subtitle && (
+          <div
+            style={{
+              fontFamily: "Open Sans",
+              fontSize: 12,
+              fontWeight: 600,
+            }}
+          >
+            {subtitle}
+          </div>
+        )}
+      </h3>
       <div>
         <h3 className="green">{(data.amount / 100).toLocaleString()}€</h3>
         De&nbsp;dons
@@ -317,6 +332,7 @@ const Dashboard = () => {
 
   const [showAllList, setShowAllList] = useState(true);
   const [showAllEmoji, setShowAllEmoji] = useState(true);
+  const [poolData, setPoolData] = useState(null);
   const [updatedLikeCount, setUpdatedLikeCount] = useState({});
   const [showExtendedEmojiList, setShowExtendedEmojiList] = useState(false);
 
@@ -350,6 +366,21 @@ const Dashboard = () => {
   useEffect(() => {
     getDashboardData();
   }, [getDashboardData]);
+
+  const poolId = process.env.REACT_APP_RAVIT_POOL_ID;
+
+  const getPool = useCallback(async () => {
+    try {
+      const { data } = await api.get(`/pool/${poolId}`);
+      setPoolData(data);
+    } catch (e) {
+      console.log(e);
+    }
+  }, [poolId]);
+
+  useEffect(() => {
+    getPool();
+  }, [getPool]);
 
   const donationsRows = [];
   const myDonationsRows = [];
@@ -563,7 +594,8 @@ const Dashboard = () => {
                       myStatsByDay,
                       "chart1",
                       chart1Count,
-                      setChart1Count
+                      setChart1Count,
+                      "Depuis la création de mon lien"
                     )}
                   </div>
                   <div className="col-6 DashboardScrollContainerElement">
@@ -573,10 +605,22 @@ const Dashboard = () => {
                       statsByDay,
                       "chart2",
                       chart2Count,
-                      setChart2Count
+                      setChart2Count,
+                      "Depuis le lancement des collectes"
                     )}
                   </div>
                 </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <CollectesSummary
+                  title="Challenge : financement du budget 2021 des Ravitailleurs"
+                  mealsCount={
+                    poolData ? poolData.startAt + poolData.mealCount : 0
+                  }
+                  donatorsCount={poolData ? poolData.donationsCount : 0}
+                />
               </div>
             </div>
           </div>

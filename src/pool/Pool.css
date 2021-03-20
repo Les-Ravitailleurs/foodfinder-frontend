@@ -330,7 +330,6 @@
 .Pool__CollectesSummary .collectes-summary .col-12 {
   flex: 0 0 100% !important;
   max-width: 100% !important;
-  border-bottom: 1px solid #ebebeb;
 }
 
 .Pool__CollectesSummary .collectes-summary .col-6 {
