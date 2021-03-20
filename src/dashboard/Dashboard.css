@@ -365,6 +365,7 @@
 
 .Dashboard .collectes-summary-section {
   background-color: transparent;
+  padding: 30px 45px;
 }
 
 .Dashboard .collectes-summary-wrapper {
@@ -374,7 +375,7 @@
 }
 
 .Dashboard .collectes-gauge-wrapper {
-  max-width: calc(100% - 30px);
-  margin-left: 15px;
+  max-width: calc(100% - 45px);
+  margin-left: 22.5px;
   margin-bottom: 30px;
 }

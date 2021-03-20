@@ -613,7 +613,7 @@ const Dashboard = () => {
               </div>
             </div>
             <div class="row">
-              <div class="col-12">
+              <div class="col-12" style={{marginTop: 30}}>
                 <CollectesSummary
                   title="Challenge : financement du budget 2021 des Ravitailleurs"
                   mealsCount={
